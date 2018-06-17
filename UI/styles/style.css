@@ -1,7 +1,8 @@
 /* Base Syles ================================ */
 :root {
   --black: #272727;
-  --dark-blue: #004f8f;
+  --blue: #0073d1;
+  --green: #06D19C;
 }
 
 *,
@@ -10,7 +11,13 @@
   box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+}
+
 html {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -20,8 +27,6 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -69,6 +74,11 @@ img {
 
 ul {
   list-style: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
 }
 
 a {
@@ -81,25 +91,116 @@ a {
 .wrapper {
   display: grid;
   border: 0;
-  padding: 10px 20px;
+  background: #eeeeee;
 }
 
 /* top */
 .top {
   display: grid;
   grid-template-areas: 
-    "hero hero hero"
+    "hero hero hero";
+}
+
+.features, .about, .footer {
+  padding: 20px 100px;
+}
+
+.features, .about {
+  /* max-width: 800px; */
 }
 
 .hero {
   grid-area: hero;
   min-height: 400px;
-  background: white url();
+  background: var(--blue);
   background-position: bottom right;
   background-size: cover;
   padding: 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   text-align: center;
-  /* display: flex; */
+  color: white;
+}
+
+/* Navigation */
+.menu {
+  grid-row: 1 / 1;
+  height: 40px;
+}
+
+.menu ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
+}
+
+.menu a {
+  display: block;
+  padding: 10px 20px;
+}
+
+[aria-controls="menu-list"] {
+  display: none;
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 5px;
+  display: block;
+  border: 0;
+  text-decoration: none;
+  text-align: center;
+  margin: 1rem 0;
+  color: white;
+}
+
+/*Button Primary*/
+.btn__primary {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn__secondary {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.btn__rounded {
+  border-radius: 25px;
+}
+
+.btn__inline{
+  display: inline-block;
+}
+
+/* Features */ 
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 50px;
+}
+
+.feature {
+  padding: 20px;
+  background: white;
+  border: 1px solid white;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgb(225, 225, 225);
+  display: grid;
+  justify-items: center;
+}
+
+.feature p {
+  color: hsla(0, 0%, 40%);
+}
+
+.feature .icon {
+  width: 140px;
+  height: auto;
+  margin-bottom: 20px;
 }
