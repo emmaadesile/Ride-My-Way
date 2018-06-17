@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/form.css">
   <link rel="stylesheet" href="./styles/style.css">
 
   <title>Document</title>
@@ -13,16 +14,18 @@
 <body>
   <div class="wrapper">
     <!-- Signup Form -->
-    <form action="" class="signin-form">
-      <label for="signin" class="signin-label">Sign In</label>
-      <input type="text" placeholder="Email">
-      <input type="text" placeholder="Password">
+    <div class="form-wrapper">
+      <form action="" class="form">
+        <label class="form-label" for="signin">Sign In</label>
+        <input class="form-control" type="text" placeholder="Email">
+        <input class="form-control" type="text" placeholder="Password">
 
-      <a class="signin-button" href="#">Sign In</a>
-      <p>Not a member?
-        <a class="btn btn__primary btn__inline" href="signup.html">Sign up</a>
-      </p>
-    </form>
+        <a class="btn btn__primary btn__inline" href="#">Sign In</a>
+        <p>Not a member?
+          <a href="signup.html">Sign up</a>
+        </p>
+      </form>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
