@@ -5,6 +5,8 @@
   --green: #06D19C;
 }
 
+@import 'https://fonts.googleapis.com/css?family=Quicksand';
+
 *,
 *::before,
 *::after {
@@ -97,8 +99,6 @@ a {
 /* top */
 .top {
   display: grid;
-  grid-template-areas: 
-    "hero hero hero";
 }
 
 .features, .about {
@@ -107,7 +107,7 @@ a {
 
 
 .hero {
-  grid-area: hero;
+  /* grid-area: hero; */
   min-height: 400px;
   background: var(--blue);
   background-position: bottom right;
@@ -122,8 +122,8 @@ a {
 }
 
 /* Navigation */
-.menu {
-  grid-row: 1 / 1;
+/* .menu {
+  order: -1;
   height: 50px;
 }
 
@@ -131,7 +131,8 @@ a {
   height: inherit;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  align-items: center
+  align-items: center;
+  justify-items: center;
 }
 
 .menu a {
@@ -141,7 +142,103 @@ a {
 
 [aria-controls="menu-list"] {
   display: none;
+  font-size: 1.5em;
+} */
+
+.navbar {
+  position: fixed;
+  z-index: 100;
+  overflow: hidden;
+  margin: auto;
+  background-color: white;
+  width: 100%;
+  left:0;
+  top:0;
 }
+
+.navbar li.logo,
+.navbar li.navbar_items {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.navbar li a {
+  /* font-family: Quicksand; */
+  font-size: 1.05em;
+  color: rgb(123, 125, 148);
+  display: inline-block;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.navbar li.navbar_items a:hover {
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  /*   padding-bottom: 5px; */
+}
+
+.navbar li.icon {
+  display: none;
+}
+
+.div_navbar_items {
+  float: right;
+  padding-right:1%;
+}
+
+@media screen and (max-width:875px) {
+  .navbar li.navbar_items {
+    display: none;
+  }
+  .navbar li.icon {
+    float: right;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    /* top: 19px; */
+  }
+}
+
+
+/* The "responsive" class is added to the navbar with JavaScript when the user clicks on the icon. This class makes the navbar look good on small screens */
+
+@media screen and (max-width:875px) {
+  .navbar.responsive {
+    position:fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(236,201,205, 1);
+    transition: background-color .6s;
+  }
+  
+  .navbar.responsive li.logo {
+    float: left;
+    display: block;
+  }
+  .navbar.responsive .div_navbar_items {
+    float: none;
+    padding-right:0;
+  }
+  
+  .navbar.responsive li.navbar_items {
+    display: block;
+    padding: 50px;
+    font-size: 25px;
+  }
+  .navbar.responsive li.navbar_items a {
+    display: block;
+    text-align: center;
+  }
+  
+  .navbar.responsive li.navbar_items a:hover{
+    color:#17171e;
+    border-bottom-color: transparent;
+    
+  }
+
+}
+
 
 /* Button styles */
 .btn {
@@ -214,4 +311,35 @@ a {
 .footer {
   padding: 20px 0;
   text-align: center; 
+}
+
+@media (max-width: 700px) {
+
+}
+
+@media (max-width: 576px) {
+  .menu {
+
+  }
+
+  [aria-controls="false"] .close {
+    display: none;
+  }
+
+  [aria-controls="menu-list"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .menu ul {
+    max-height: 0;
+    transform: rotateX(90deg);
+    transition: all 0.5s;
+  }
+
+  [aria-expanded="true"] ~ ul{
+    display: grid;
+    max-height: 500px;
+    transform: rotateX(0deg);
+  }
 }

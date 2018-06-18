@@ -21,10 +21,9 @@
       </header>
     </div>
     <!-- Navigation -->
-    <nav class="menu">
+    <!-- <nav class="menu">
       <button aria-expanded="false" aria-controls="menu-list">
         <span class="open">☰</span>
-        <span class="close">×</span>
         Menu
       </button>
       <ul id="menu-list">
@@ -43,7 +42,33 @@
           <a href="./signin.html">Sign In</a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
+
+    <div class="navbar">
+
+      <ul style="padding-left: 0px;">
+
+        <li class="logo">
+          <a href="#"> Ride My Way </a>
+        </li>
+
+        <section class="div_navbar_items">
+          <li class="navbar_items">
+            <a href="./index.html"> Home </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./signup.html"> Sign Up </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./signin.html"> Sign In </a>
+          </li>
+        </section>
+
+        <li class="icon">
+          <a href="#" onclick="navBarFunction()"> &#9776;</a>
+        </li>
+      </ul>
+    </div>
 
 
     <!-- Features -->
@@ -53,7 +78,7 @@
         <div class="icon">
           <img src="./images/confirmed.png" alt="">
         </div>
-        <h5>Easy Rides</h5>
+        <h5>Easy Booking</h5>
         <p>Select your preferred rides and ride with only those you wish to. riding with your colleagues, friends, and family
           has never been easier.</p>
       </div>
@@ -87,6 +112,21 @@
     </footer>
   </div>
   <!-- End of wrapper-->
+
+  <!-- JAvascript -->
+  <script>
+    // const navButton = document.querySelector("[aria-expanded]");
+
+    // function toggleNav({ target }) {
+    //   const expanded = target.getAttribute("aria-expanded") === "true" || false;
+    //   navButton.setAttribute("aria-expanded", !expanded);
+    // }
+
+    // navButton.addEventListener("click", toggleNav)
+    function navBarFunction() {
+      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
+    }
+  </script>
 </body>
 
 </html>
