@@ -99,6 +99,9 @@ a {
 /* top */
 .top {
   display: grid;
+  background: var(--blue) url("../images/lagosnight.png");
+  /* background-position: bottom right; */
+  background-size: cover;
 }
 
 .features, .about {
@@ -107,11 +110,7 @@ a {
 
 
 .hero {
-  /* grid-area: hero; */
-  min-height: 400px;
-  background: var(--blue);
-  background-position: bottom right;
-  background-size: cover;
+  min-height: 500px;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -121,39 +120,22 @@ a {
   color: white;
 }
 
+.hero > * {
+  text-shadow: #000 2px 2px 15px;
+}
+
 /* Navigation */
-/* .menu {
-  order: -1;
-  height: 50px;
-}
-
-.menu ul {
-  height: inherit;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  align-items: center;
-  justify-items: center;
-}
-
-.menu a {
-  display: block;
-  padding: 10px 20px;
-}
-
-[aria-controls="menu-list"] {
-  display: none;
-  font-size: 1.5em;
-} */
 
 .navbar {
-  position: fixed;
+  /* box-shadow: 2px 2px 2px #bdbdbd; */
+  /* position: fixed; */
   z-index: 100;
   overflow: hidden;
   margin: auto;
-  background-color: white;
   width: 100%;
   left:0;
   top:0;
+  font-weight: bold;
 }
 
 .navbar li.logo,
@@ -165,7 +147,8 @@ a {
 .navbar li a {
   /* font-family: Quicksand; */
   font-size: 1.05em;
-  color: rgb(123, 125, 148);
+  color: #ebebeb;
+  /* color: rgb(123, 125, 148); */
   display: inline-block;
   text-align: center;
   padding: 10px 16px;
@@ -175,7 +158,7 @@ a {
 .navbar li.navbar_items a:hover {
   border-bottom-style: solid;
   border-bottom-color: white;
-  /*   padding-bottom: 5px; */
+    padding-bottom: 5px;
 }
 
 .navbar li.icon {
@@ -196,8 +179,12 @@ a {
     display: inline-block;
     position: absolute;
     right: 0;
-    /* top: 19px; */
+    top: 5px;
   }
+
+  .features, .about {
+    padding: 20px 30px;
+}
 }
 
 
@@ -208,7 +195,7 @@ a {
     position:fixed;
     width: 100%;
     height: 100vh;
-    background-color: rgba(236,201,205, 1);
+    background-color: rgb(77, 77, 77);
     transition: background-color .6s;
   }
   
