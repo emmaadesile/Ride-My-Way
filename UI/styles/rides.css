@@ -20,6 +20,10 @@
   justify-items: center;
 }
 
+/* .ride .btn {
+  padding: 5px 5px;
+} */
+
 .ride-heading {
   grid-column: 1 / -1;
   /* color:rgb(123, 125, 148); */
@@ -28,7 +32,7 @@
 }
 
 .ride .icon {
-  width: 140px;
+  width: 100%;
   height: auto;
   margin-bottom: 20px;
   /* border-bottom: 1px solid rgb(225, 225, 225); */

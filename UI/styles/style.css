@@ -1,6 +1,6 @@
 /* Base Syles ================================ */
 :root {
-  --black: #272727;
+  --red: #f50000;
   --blue: #0073d1;
   --green: #06D19C;
 }
@@ -294,6 +294,11 @@ textarea {
 .btn__secondary {
   background: var(--green);
   border-color: var(--green);
+}
+
+.btn__danger {
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .btn__rounded {
