@@ -99,7 +99,7 @@ a {
 /* top */
 .top {
   display: grid;
-  background: var(--blue) url("../images/lagosnight.png");
+  background: url("../images/lagosnight.jpg");
   /* background-position: bottom right; */
   background-size: cover;
 }

@@ -1,7 +1,7 @@
 .form-wrapper {
   display: grid;
   place-items: center;
-  min-height: 550px;
+  min-height: 540px;
 }
 
 
@@ -36,4 +36,8 @@
 
 .form p {
   text-align: center;
+}
+
+.navbar li a {
+   color: #7c7c7c !important;
 }
