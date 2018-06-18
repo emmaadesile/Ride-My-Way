@@ -263,7 +263,7 @@ a {
 /* Features */ 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 50px;
   margin: 100px 0;
 }
@@ -279,12 +279,10 @@ a {
   justify-items: center;
 }
 
-.features h5 {
-  color:rgb(123, 125, 148);
-}
-
 .feature-heading {
   grid-column: 1 / -1;
+  color:rgb(123, 125, 148);
+  justify-self: center;
 }
 
 .feature .icon {
