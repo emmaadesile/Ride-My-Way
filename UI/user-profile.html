@@ -19,7 +19,7 @@
 
         <li class="logo">
           <a href="./index.html">
-            <img src="./images/ride-logo.png" alt="logo">
+            <img src="./images/ride-logo-blue.png" alt="logo">
           </a>
         </li>
 
@@ -42,116 +42,72 @@
     </div>
     <!-- End of Navigation -->
 
-    <div class="profile-page">
+    <div class="profile-page mt-1">
       <!-- Profile Image -->
       <div class="profile-info">
         <img src="./images//user-image.png" alt="profile-img">
         <h4 class="profie-name text-center">Shawn</h4>
       </div>
 
-      <hr>
-
-      <!-- Number of rides given and taken -->
-      <div class="num-of-rides mt-1">
-        <div class="num-ride">
-          <p>Number of rides given</p>
-          <span class="ride-num">20</span>
+      <!-- User Ride count -->
+      <div class="user-ride-count">
+        <div class="text-center">
+          <h5>Number of Rides Taken</h5>
+          <span class="user-count-num">10</span>
         </div>
 
-        <div class="num-ride">
-          <p>Number of rides taken</p>
-          <span class="ride-num">50</span>
+        <div class="text-center">
+          <h5>Number of Rides Given</h5>
+          <span class="user-count-num">8</span>
         </div>
       </div>
 
-      <hr>
+      <!-- List of Rides Taken -->
+      <div class="rides-block">
+        <!-- List of Rides Taken -->
+        <ul class="rides rides-taken">
+          <h3>List of Rides Taken</h3>
+          <li>Ikorodu to Yaba</li>
+          <li>VI to Ikoyi</li>
+          <li>Mary Island to Ikeja</li>
+          <li>Ikorodu to CMS</li>
+          <li>Opebi to Computer Village</li>
+          <li>Ojuelegba to Falomo</li>
+          <li>Ikeja to obalende</li>
+          <li>Bariga to UNILAG</li>
+          <li>Lagos Island to Lagos Mainland</li>
+          <li></li>
+        </ul>
 
-      <!-- Ride given -->
-      <h4>Rides Given</h4>
-      <section class="features">
-        <div class="feature feature-1">
-          <h5>Easy Booking</h5>
-          <p>Select your preferred rides and ride with only those you wish to. Riding with your colleagues, friends, and family
-            has never been easier.</p>
-        </div>
-        <div class="feature feature-2">
-          <h5>24/7 Customer Care</h5>
-          <p>Our agents are always online 24/7 to sort out any issues you might be experiencing. We put our customers first
-            before anything else.</p>
-        </div>
-        <div class="feature feature-3">
-          <h5>Ride on time</h5>
-          <p>Dont waste any more time waiting for rides. With our pool of several cars and drivers in your area, get to your
-            destination on time.</p>
-        </div>
-        <div class="feature feature-1">
-          <h5>Easy Booking</h5>
-          <p>Select your preferred rides and ride with only those you wish to. Riding with your colleagues, friends, and family
-            has never been easier.</p>
-        </div>
-        <div class="feature feature-2">
-          <h5>24/7 Customer Care</h5>
-          <p>Our agents are always online 24/7 to sort out any issues you might be experiencing. We put our customers first
-            before anything else.</p>
-        </div>
-        <div class="feature feature-3">
-          <h5>Ride on time</h5>
-          <p>Dont waste any more time waiting for rides. With our pool of several cars and drivers in your area, get to your
-            destination on time.</p>
-        </div>
-      </section>
-
-      <!-- ================================================ -->
-      <!-- Rides Taken -->
-      <h4>Rides Taken</h4>
-      <section class="features">
-        <div class="feature feature-1">
-          <h5>Easy Booking</h5>
-          <p>Select your preferred rides and ride with only those you wish to. Riding with your colleagues, friends, and family
-            has never been easier.</p>
-        </div>
-        <div class="feature feature-2">
-          <h5>24/7 Customer Care</h5>
-          <p>Our agents are always online 24/7 to sort out any issues you might be experiencing. We put our customers first
-            before anything else.</p>
-        </div>
-        <div class="feature feature-3">
-          <h5>Ride on time</h5>
-          <p>Dont waste any more time waiting for rides. With our pool of several cars and drivers in your area, get to your
-            destination on time.</p>
-        </div>
-        <div class="feature feature-1">
-          <h5>Easy Booking</h5>
-          <p>Select your preferred rides and ride with only those you wish to. Riding with your colleagues, friends, and family
-            has never been easier.</p>
-        </div>
-        <div class="feature feature-2">
-          <h5>24/7 Customer Care</h5>
-          <p>Our agents are always online 24/7 to sort out any issues you might be experiencing. We put our customers first
-            before anything else.</p>
-        </div>
-        <div class="feature feature-3">
-          <h5>Ride on time</h5>
-          <p>Dont waste any more time waiting for rides. With our pool of several cars and drivers in your area, get to your
-            destination on time.</p>
-      </section>
+        <!-- List of Ride Given -->
+        <ul class="rides rides-given">
+          <h3>List of Rides Given</h3>
+          <li>Ikorodu to Yaba</li>
+          <li>VI to Ikoyi</li>
+          <li>Mary Island to Ikeja</li>
+          <li>Ikorodu to CMS</li>
+          <li>Opebi to Computer Village</li>
+          <li>Ojuelegba to Falomo</li>
+          <li>Ikeja to obalende</li>
+          <li>Bariga to UNILAG</li>
+          <li>Lagos Island to Lagos Mainland</li>
+          <li></li>
+        </ul>
       </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2018. Made by Emmanuel</p>
+      </footer>
     </div>
 
-  </div>
 
-  <footer class="footer">
-    <p>&copy; 2018. Made by Emmanuel</p>
-  </footer>
-  </div>
-
-
-  <!-- Javascript for responsive navigation -->
-  <script>
-    function navBarFunction() {
-      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
-    }
-  </script>
+    <!-- Javascript for responsive navigation -->
+    <script>
+      function navBarFunction() {
+        document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
+      }
+    </script>
 </body>
 
 </html>

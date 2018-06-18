@@ -2,7 +2,7 @@
 /* Base Syles ================================ */
 :root {
   --black: #272727;
-  --blue: #0073d1;
+  --blue: rgb(0, 115, 209);
   --green: #06D19C;
 }
 
@@ -10,6 +10,7 @@
   display: grid;
   place-items: center;
   min-height: 540px;
+  padding-top: 50px;
 }
 
 

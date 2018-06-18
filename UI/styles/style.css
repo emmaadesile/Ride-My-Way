@@ -104,7 +104,6 @@ a {
 }
 
 
-
 /* Wrapper */
 .wrapper {
   display: grid;
@@ -116,8 +115,8 @@ a {
 .top {
   display: grid;
   background: var(--blue) ;
-  /* background: url("../images/lagosnight.jpg"); */
-  /* background-position: bottom right; */
+  background: url("../images/drivers.jpg");
+  background-position: bottom right;
   background-size: cover;
 }
 
@@ -127,7 +126,7 @@ a {
 
 
 .hero {
-  min-height: 500px;
+  min-height: 700px;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -142,12 +141,19 @@ a {
   color: white;
 }
 
+.hero h1 {
+  font-size: 3.5em;
+}
+
 /* Navigation */
 
 .navbar {
-  background: var(--blue);
+  height: 60px;
+  display: grid;
+  align-items: center;
+  background: white;
   box-shadow: -2px 2px 2px #d3d3d3;
-  /* position: fixed; */
+  position: fixed;
   z-index: 100;
   overflow: hidden;
   margin: auto;
@@ -155,6 +161,7 @@ a {
   left:0;
   top:0;
   font-weight: bold;
+  /* margin-bottom: 50px; */
 }
 
 .navbar li.logo,
@@ -164,20 +171,21 @@ a {
 }
 
 .navbar li a {
-  /* font-family: Quicksand; */
   font-size: 1.05em;
-  color: #ffffff;
-  /* color: rgb(123, 125, 148); */
+  color: #666666;
   display: inline-block;
   text-align: center;
   padding: 10px 16px;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+.navbar ul {
+  height: inherit;
 }
 
 .navbar li.navbar_items a:hover {
-  border-bottom-style: solid;
-  border-bottom-color: white;
-  padding-bottom: 5px;
+  color: var(--blue);
 }
 
 .navbar li.icon {
@@ -194,7 +202,7 @@ a {
     display: none;
   }
   .navbar li.icon {
-    float: right;
+    /* float: right; */
     display: inline-block;
     position: absolute;
     right: 0;
@@ -203,6 +211,13 @@ a {
 
   .features, .about, .intro {
     padding: 20px 30px;
+  }
+
+ .hero h1 {
+  font-size: 2.5em;
+}
+.hero h2 {
+  font-size: 1.5em;
 }
 }
 
@@ -214,7 +229,7 @@ a {
     position:fixed;
     width: 100%;
     height: 100vh;
-    background-color: rgb(77, 77, 77);
+    background-color: rgb(26, 26, 26);
     transition: background-color .6s;
   }
   
@@ -235,14 +250,13 @@ a {
   .navbar.responsive li.navbar_items a {
     display: block;
     text-align: center;
+    color: white;
   }
   
   .navbar.responsive li.navbar_items a:hover{
-    color:#17171e;
+    color: var(--blue);
     border-bottom-color: transparent;
-    
   }
-
 }
 
 /* Button styles */
@@ -281,9 +295,6 @@ a {
 
 /* Intro */ 
 .intro {
-  /* max-width: 700px; */
-  /* padding-top: 100px;
-  padding-bottom: 100px; */
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(minmax(500px, 1fr));
