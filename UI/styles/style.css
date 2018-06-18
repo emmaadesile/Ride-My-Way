@@ -87,6 +87,9 @@ a {
   text-decoration: none;
 }
 
+textarea {
+  
+}
 /* ========================================== End of Base Styles*/
 
 /* Utility classes */
@@ -308,8 +311,6 @@ a {
   grid-gap: 50px;
   /* margin: 100px 0; */
   background: #eeeeee;
-  /* padding-top: 100px;
-  padding-bottom: 100px; */
 }
 
 .feature {
