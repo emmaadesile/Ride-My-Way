@@ -163,7 +163,7 @@ textarea {
   width: 100%;
   left:0;
   top:0;
-  font-weight: bold;
+  font-weight: 500;
   /* margin-bottom: 50px; */
 }
 
@@ -182,7 +182,7 @@ textarea {
 }
 
 .navbar li a {
-  font-size: 1.05em;
+  font-size: 1em;
   color: #666666;
   display: inline-block;
   text-align: center;
