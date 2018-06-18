@@ -87,10 +87,22 @@ a {
   text-decoration: none;
 }
 
+/* ========================================== End of Base Styles*/
+
+/* Utility classes */
 .text-center {
   text-align: center;
 }
-/* ========================================== End of Base Styles*/
+
+.lead {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.mt-1 {
+  margin: 3em 0;
+}
+
 
 
 /* Wrapper */
@@ -108,8 +120,8 @@ a {
   background-size: cover;
 }
 
-.features, .about {
-  padding: 20px 100px;
+.features, .about, .intro {
+  padding: 100px 100px;
 }
 
 
@@ -163,7 +175,7 @@ a {
 .navbar li.navbar_items a:hover {
   border-bottom-style: solid;
   border-bottom-color: white;
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .navbar li.icon {
@@ -187,7 +199,7 @@ a {
     top: 5px;
   }
 
-  .features, .about {
+  .features, .about, .intro {
     padding: 20px 30px;
 }
 }
@@ -231,7 +243,6 @@ a {
 
 }
 
-
 /* Button styles */
 .btn {
   padding: 0.5rem 2rem;
@@ -265,13 +276,27 @@ a {
   display: inline-block;
 }
 
+
+/* Intro */ 
+.intro {
+  /* max-width: 700px; */
+  /* padding-top: 100px;
+  padding-bottom: 100px; */
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(minmax(500px, 1fr));
+}
+
+
 /* Features */ 
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 50px;
-  margin: 100px 0;
+  /* margin: 100px 0; */
   background: #eeeeee;
+  /* padding-top: 100px;
+  padding-bottom: 100px; */
 }
 
 .feature {
