@@ -7,45 +7,48 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/rides.css">
-  <title>Ride My Way</title>
+  <title>Ride my way</title>
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Navigation -->
-    <div class="navbar">
+    <div class="top">
+      <!-- Navigation -->
+      <div class="navbar">
+        <ul style="padding-left: 0px;">
 
-      <ul style="padding-left: 0px;">
+          <li class="logo">
+            <a href="./index.html">
+              <img src="./images/ride-logo-blue.png" alt="logo"> </a>
+          </li>
 
-        <li class="logo">
-          <a href="./index.html">
-            <img src="./images/ride-logo-blue.png" alt="logo">
-          </a>
-        </li>
+          <section class="div_navbar_items">
+            <li class="navbar_items">
+              <a href="./index.html"> Home </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signup.html"> Sign Up </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signin.html"> Sign In </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./rides.html"> Rides </a>
+            </li>
+          </section>
 
-        <section class="div_navbar_items">
-          <li class="navbar_items">
-            <a href="./index.html"> Home </a>
+          <li class="icon">
+            <a href="#" onclick="navBarFunction()"> &#9776;</a>
           </li>
-          <li class="navbar_items">
-            <a href="./signup.html"> Sign Up </a>
-          </li>
-          <li class="navbar_items">
-            <a href="./signin.html"> Sign In </a>
-          </li>
-          <li class="navbar_items">
-            <a href="./rides.html"> Rides </a>
-          </li>
-        </section>
-
-        <li class="icon">
-          <a href="#" onclick="navBarFunction()"> &#9776;</a>
-        </li>
-      </ul>
+        </ul>
+      </div>
+      <!-- End of Navigation -->
     </div>
-    <!-- End of Navigation -->
 
-    <a class="btn btn__secondary" href="./create-ride.html">Create Ride</a>
+    <div class="ride-options">
+      <a href="" class="btn btn__primary btn__inline">Offer Ride</a>
+      <a href="" class="btn btn__primary btn__inline">Ride Requests</a>
+    </div>
 
     <!-- Features -->
     <section class="rides mt-1">
@@ -124,20 +127,11 @@
       </div>
     </section>
 
-    <section class="about">
-      <img src="" alt="" class="about__mockup">
-      <div class="about__details">
-
-      </div>
-    </section>
-
     <footer class="footer">
       <p>&copy; 2018. Made by Emmanuel</p>
     </footer>
-
   </div>
   <!-- End of wrapper-->
-
 
   <!-- JAvascript -->
   <script>
