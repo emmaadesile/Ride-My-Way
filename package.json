@@ -1,0 +1,24 @@
+{
+  "name": "ride-my-way",
+  "version": "1.0.0",
+  "description": "Carpoolin App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmaadesile/Ride-My-Way.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "API"
+  ],
+  "author": "Emmanuel Adesile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmaadesile/Ride-My-Way/issues"
+  },
+  "homepage": "https://github.com/emmaadesile/Ride-My-Way#readme"
+}
