@@ -1,0 +1,38 @@
+/* Features */ 
+.rides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  /* margin: 100px 0; */
+  background: #eeeeee;
+  padding-right: 50px;
+  padding-left: 100px;
+}
+
+.ride {
+  padding: 20px;
+  background: white;
+  border: 1px solid white;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgb(225, 225, 225);
+  display: grid;
+  justify-items: center;
+}
+
+.ride-heading {
+  grid-column: 1 / -1;
+  /* color:rgb(123, 125, 148); */
+  justify-self: center;
+  margin-top: 40px;
+}
+
+.ride .icon {
+  width: 140px;
+  height: auto;
+  margin-bottom: 20px;
+  /* border-bottom: 1px solid rgb(225, 225, 225); */
+}
+
+
+.icon {width: 100% !important;}

@@ -13,12 +13,13 @@
   <div class="wrapper">
     <div class="top">
       <!-- Navigation -->
-      <div class="navbar">
+      <div class="navbar" style="box-shadow: none">
 
         <ul style="padding-left: 0px;">
 
           <li class="logo">
-            <a href="./index.html"> Ride My Way </a>
+            <a href="./index.html">
+              <img src="./images/ride-logo.png" alt="logo"> </a>
           </li>
 
           <section class="div_navbar_items">
@@ -105,14 +106,6 @@
 
   <!-- JAvascript -->
   <script>
-    // const navButton = document.querySelector("[aria-expanded]");
-
-    // function toggleNav({ target }) {
-    //   const expanded = target.getAttribute("aria-expanded") === "true" || false;
-    //   navButton.setAttribute("aria-expanded", !expanded);
-    // }
-
-    // navButton.addEventListener("click", toggleNav)
     function navBarFunction() {
       document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }

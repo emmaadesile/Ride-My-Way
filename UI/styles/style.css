@@ -115,7 +115,8 @@ a {
 /* top */
 .top {
   display: grid;
-  background: url("../images/lagosnight.jpg");
+  background: var(--blue) ;
+  /* background: url("../images/lagosnight.jpg"); */
   /* background-position: bottom right; */
   background-size: cover;
 }
@@ -144,7 +145,8 @@ a {
 /* Navigation */
 
 .navbar {
-  /* box-shadow: 2px 2px 2px #bdbdbd; */
+  background: var(--blue);
+  box-shadow: -2px 2px 2px #d3d3d3;
   /* position: fixed; */
   z-index: 100;
   overflow: hidden;
@@ -164,7 +166,7 @@ a {
 .navbar li a {
   /* font-family: Quicksand; */
   font-size: 1.05em;
-  color: #ebebeb;
+  color: #ffffff;
   /* color: rgb(123, 125, 148); */
   display: inline-block;
   text-align: center;
@@ -196,7 +198,7 @@ a {
     display: inline-block;
     position: absolute;
     right: 0;
-    top: 5px;
+    top: 2px;
   }
 
   .features, .about, .intro {
@@ -329,33 +331,8 @@ a {
   text-align: center; 
 }
 
-@media (max-width: 700px) {
-
-}
-
-@media (max-width: 576px) {
-  .menu {
-
-  }
-
-  [aria-controls="false"] .close {
-    display: none;
-  }
-
-  [aria-controls="menu-list"] {
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .menu ul {
-    max-height: 0;
-    transform: rotateX(90deg);
-    transition: all 0.5s;
-  }
-
-  [aria-expanded="true"] ~ ul{
-    display: grid;
-    max-height: 500px;
-    transform: rotateX(0deg);
-  }
+/* Logo */ 
+.logo img {
+  width: 100px; 
+  height: auto;
 }

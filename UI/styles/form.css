@@ -1,3 +1,11 @@
+  
+/* Base Syles ================================ */
+:root {
+  --black: #272727;
+  --blue: #0073d1;
+  --green: #06D19C;
+}
+
 .form-wrapper {
   display: grid;
   place-items: center;
@@ -31,13 +39,13 @@
  .form-control:focus{
   padding: 15px;
   outline: 0;
-  border-color: #00467F;
+  border-color: var(--blue);
 }
 
 .form p {
   text-align: center;
 }
-
+/* 
 .navbar li a {
    color: #7c7c7c !important;
-}
+} */
