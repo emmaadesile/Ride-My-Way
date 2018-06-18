@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/form.css">
+  <title>Ride my way</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="top" style="background: none;">
+      <!-- Navigation -->
+      <div class="navbar">
+
+        <ul style="padding-left: 0px;">
+
+          <li class="logo">
+            <a href="./index.html">
+              <img src="./images/ride-logo-blue.png" alt="logo"> </a>
+          </li>
+
+          <section class="div_navbar_items">
+            <li class="navbar_items">
+              <a href="./index.html"> Home </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signup.html"> Sign Up </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signin.html"> Sign In </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./rides.html"> Rides </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./rides.html"> Rides </a>
+            </li>
+          </section>
+
+          <li class="icon">
+            <a href="#" onclick="navBarFunction()"> &#9776;</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Navigation -->
+
+      <div class="ride-requests text-center" style="padding-top: 100px;">
+        <h4>Ride Notifications</h4>
+        <ul>
+          <li></li>Theare are no recent requests</li>
+        </ul>
+      </div>
+
+    </div>
+    <footer class="footer ">
+      <p>&copy; 2018. Made by Emmanuel</p>
+    </footer>
+  </div>
+  <!-- End of wrapper-->
+
+  <!-- JAvascript -->
+  <script>
+    function navBarFunction() {
+      document.getElementsByClassName("navbar ")[0].classList.toggle("responsive ");
+    }
+  </script>
+</body>
+
+</html>
