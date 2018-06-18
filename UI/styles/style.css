@@ -185,6 +185,7 @@ textarea {
 
 .navbar ul {
   height: inherit;
+  padding-top: 6px;
 }
 
 .navbar li.navbar_items a:hover {
