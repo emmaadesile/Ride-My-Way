@@ -1,11 +1,7 @@
 {
   "root": true,
   "extends": [
-    "airbnb",
-    "eslint:recommended",
-    "plugin: react/recommended",
-    "plugin: import/errors",
-    "plugin: import/warnings"
+    "airbnb"
   ],
   "env": {
     "node": true,
@@ -21,11 +17,12 @@
     }
   },
   "rules": {
-    "no-unused-vars": [
-      1,
-      {
-        "argsIgnorePattern": "res|next|^err"
-      }
+    "no-console": "off",
+    "indent": 2,
+    "trailingComma": false,
+    "linebreak-style": [
+      2,
+      "unix"
     ],
     "one-var": 1,
     "one-var-declaration-per-line": 1,
