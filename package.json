@@ -4,7 +4,7 @@
   "description": "Carpoolin App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no tdest specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,27 @@
   "bugs": {
     "url": "https://github.com/emmaadesile/Ride-My-Way/issues"
   },
-  "homepage": "https://github.com/emmaadesile/Ride-My-Way#readme"
+  "homepage": "https://github.com/emmaadesile/Ride-My-Way#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-airbnb": "^2.5.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-ally": "^6.0.2",
+    "eslint-plugin-react": "^7.9.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5"
+  }
 }
