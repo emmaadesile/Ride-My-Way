@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no tdest specified\" && exit 1",
     "dev": "nodemon server/app.js --exec babel-node",
-    "start": ""
+    "start": "",
+    "lint": "eslint server --fix"
   },
   "repository": {
     "type": "git",

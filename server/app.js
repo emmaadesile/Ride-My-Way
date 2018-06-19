@@ -23,7 +23,7 @@ server.listen(port, (req, res) => {
 });
 
 app.get("*", (req, res) => res.status(200).send({
-  message: "Welcome to Ride My Way API"
+  Success: "Welcome to Ride My Way API"
 }));
 
 export default app;
