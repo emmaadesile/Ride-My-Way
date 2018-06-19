@@ -4,7 +4,9 @@
   "description": "Carpoolin App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no tdest specified\" && exit 1"
+    "test": "echo \"Error: no tdest specified\" && exit 1",
+    "dev": "nodemon server/app.js --exec babel-node",
+    "start": ""
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "chai-http": "^4.0.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "merge-descriptors": "^1.0.1",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
@@ -34,10 +37,12 @@
     "babel-eslint": "^8.2.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^2.5.1",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-jsx-ally": "^6.0.2",
     "eslint-plugin-react": "^7.9.1",
     "mocha": "^5.2.0",
