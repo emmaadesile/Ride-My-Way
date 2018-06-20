@@ -1,4 +1,4 @@
-import rideOffers from '../models/ridesOffers';
+import rideOffers from '../models/rideOffers';
 
 class RideOffersController {
   /**
@@ -13,39 +13,46 @@ class RideOffersController {
   }
 
   /**
- * Get A Single Ride Offer
- * @param {obj} req
- * @param {obj} res
- * @returns All a single ride offer in db
- * @memberof RideOffersController
- */
+   * Get A Single Ride Offer
+   * @param {obj} req
+   * @param {obj} res
+   * @returns All a single ride offer in db
+   * @memberof RideOffersController
+   */
   static getASingleRideOffer(req, res) {
     const rideOfferResult = rideOffers.find(rideOffer => (
-      rideOffer.id === parseInt(req.params.rideOfferId, 10)
-    ));
+      rideOffer.id === parseInt(req.params.rideOfferId, 10)));
     return rideOfferResult
-      ? res.status(200).json({ rideOfferResult })
+      ? res.status(200).json({ ...rideOfferResult })
       : res.status(404).json({ error: 'Ride Offer not found' });
   }
 
   /**
- * Post a Ride Offer
- * @param {obj} req
- * @param {obj} res
- * @returns {json} create a ride offer
- * @memberof RideOffersController
- */
+   * Post a Ride Offer
+   * @param {obj} req
+   * @param {obj} res
+   * @returns {json} create a ride offer
+   * @memberof RideOffersController
+   */
   static createARideOffer(req, res) {
-    if (req.body.desination && req.boy.time && req.body.passengers) {
+    if (
+      req.body.destination &&
+      req.body.time &&
+      req.body.passengers
+    ) {
+      // create new ride offer from req.body
       const newId = rideOffers.length + 1;
       req.body.id = newId;
+
+      // push new ride offer to rideoffers
       rideOffers.push(req.body);
 
-      return res.status(200).json({ success: "Ride offer successfully created" });
+      return res.status(200).json({
+        success: 'Ride offer created successfully'
+      });
     }
-
     return res.status(400).json({
-      error: "Please fill all the required fields"
+      message: 'Please fill in all required fields'
     });
   }
 }

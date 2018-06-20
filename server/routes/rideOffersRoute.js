@@ -8,6 +8,11 @@ const routes = (app) => {
 
   // Get a single ride offer
   app.get('/api/v1/rideOffers/:rideOfferId', RideOffersController.getASingleRideOffer);
+
+  // Post a ride offer
+  app.post('/api/v1/rideOffers', RideOffersController.createARideOffer);
+
+  // Join a ride offer
 };
 
 export default routes;
