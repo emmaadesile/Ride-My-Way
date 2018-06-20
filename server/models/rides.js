@@ -1,4 +1,4 @@
-const rides = [
+const rideOffers = [
   {
     id: 1,
     destination: 'Yaba to Victoria Island',
@@ -25,4 +25,4 @@ const rides = [
   }
 ];
 
-export default rides;
+export default rideOffers;
