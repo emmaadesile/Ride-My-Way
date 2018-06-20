@@ -20,10 +20,6 @@
     "no-console": "off",
     "indent": 2,
     "trailingComma": false,
-    "linebreak-style": [
-      2,
-      "unix"
-    ],
     "one-var": 1,
     "one-var-declaration-per-line": 1,
     "new-cap": 1,
