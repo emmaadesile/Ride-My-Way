@@ -27,6 +27,27 @@ class RideOffersController {
       ? res.status(200).json({ rideOfferResult })
       : res.status(404).json({ error: 'Ride Offer not found' });
   }
+
+  /**
+ * Post a Ride Offer
+ * @param {obj} req
+ * @param {obj} res
+ * @returns {json} create a ride offer
+ * @memberof RideOffersController
+ */
+  static createARideOffer(req, res) {
+    if (req.body.desination && req.boy.time && req.body.passengers) {
+      const newId = rideOffers.length + 1;
+      req.body.id = newId;
+      rideOffers.push(req.body);
+
+      return res.status(200).json({ success: "Ride offer successfully created" });
+    }
+
+    return res.status(400).json({
+      error: "Please fill all the required fields"
+    });
+  }
 }
 
 export default RideOffersController;
