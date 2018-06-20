@@ -1,8 +1,6 @@
 {
   "root": true,
-  "extends": [
-    "airbnb"
-  ],
+  "extends": ["airbnb"],
   "env": {
     "node": true,
     "es6": true,
@@ -25,6 +23,13 @@
     "new-cap": 1,
     "no-trailing-spaces": 1,
     "comma-dangle": 0,
-    "consistent-return": 1
+    "consistent-return": 1,
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": false
+      }
+    ]
   }
 }

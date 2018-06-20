@@ -4,7 +4,7 @@
   "description": "Carpoolin App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no tdest specified\" && exit 1",
+    "test": "mocha -w server/test/**/*.spec.js --require babel-register",
     "start:dev": "nodemon server/app.js --exec babel-node",
     "start": "",
     "lint": "eslint server --fix"
