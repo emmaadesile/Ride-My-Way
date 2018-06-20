@@ -1,4 +1,4 @@
-import rideOffers from "../models/rideOffers";
+import rideOffers from '../models/ridesOffers';
 
 class RideOffersController {
   /**

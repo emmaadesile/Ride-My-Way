@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
+import routes from './routes/rideOffersRoute';
 
 // Setup express app
 const app = express();
@@ -21,6 +22,9 @@ const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server is running on localhost:${port}`);
 });
+
+// Express router
+routes(app);
 
 app.get('*', (req, res) => res.status(200).send({
   Success: 'Welcome to Ride My Way API'
