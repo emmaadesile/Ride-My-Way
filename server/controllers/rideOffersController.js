@@ -20,12 +20,11 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static getASingleRideOffer(req, res) {
-    const rideOfferResult = rideOffers.find(
-      rideOffer => rideOffer.id === parseInt(req.params.rideOfferId, 10)
-    );
+    const rideOfferResult = rideOffers.find(rideOffer => (
+      rideOffer.id === parseInt(req.params.rideOfferId, 10)));
     return rideOfferResult
       ? res.status(200).json({ ...rideOfferResult })
-      : res.status(404).json({ error: "Ride Offer not found" });
+      : res.status(404).json({ error: 'Ride Offer not found' });
   }
 
   /**
@@ -52,11 +51,11 @@ class RideOffersController {
       rideOffers.push(req.body);
 
       return res.status(201).json({
-        success: "Ride offer created successfully"
+        success: 'Ride offer created successfully'
       });
     }
     return res.status(400).json({
-      message: "Please fill in all required fields"
+      message: 'Please fill in all required fields'
     });
   }
 
@@ -68,9 +67,8 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static editRideOffer(req, res) {
-    const rideOfferResult = rideOffers.find(
-      rideOffer => rideOffer.id === parseInt(req.params.rideOfferId, 10)
-    );
+    const rideOfferResult = rideOffers.find(rideOffer => (
+      rideOffer.id === parseInt(req.params.rideOfferId, 10)));
 
     if (rideOfferResult !== undefined) {
       rideOfferResult.location = req.body.location || rideOfferResult.location;
@@ -85,12 +83,12 @@ class RideOffersController {
         req.body.expiresAt || rideOfferResult.expiresAt;
 
       return res.status(201).json({
-        success: "Ride Offer successfully updated",
+        success: 'Ride Offer successfully updated',
         rideOfferResult
       });
     }
     return res.status(404).json({
-      error: "Ride offer not found"
+      error: 'Ride offer not found'
     });
   }
 
@@ -111,7 +109,7 @@ class RideOffersController {
       return res.status(204).json();
     }
     return res.status(404).json({
-      error: "Ride offer not found"
+      error: 'Ride offer not found'
     });
   }
 }

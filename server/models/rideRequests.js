@@ -1,6 +1,8 @@
+import rideOffers from "../models/rideOffers";
+
 const rideRequests = [
   {
-    id: 1,
+    id: rideOffers[0].id,
     noOfSeats: 5,
     seatsAvailable: 2,
     requests: [
@@ -11,7 +13,7 @@ const rideRequests = [
     ]
   },
   {
-    id: 2,
+    id: rideOffers[1].id,
     noOfSeats: 8,
     seatsAvailable: 3,
     requests: [
@@ -22,7 +24,7 @@ const rideRequests = [
     ]
   },
   {
-    id: 3,
+    id: rideOffers[2].id,
     noOfSeats: 4,
     seatsAvailable: 2,
     requests: [
@@ -33,7 +35,7 @@ const rideRequests = [
     ]
   },
   {
-    id: 4,
+    id: rideOffers[3].id,
     noOfSeats: 10,
     seatsAvailable: 2,
     requests: [

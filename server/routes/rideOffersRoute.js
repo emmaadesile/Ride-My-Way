@@ -1,6 +1,5 @@
 import RideOffersController from '../controllers/rideOffersController';
 
-
 // Routes for the RideOffersController;
 const routes = (app) => {
   // Get all ride offers routes
@@ -14,6 +13,9 @@ const routes = (app) => {
 
   // Edit a ride offer
   app.put('/api/v1/rideOffers/:rideOfferId', RideOffersController.editRideOffer);
+
+  // Delete a ride offer
+  app.delete('/api/v1/rideOffers/:rideOfferId', RideOffersController.deleteRideoffer);
 
   // Join a ride offer
 };
