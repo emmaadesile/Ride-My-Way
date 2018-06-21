@@ -47,7 +47,7 @@ class RideOffersController {
       // push new ride offer to rideoffers
       rideOffers.push(req.body);
 
-      return res.status(200).json({
+      return res.status(201).json({
         success: 'Ride offer created successfully'
       });
     }

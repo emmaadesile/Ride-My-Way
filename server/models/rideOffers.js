@@ -1,27 +1,39 @@
 const rideOffers = [
   {
     id: 1,
-    destination: 'Yaba to Victoria Island',
-    time: '1:00pm',
-    passengers: 4,
+    location: "Ikeja",
+    destination: "Victoria Island",
+    timeOfDeparture: "1:00pm",
+    price: 400,
+    createdAt: "21-07-2018",
+    expiresAt: "21-07-2018"
   },
   {
     id: 2,
-    destination: 'Ikorodu to CMS',
-    time: '10:00am',
-    passengers: 2,
+    location: "Maryland",
+    destination: "Ikeja",
+    timeOfDeparture: "2:00pm",
+    price: 300,
+    createdAt: "22-07-2018",
+    expiresAt: "22-07-2018"
   },
   {
     id: 3,
-    destination: 'Obalende to Ajah',
-    time: '11:00am',
-    passengers: 7,
+    location: "Ikorodu",
+    destination: "CMS",
+    timeOfDeparture: "11:00am",
+    price: 250,
+    createdAt: "20-07-2018",
+    expiresAt: "20-07-2018"
   },
   {
     id: 4,
-    destination: 'Maryland to Ikeja',
-    time: '4:00pm',
-    passengers: 5,
+    location: "Obalende",
+    destination: "Falomo",
+    timeOfDeparture: "5:00pm",
+    price: 150,
+    createdAt: "21-07-2018",
+    expiresAt: "21-07-2018"
   }
 ];
 
