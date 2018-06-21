@@ -36,9 +36,12 @@ class RideOffersController {
    */
   static createARideOffer(req, res) {
     if (
+      req.body.location &&
       req.body.destination &&
-      req.body.time &&
-      req.body.passengers
+      req.body.timeOfDeparture &&
+      req.body.price &&
+      req.body.createdAt &&
+      req.body.expiresAt
     ) {
       // create new ride offer from req.body
       const newId = rideOffers.length + 1;
