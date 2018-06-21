@@ -39,6 +39,7 @@ class RideOffersController {
       req.body.location &&
       req.body.destination &&
       req.body.timeOfDeparture &&
+      req.body.available &&
       req.body.price &&
       req.body.createdAt &&
       req.body.expiresAt
