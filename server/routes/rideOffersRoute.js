@@ -11,7 +11,7 @@ const routes = (app) => {
 
   // Post a ride offer
   app.post('/api/v1/rideOffers', RideOffersController.createARideOffer);
-  
+
   // Edit a ride offer
   app.put('/api/v1/rideOffers/:rideOfferId', RideOffersController.editRideOffer);
 
