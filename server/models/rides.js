@@ -1,4 +1,4 @@
-const rideOffers = [
+const rides = [
   {
     id: 1,
     location: 'Ikeja',
@@ -37,4 +37,4 @@ const rideOffers = [
   }
 ];
 
-export default rideOffers;
+export default rides;

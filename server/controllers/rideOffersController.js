@@ -1,4 +1,4 @@
-import rideOffers from '../models/rideOffers';
+import rides from '../models/rides';
 
 class RideOffersController {
   /**
@@ -9,7 +9,7 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static getAllRideOffers(req, res) {
-    return res.status(200).json({ rideOffers });
+    return res.status(200).json({ rides });
   }
 
   /**
@@ -20,8 +20,8 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static getASingleRideOffer(req, res) {
-    const rideOfferResult = rideOffers.find(rideOffer => (
-      rideOffer.id === parseInt(req.params.rideOfferId, 10)));
+    const rideOfferResult = rides.find(ride => (
+      ride.id === parseInt(req.params.rideId, 10)));
     return rideOfferResult
       ? res.status(200).json({ ...rideOfferResult })
       : res.status(404).json({ error: 'Ride Offer not found' });
@@ -44,11 +44,11 @@ class RideOffersController {
       req.body.expiresAt
     ) {
       // create new ride offer from req.body
-      const newId = rideOffers.length + 1;
+      const newId = rides.length + 1;
       req.body.id = newId;
 
       // push new ride offer to rideoffers
-      rideOffers.push(req.body);
+      rides.push(req.body);
 
       return res.status(201).json({
         success: 'Ride offer created successfully'
@@ -67,8 +67,8 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static editRideOffer(req, res) {
-    const rideOfferResult = rideOffers.find(rideOffer => (
-      rideOffer.id === parseInt(req.params.rideOfferId, 10)));
+    const rideOfferResult = rides.find(ride => (
+      ride.id === parseInt(req.params.rideId, 10)));
 
     if (rideOfferResult !== undefined) {
       rideOfferResult.location = req.body.location || rideOfferResult.location;
@@ -100,12 +100,12 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static deleteRideoffer(req, res) {
-    const rideOfferResult = rideOffers.findIndex(rideOffer => (
-      rideOffer.id === parseInt(req.params.rideOfferId, 10)
+    const rideOfferResult = rides.findIndex(ride => (
+      ride.id === parseInt(req.params.rideId, 10)
     ));
 
     if (rideOfferResult !== -1) {
-      rideOffers.splice(rideOfferResult, 1);
+      rides.splice(rideOfferResult, 1);
       return res.status(204).json();
     }
     return res.status(404).json({

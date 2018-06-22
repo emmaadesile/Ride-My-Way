@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
-import routes from './routes/rideOffersRoute';
+import routes from './routes/index';
 
 // Setup express app
 const app = express();
