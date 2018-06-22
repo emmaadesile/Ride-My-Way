@@ -70,7 +70,19 @@ describe('Test for Ride Offers Endpoints', () => {
       .end((err, res) => {
         expect(res).to.have.status(202);
         expect(res.body).to.be.an('object');
-        expect(res.body.success).to.equal("Ride request accepted");
+        expect(res.body.success).to.equal('Ride request accepted');
+        done();
+      });
+  });
+
+  // Reject ride request if there are no more seats available
+  it('should reject ride request if the seats are full /rides POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/rides/3/requests')
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.error).to.equal('Ride request rejected. No more seats available');
         done();
       });
   });

@@ -23,7 +23,7 @@ class RideRequestsController {
         rideRequests[rideIndex].noOfRequests += 1;
         rideRequests[rideIndex].passengersId.push(rideRequests[rideIndex].passengersId.length + 1);
         return res.status(202).json({ success: 'Ride request accepted' });
-      } else if (rideRequests.seatsAvailable === 0) {
+      } else if (rideRequests[rideIndex].seatsAvailable === 0) {
         return res.status(400).json({ error: 'Ride request rejected. No more seats available' });
       }
     }

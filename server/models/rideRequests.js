@@ -18,9 +18,9 @@ const rideRequests = [
   {
     id: rideOffers[2].id,
     noOfSeats: 4,
-    seatsAvailable: 2,
-    noOfRequests: 3,
-    passengersId: [1, 2]
+    seatsAvailable: 0,
+    noOfRequests: 7,
+    passengersId: [1, 2, 3, 4]
   },
   {
     id: rideOffers[3].id,
