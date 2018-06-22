@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  "stable"
+before_script:
+   - npm install
+script: 
+  - npm run test
+
+after_success:
+  - npm run coverage
+
+##safelist
+branches:
+  only: 
+  - feature/api-endpoints
+
+##blocklist
+branches:
+  except:
+  - feature/ui-templates
+  - gh-pages
