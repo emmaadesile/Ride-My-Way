@@ -46,16 +46,18 @@ class RideOffersController {
       // create new ride offer from req.body
       const newId = rides.length + 1;
       req.body.id = newId;
+      const newRide = req.body;
 
       // push new ride offer to rideoffers
       rides.push(req.body);
 
       return res.status(201).json({
-        success: 'Ride offer created successfully'
+        success: 'Ride offer created successfully',
+        newRide
       });
     }
     return res.status(400).json({
-      message: 'Please fill in all required fields'
+      error: 'Please fill all the required fields'
     });
   }
 
