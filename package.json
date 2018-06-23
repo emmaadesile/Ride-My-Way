@@ -4,7 +4,7 @@
   "description": "Carpoolin App",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -w server/test/**/*.spec.js --require babel-register",
+    "test": "mocha server/test/**/*.spec.js --require babel-register",
     "start:dev": "nodemon server/app.js --exec babel-node",
     "start": "",
     "lint": "eslint server --fix",
