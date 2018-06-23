@@ -1,11 +1,13 @@
 /* Base Syles ================================ */
 :root {
   --red: #f50000;
-  --blue: #0073d1;
-  --green: #06D19C;
+  --blue: #0b7fdd;
+  --dark-blue: #0c6ebf;
+  --green: #06d19c;
+  --dark-green: #09bb8c;
 }
 
-@import 'https://fonts.googleapis.com/css?family=Quicksand';
+@import "https://fonts.googleapis.com/css?family=Quicksand";
 
 *,
 *::before,
@@ -29,7 +31,8 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.4;
@@ -38,7 +41,12 @@ body {
   background-color: #fff;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
@@ -88,7 +96,6 @@ a {
 }
 
 textarea {
-  
 }
 /* ========================================== End of Base Styles*/
 
@@ -106,7 +113,6 @@ textarea {
   margin: 3em 0;
 }
 
-
 /* Wrapper */
 .wrapper {
   display: grid;
@@ -117,16 +123,17 @@ textarea {
 /* top */
 .top {
   display: grid;
-  background: var(--blue) ;
+  background: var(--blue);
   background: url("../images/drivers.jpg");
   background-position: bottom right;
   background-size: cover;
 }
 
-.features, .about, .intro {
+.features,
+.about,
+.intro {
   padding: 100px 100px;
 }
-
 
 .hero {
   min-height: 700px;
@@ -161,14 +168,14 @@ textarea {
   overflow: hidden;
   margin: auto;
   width: 100%;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   font-weight: 500;
   /* margin-bottom: 50px; */
 }
 
 .navbar ul {
-   padding-left: 0px;
+  padding-left: 0px;
 }
 
 .box-shadow-none {
@@ -206,10 +213,10 @@ textarea {
 
 .div_navbar_items {
   float: right;
-  padding-right:1%;
+  padding-right: 1%;
 }
 
-@media screen and (max-width:875px) {
+@media screen and (max-width: 875px) {
   .navbar li.navbar_items {
     display: none;
   }
@@ -221,39 +228,40 @@ textarea {
     top: 2px;
   }
 
-  .features, .about, .intro {
+  .features,
+  .about,
+  .intro {
     padding: 20px 30px;
   }
 
- .hero h1 {
-  font-size: 2.5em;
+  .hero h1 {
+    font-size: 2.5em;
+  }
+  .hero h2 {
+    font-size: 1.5em;
+  }
 }
-.hero h2 {
-  font-size: 1.5em;
-}
-}
-
 
 /* The "responsive" class is added to the navbar with JavaScript when the user clicks on the icon. This class makes the navbar look good on small screens */
 
-@media screen and (max-width:875px) {
+@media screen and (max-width: 875px) {
   .navbar.responsive {
-    position:fixed;
+    position: fixed;
     width: 100%;
     height: 100vh;
     background-color: rgb(26, 26, 26);
-    transition: background-color .6s;
+    transition: background-color 0.6s;
   }
-  
+
   .navbar.responsive li.logo {
     float: left;
     display: block;
   }
   .navbar.responsive .div_navbar_items {
     float: none;
-    padding-right:0;
+    padding-right: 0;
   }
-  
+
   .navbar.responsive li.navbar_items {
     display: block;
     padding: 50px;
@@ -264,8 +272,8 @@ textarea {
     text-align: center;
     color: white;
   }
-  
-  .navbar.responsive li.navbar_items a:hover{
+
+  .navbar.responsive li.navbar_items a:hover {
     color: var(--blue);
     border-bottom-color: transparent;
   }
@@ -283,6 +291,7 @@ textarea {
   text-align: center;
   margin: 1rem 0;
   color: white;
+  cursor: pointer;
 }
 
 /*Button Primary*/
@@ -291,9 +300,19 @@ textarea {
   border-color: var(--blue);
 }
 
+.btn__primary:hover {
+  background: var(--dark-blue);
+  border-color: var(--dark-blue);
+}
+
 .btn__secondary {
   background: var(--green);
   border-color: var(--green);
+}
+
+.btn__secondary:hover {
+  background: var(--dark-green);
+  border-color: var(--dark-green);
 }
 
 .btn__danger {
@@ -305,20 +324,18 @@ textarea {
   border-radius: 25px;
 }
 
-.btn__inline{
+.btn__inline {
   display: inline-block;
 }
 
-
-/* Intro */ 
+/* Intro */
 .intro {
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(minmax(500px, 1fr));
 }
 
-
-/* Features */ 
+/* Features */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -354,11 +371,11 @@ textarea {
 /* Footer */
 .footer {
   padding: 20px 0;
-  text-align: center; 
+  text-align: center;
 }
 
-/* Logo */ 
+/* Logo */
 .logo img {
-  width: 100px; 
+  width: 100px;
   height: auto;
 }
