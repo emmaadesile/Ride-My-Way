@@ -12,7 +12,7 @@ after_success:
 ##safelist
 branches:
   only: 
-  - feature/api-endpoints
+  - feature/travis-CI
 
 ##blocklist
 branches:
