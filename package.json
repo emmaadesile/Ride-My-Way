@@ -1,35 +1,13 @@
 {
   "name": "ride-my-way",
   "version": "1.0.0",
-  "description": "Carpoolin App",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha server/test/**/*.spec.js --require babel-register",
-    "start:dev": "nodemon server/app.js --exec babel-node",
-    "start": "",
-    "lint": "eslint server --fix",
-    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emmaadesile/Ride-My-Way.git"
-  },
-  "keywords": [
-    "Node",
-    "Express",
-    "API"
-  ],
-  "author": "Emmanuel Adesile",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/emmaadesile/Ride-My-Way/issues"
-  },
-  "homepage": "https://github.com/emmaadesile/Ride-My-Way#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "cli-js": "0.0.8",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "merge-descriptors": "^1.0.1",
@@ -52,5 +30,23 @@
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.17.5",
     "nyc": "^12.0.2"
-  }
+  },
+  "scripts": {
+    "test": "mocha server/test/**/*.spec.js --require babel-register",
+    "start:dev": "nodemon server/app.js --exec babel-node",
+    "start": "",
+    "lint": "eslint server --fix",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmaadesile/Ride-My-Way.git"
+  },
+  "author": "Emmanuel Adesile",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emmaadesile/Ride-My-Way/issues"
+  },
+  "homepage": "https://github.com/emmaadesile/Ride-My-Way#readme"
 }
