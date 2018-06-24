@@ -1,13 +1,26 @@
 language: node_js
+
+addons:
+  code-climate:
+    repo_token: ba269ec96691d5b3e128f92e85a71763e4c1dfec9c7435cdd55f6e0b1d6a9d8d
+
 node_js:
   "stable"
+
 before_script:
-   - npm install
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - npm install
+
 script: 
   - npm run test
 
 after_success:
   - npm run coverage
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 ##safelist
 branches:
