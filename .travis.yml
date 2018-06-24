@@ -1,0 +1,32 @@
+language: node_js
+
+addons:
+  code-climate:
+    repo_token: ba269ec96691d5b3e128f92e85a71763e4c1dfec9c7435cdd55f6e0b1d6a9d8d
+
+node_js:
+  "stable"
+
+before_script:
+  - npm install codeclimate-test-reporter
+  - npm install
+
+script:
+  - npm run test
+
+after_success:
+  - npm run coverage
+
+after_script:
+  - codeclimate-test-reporter < ./coverage/lcov.info
+
+##safelist
+branches:
+  only: 
+  - feature/travis-CI
+
+##blocklist
+branches:
+  except:
+  - feature/ui-templates
+  - gh-pages

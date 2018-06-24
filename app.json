@@ -1,0 +1,8 @@
+{
+  "name": "Ride My Way ",
+  "description":
+    "A carpooling application for booking rides and creating ride offers",
+  "repository": "https://github.com/emmaadesile/Ride-My-Way",
+  "keywords": ["node", "express", "heroku", "api", "travis"],
+  "image": "ride-my-way"
+}
