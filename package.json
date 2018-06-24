@@ -40,8 +40,7 @@
     "start:dev": "nodemon server/app.js --exec babel-node",
     "start": "",
     "lint": "eslint server --fix",
-    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
   "repository": {
     "type": "git",
