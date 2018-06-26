@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/form.css">
+  <link rel="stylesheet" href="./styles/offer-ride.css">
+  <title>Ride my way</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="top" style="background: none;">
+      <!-- Navigation -->
+      <div class="navbar">
+
+        <ul>
+
+          <li class="logo">
+            <a href="./index.html">
+              <img src="./images/ride-logo-blue.png" alt="logo"> </a>
+          </li>
+
+          <section class="div_navbar_items">
+            <li class="navbar_items">
+              <a href="./index.html"> Home </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signup.html"> Sign Up </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signin.html"> Sign In </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./rides.html"> Rides </a>
+            </li>
+          </section>
+
+          <li class="icon">
+            <a href="#" onclick="navBarFunction()"> &#9776;</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Navigation -->
+
+      <!-- Offer Ride Form -->
+      <div class="offer-ride-form">
+        <form action="" class="form">
+          <label class="form-label">Ride Offer</label>
+          <input class="form-control" type="text" placeholder="Ride Name">
+          <input class="form-control" type="text" placeholder="Destination">
+          <textarea class="form-control" name=" Descrption" placeholder="Description" id=" " cols="30 " rows="6 "></textarea>
+          <input class="form-control " type="number" min="2" max="20" placeholder="Number of Passengers ">
+
+          <a class="btn btn__primary btn__inline " href="#">Submit</a>
+        </form>
+      </div>
+      <footer class="footer ">
+        <p>&copy; 2018. Made by Emmanuel</p>
+      </footer>
+    </div>
+    <!-- End of wrapper-->
+
+    <!-- JAvascript -->
+    <script>
+      function navBarFunction() {
+        document.getElementsByClassName("navbar ")[0].classList.toggle("responsive ");
+      }
+    </script>
+</body>
+
+</html>

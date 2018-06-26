@@ -1,0 +1,63 @@
+/* Features */ 
+.rides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  /* margin: 100px 0; */
+  background: #eeeeee;
+  padding-right: 50px;
+  padding-left: 100px;
+}
+
+.ride {
+  padding: 20px;
+  background: white;
+  border: 1px solid white;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px rgb(225, 225, 225);
+  display: grid;
+  justify-items: center;
+}
+
+/* .ride .btn {
+  padding: 5px 5px;
+} */
+
+.ride-heading {
+  grid-column: 1 / -1;
+  /* color:rgb(123, 125, 148); */
+  justify-self: center;
+  margin-top: 40px;
+}
+
+.ride .icon {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  /* border-bottom: 1px solid rgb(225, 225, 225); */
+}
+
+.ride-options {
+  /* max-width: 800px; */
+  display: grid;
+  grid-gap: 20px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+  padding-top: 100px;
+  /* padding-right: 450px;
+  padding-left: 450px; */
+}
+
+@media (max-width: 600px) {
+  .ride-options {
+    grid-template-columns: 1fr;
+    padding-top: 100px;
+    padding-bottom: 0;
+  }
+}
+
+/* .ride-options :first-child {
+  grid-column: 1 / 1;
+} */

@@ -1,0 +1,52 @@
+  
+/* Base Syles ================================ */
+:root {
+  --black: #272727;
+  --blue: rgb(0, 115, 209);
+  --green: #06D19C;
+}
+
+.form-wrapper {
+  display: grid;
+  place-items: center;
+  min-height: 540px;
+  padding-top: 50px;
+}
+
+
+.form {
+  width: 350px;
+  display: grid;
+  grid-template-columns: repeat(minmax(150px, 1fr));
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.form-label  {
+  font-size: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+ .form-control{
+    padding: 15px;
+    margin: 5px 0;
+    display: block;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    transition: 0.2s ease-out;
+ }
+
+ .form-control:focus{
+  padding: 15px;
+  outline: 0;
+  border-color: var(--blue);
+}
+
+.form p {
+  text-align: center;
+}
+
+textarea {
+  font-family: "Helvetica Neue", sans-serif;
+}

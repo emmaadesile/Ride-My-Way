@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/form.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Ride-My-Way</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Navigation -->
+    <div class="navbar">
+
+      <ul>
+
+        <li class="logo">
+          <a href="./index.html">
+            <img src="./images/ride-logo-blue.png" alt="logo">
+          </a>
+        </li>
+
+        <section class="div_navbar_items">
+          <li class="navbar_items">
+            <a href="./index.html"> Home </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./signup.html"> Sign Up </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./signin.html"> Sign In </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./rides.html"> Rides </a>
+          </li>
+        </section>
+
+        <li class="icon">
+          <a href="#" onclick="navBarFunction()"> &#9776;</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="form-wrapper">
+      <form action="" class="form">
+        <label class="form-label">Sign Up</label>
+        <input class="form-control" type="text" placeholder="First Name">
+        <input class="form-control" type="text" placeholder="Last Name">
+        <input class="form-control" type="text" placeholder="Phone">
+        <input class="form-control" type="text" placeholder="Email">
+        <input class="form-control" type="text" placeholder="Create Password">
+
+        <a class="btn btn__primary btn__inline" href="#">Sign Up</a>
+        <p>Already Registered?
+          <a href="signin.html">Sign in</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2018. Made by Emmanuel.</p>
+    </footer>
+  </div>
+  <script>
+    function navBarFunction() {
+      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
+    }
+  </script>
+</body>
+
+</html>

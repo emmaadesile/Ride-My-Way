@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/rides.css">
+  <link rel="stylesheet" href="./styles/modal.css">
+  <title>Ride my way</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="top">
+      <!-- Navigation -->
+      <div class="navbar">
+        <ul style="padding-left: 0px;">
+
+          <li class="logo">
+            <a href="./index.html">
+              <img src="./images/ride-logo-blue.png" alt="logo"> </a>
+          </li>
+
+          <section class="div_navbar_items">
+            <li class="navbar_items">
+              <a href="./index.html"> Home </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signup.html"> Sign Up </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./signin.html"> Sign In </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./rides.html"> Rides </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./ride-requests.html">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+              </a>
+            </li>
+          </section>
+
+          <li class="icon">
+            <a href="#" onclick="navBarFunction()"> &#9776;</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Navigation -->
+    </div>
+
+    <div class="ride-options">
+      <a href="./offer-ride.html" class="btn btn__primary btn__inline">Offer Ride</a>
+    </div>
+
+    <!-- Features -->
+    <section class="rides mt-1">
+      <h4 class="ride-heading">Available Rides</h4>
+      <div class="ride ride-1">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Ikorodu to Yaba</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+
+      </div>
+      <div class="ride ride-2">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Ikeja to Maryland</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-3">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Lagos to Ibadan</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-1">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>VI to Ikoyi</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-2">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Obalende to Falomo</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-3">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Mile 12 - CMS</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-1">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Maryland to Ikorodu</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-2">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Ojuelegba to Ikeja</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+      </div>
+      <div class="ride ride-3">
+        <div class="icon">
+          <img src="./images/car2.png" alt="">
+        </div>
+        <h5>Lagos to Ijebu</h5>
+        <p></p>
+        <button id="btn-modal" class="btn btn__secondary">View</button>
+        <!-- <a href="" class="btn btn__secondary" id="btn-modal">View</a> -->
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h4>Ride Details</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat in, qui omnis quam magnam eaque magni veniams libero.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button href="" class="btn">Cancel</button>
+          <button href="" class="btn btn__primary">Join</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- closing container -->
+
+    <footer class="footer">
+      <p>&copy; 2018. Made by Emmanuel</p>
+    </footer>
+  </div>
+  <!-- End of wrapper-->
+
+  <!-- JAvascript -->
+  <script>
+    function navBarFunction() {
+      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
+    }
+
+    // Modal Scripts
+    // Get the modal
+    var modal = document.getElementById('modal');
+
+    // Get the button that opens the modal
+    var btns = document.querySelectorAll("#btn-modal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    // btn.onclick = function () {
+    //   modal.style.display = "block";
+    // }
+
+
+    // When the user clicks on <span> (x), close the modal
+    function closeModal() {
+      modal.style.display = "none";
+    }
+    span.addEventListener("click", closeModal);
+
+    function displayModal() {
+      modal.style.display = "block";
+    }
+    btns.forEach(button => button.addEventListener("click", displayModal));
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+
+</html>
