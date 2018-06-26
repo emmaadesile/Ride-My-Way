@@ -117,7 +117,6 @@ textarea {
 .wrapper {
   display: grid;
   border: 0;
-  /* background: #eeeeee; */
 }
 
 /* top */
@@ -171,7 +170,6 @@ textarea {
   left: 0;
   top: 0;
   font-weight: 500;
-  /* margin-bottom: 50px; */
 }
 
 .navbar ul {
@@ -279,7 +277,7 @@ textarea {
   }
 }
 
-/* Button styles */
+/* Button styles ===============================*/
 .btn {
   padding: 0.5rem 2rem;
   font-size: 1rem;
@@ -305,6 +303,7 @@ textarea {
   border-color: var(--dark-blue);
 }
 
+/*Button Secondary*/
 .btn__secondary {
   background: var(--green);
   border-color: var(--green);
@@ -315,6 +314,7 @@ textarea {
   border-color: var(--dark-green);
 }
 
+/*Button Danger*/
 .btn__danger {
   background: var(--blue);
   border-color: var(--blue);
@@ -327,6 +327,7 @@ textarea {
 .btn__inline {
   display: inline-block;
 }
+/* End of button styles==================================== */
 
 /* Intro */
 .intro {
@@ -338,10 +339,16 @@ textarea {
 /* Features */
 .features {
   display: grid;
+  justify-items: center;
+  background: #eeeeee;
+}
+
+.features-grid {
+  max-width: 1200px;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 50px;
-  /* margin: 100px 0; */
-  background: #eeeeee;
+  justify-items: center;
 }
 
 .feature {
