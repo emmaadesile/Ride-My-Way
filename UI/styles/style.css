@@ -154,7 +154,13 @@ textarea {
   font-size: 3.5em;
 }
 
-/* Navigation */
+/* Logo =========================*/
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+/* Navigation ========================================*/
 
 .navbar {
   height: 60px;
@@ -364,7 +370,6 @@ textarea {
 
 .feature-heading {
   grid-column: 1 / -1;
-  /* color:rgb(123, 125, 148); */
   justify-self: center;
 }
 
@@ -372,17 +377,12 @@ textarea {
   width: 140px;
   height: auto;
   margin-bottom: 20px;
-  /* border-bottom: 1px solid rgb(225, 225, 225); */
 }
 
 /* Footer */
 .footer {
   padding: 20px 0;
   text-align: center;
-}
-
-/* Logo */
-.logo img {
-  width: 100px;
-  height: auto;
+  background-color: rgb(25, 39, 57);
+  color: rgb(120, 208, 233);
 }
