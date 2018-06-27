@@ -396,6 +396,6 @@ a {
 .footer {
   padding: 30px 0;
   text-align: center;
-  background-color: rgb(25, 39, 57);
-  color: rgb(120, 208, 233);
+  /* background-color: rgb(25, 39, 57); */
+  /* color: rgb(120, 208, 233); */
 }
