@@ -7,11 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/form.css">
+  <link rel="stylesheet" href="./styles/rides.css">
   <title>Ride my way</title>
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="wrapper3">
     <div class="top" style="background: none;">
       <!-- Navigation -->
       <div class="navbar">
@@ -25,16 +26,16 @@
 
           <section class="div_navbar_items">
             <li class="navbar_items">
-              <a href="./index.html"> Home </a>
-            </li>
-            <li class="navbar_items">
-              <a href="./signup.html"> Sign Up </a>
-            </li>
-            <li class="navbar_items">
-              <a href="./signin.html"> Sign In </a>
+              <a href="./index.html"> Profile </a>
             </li>
             <li class="navbar_items">
               <a href="./rides.html"> Rides </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./ride-requests.html"> Requests </a>
+            </li>
+            <li class="navbar_items">
+              <a href="./index.html"> Sign out </a>
             </li>
           </section>
 
@@ -43,16 +44,44 @@
           </li>
         </ul>
       </div>
-      <!-- End of Navigation -->
-
-      <div class="ride-requests text-center" style="padding-top: 100px;">
-        <h4>Ride Notifications</h4>
-        <ul>
-          <li></li>Theare are no recent requests</li>
-        </ul>
-      </div>
-
     </div>
+    <!-- End of Navigation -->
+
+    <section class="ride-requests-body">
+      <div class="box">
+        <div class="box__header text-center">
+          <h4 class="box__title">Ride Notifications</h4>
+        </div>
+
+        <!-- Request details -->
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Ikorodu to Yaba</h5>
+            <p>Departure Time: 4:00pm</p>
+            <p>Seats Available: 3</p>
+            <p>Requester: Dave</p>
+          </div>
+          <div class="request-btns">
+            <a class="btn btn__secondary">Accept</a>
+            <a class="btn btn__grey">Cancel</a>
+          </div>
+        </div>
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Maryland to Ikeja</h5>
+            <p>Departure Time: 4:00pm</p>
+            <p>Seats Available: 3</p>
+            <p>Requester: Dave</p>
+          </div>
+          <div class="request-btns">
+            <a class="btn btn__secondary">Accept</a>
+            <a class="btn btn__grey">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <footer class="footer ">
       <p>&copy; 2018. Made by Emmanuel</p>
     </footer>
@@ -62,7 +91,7 @@
   <!-- JAvascript -->
   <script>
     function navBarFunction() {
-      document.getElementsByClassName("navbar ")[0].classList.toggle("responsive ");
+      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }
   </script>
 </body>
