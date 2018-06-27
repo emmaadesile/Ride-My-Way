@@ -168,8 +168,8 @@ a {
   height: 60px;
   display: grid;
   align-items: center;
-  background: white;
-  box-shadow: -2px 2px 2px #d3d3d3;
+  /* background: white; */
+  /* box-shadow: -2px 2px 2px #d3d3d3; */
   position: fixed;
   z-index: 100;
   overflow: hidden;
@@ -196,13 +196,17 @@ a {
 
 .navbar li a {
   font-size: 1em;
-  color: #666666;
+  color: #cccccc;
   display: inline-block;
   text-align: center;
   padding: 10px 16px;
   text-decoration: none;
   text-transform: uppercase;
 }
+
+/* .navbar li a:hover {
+  background: #000;
+} */
 
 .navbar ul {
   height: inherit;

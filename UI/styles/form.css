@@ -8,17 +8,11 @@
 }
 
 .wrapper {
-  background-image: url("../images/cool-background.png");
-  background-color: rgb(25, 39, 57);
+  /* background-image: url("../images/bridge.jpg"); */
+  background-color: #192739;
   background-size: cover;
   background-position: center;
 }
-/* 
-.navbar {
-  background: none !important;
-  box-shadow: none !important;
-  color: white !important;
-} */
 
 .form-wrapper {
   display: grid;
@@ -35,7 +29,7 @@
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-  background: white;
+  background: #fff;
   border-radius: 5px;
 }
 
