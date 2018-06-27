@@ -1,11 +1,16 @@
-/* Features */ 
+.wrapper3 {
+  display: grid;
+  border: 0;
+}
+
+/* Features */
 .rides {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
   /* margin: 100px 0; */
   background: #eeeeee;
-  padding-right: 50px;
+  padding-right: 100px;
   padding-left: 100px;
 }
 
@@ -20,10 +25,6 @@
   justify-items: center;
 }
 
-/* .ride .btn {
-  padding: 5px 5px;
-} */
-
 .ride-heading {
   grid-column: 1 / -1;
   /* color:rgb(123, 125, 148); */
@@ -35,19 +36,15 @@
   width: 100%;
   height: auto;
   margin-bottom: 20px;
-  /* border-bottom: 1px solid rgb(225, 225, 225); */
 }
 
 .ride-options {
-  /* max-width: 800px; */
   display: grid;
   grid-gap: 20px;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   align-items: center;
   padding-top: 100px;
-  /* padding-right: 450px;
-  padding-left: 450px; */
 }
 
 @media (max-width: 600px) {
@@ -58,6 +55,79 @@
   }
 }
 
-/* .ride-options :first-child {
-  grid-column: 1 / 1;
-} */
+/* Ride requests styles */
+
+.ride-requests-body {
+  display: grid;
+  justify-items: center;
+  padding-top: 0;
+  margin-top: 100px;
+}
+
+/* Box========================================= */
+
+.box {
+  background-color: #fff;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  width: 50%;
+}
+
+.box__header {
+  padding: 16px;
+  margin: -1px -1px 0 -1px;
+  background-color: rgb(25, 39, 57);
+  border-color: #d1d5da;
+  border-style: solid;
+  border-width: 1px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.box__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.box__group {
+  padding: 10px 20px 0 20px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  border-bottom: 1px solid #d1d5da;
+}
+
+.box:last-child {
+  border-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .box {
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    width: 80%;
+  }
+
+  .box__group {
+    padding: 10px 20px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self: left;
+    border-bottom: 1px solid #d1d5da;
+  }
+
+  .request-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  .rides {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    background: #eeeeee;
+    padding: 0 30px;
+  }
+}
