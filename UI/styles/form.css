@@ -7,11 +7,18 @@
   --dark-green: #09bb8c;
 }
 
+.wrapper {
+  /* background-image: url("../images/bridge.jpg"); */
+  background-color: #192739;
+  background-size: cover;
+  background-position: center;
+}
+
 .form-wrapper {
   display: grid;
   align-items: center;
   justify-items: center;
-  min-height: 540px;
+  min-height: 561px;
   padding-top: 50px;
 }
 
@@ -21,6 +28,9 @@
   grid-template-columns: repeat(minmax(150px, 1fr));
   box-sizing: border-box;
   padding: 20px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  background: #fff;
+  border-radius: 5px;
 }
 
 .form-label {
@@ -46,6 +56,10 @@
 
 .form p {
   text-align: center;
+}
+
+.footer p {
+  color: white;
 }
 
 textarea {
