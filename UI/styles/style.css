@@ -5,6 +5,7 @@
   --dark-blue: #0c6ebf;
   --green: #06d19c;
   --dark-green: #09bb8c;
+  --white: #eee;
 }
 
 @import "https://fonts.googleapis.com/css?family=Quicksand";
@@ -112,6 +113,10 @@ a {
 
 .mt-1 {
   margin: 3em 0;
+}
+
+.pb-4 {
+  padding-bottom: 4em;
 }
 /* End of utility classes ================================*/
 
@@ -328,8 +333,21 @@ a {
 
 /*Button Danger*/
 .btn__danger {
-  background: var(--blue);
-  border-color: var(--blue);
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* Button default */
+.btn__grey {
+  color: #24292e;
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+}
+
+.btn__grey:hover {
+  color: #24292e;
+  background-color: #d5d5d5;
+  border-color: #d5d5d5;
 }
 
 .btn__rounded {

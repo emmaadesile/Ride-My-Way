@@ -2,7 +2,7 @@
 :root {
   --black: #272727;
   --blue: #0073d1;
-  --green: #06D19C;
+  --green: #06d19c;
 }
 
 /* Profile */
@@ -10,7 +10,6 @@
   display: grid;
   justify-items: center;
   padding-top: 80px;
-  /* min-width: 500px; */
 }
 
 .profile-info {
@@ -23,51 +22,10 @@
   border-radius: 50%;
 }
 
-/* Rides */
-/* .num-of-rides {
-  display: grid;
-  grid-template-columns: repeat(minmax(100px, 1fr));
-  padding: 20px;
-} */
-
-/* .num-ride {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  margin: 10px 0;
-} */
-
-/* .num-of-rides > p {
-  font-size: 1.3em;
-  margin: 0.5em 0;
-  border-top: 1px solid var(--blue)
-} */
-
-/* .ride-num {
-  padding: 5px 30px;
-  border-radius: 10px;
-  background: var(--blue);
-  color: white;
-  text-align: center; 
-}*/
-
-/* .rides-given {
-  display: grid;
-  grid-template-columns: repeat(minmax(200px, 1fr));
-  grid-gap: 20px;
-} */
-
 .ride-img {
   width: 150px;
   height: auto;
 }
-
-/* .ride-heading {
-  grid-area: head;
-}
-
-.ride-body {
-  grid-area: text;
-} */
 
 .user-ride-count {
   display: grid;
@@ -78,11 +36,11 @@
 }
 
 .user-count-num {
-    padding: 5px 30px;
+  padding: 5px 30px;
   border-radius: 10px;
   background: var(--blue);
   color: white;
-  text-align: center; 
+  text-align: center;
 }
 
 .rides-block {

@@ -7,18 +7,26 @@
   --dark-green: #09bb8c;
 }
 
+<<<<<<< HEAD
 .wrapper {
   /* background-image: url("../images/bridge.jpg"); */
   background-color: #192739;
+=======
+.wrapper2 {
+  display: grid;
+  background-image: url("../images/cool-background.png");
+  background-color: rgb(25, 39, 57);
+>>>>>>> 85fa34ce58785b226574b016d4bc8be91c3ee616
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
 
 .form-wrapper {
   display: grid;
   align-items: center;
   justify-items: center;
-  min-height: 561px;
+  /* min-height: 561px; */
   padding-top: 50px;
 }
 

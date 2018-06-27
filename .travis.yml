@@ -24,14 +24,3 @@ after_success:
 after_script:
   # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - codeclimate-test-reporter < ./coverage/lcov.info
-
-##safelist
-branches:
-  only: 
-  - feature/travis-CI
-
-##blocklist
-branches:
-  except:
-  - feature/ui-templates
-  - gh-pages
