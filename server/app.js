@@ -13,7 +13,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const port = parseInt(process.env.PORT, 10) || 8000;
+const port = process.env.PORT || 8000;
 app.set('port', port);
 
 // Create the server
@@ -26,7 +26,7 @@ server.listen(port, () => {
 // Express router
 routes(app);
 
-app.get('*', (req, res) => res.status(200).send({
+app.get('/', (req, res) => res.status(200).send({
   Success: 'Welcome to Ride My Way API'
 }));
 
