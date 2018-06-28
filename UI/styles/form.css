@@ -8,9 +8,8 @@
 }
 
 .wrapper2 {
-  display: grid;
-  background-image: url("../images/cool-background.png");
-  background-color: rgb(25, 39, 57);
+  background-image: url("../images/blur.jpg");
+  background-color: #192739;
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -20,7 +19,7 @@
   display: grid;
   align-items: center;
   justify-items: center;
-  /* min-height: 561px; */
+  height: 80vh;
   padding-top: 50px;
 }
 
@@ -31,7 +30,7 @@
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-  background: white;
+  background: #fff;
   border-radius: 5px;
 }
 

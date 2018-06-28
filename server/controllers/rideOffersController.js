@@ -1,4 +1,9 @@
 import rides from '../models/rides';
+// import client from '../models/db';
+import pg from 'pg';
+
+const connectionString =
+  process.env.DATABASE_URL || 'postgres://manny:dbadmin900@localhost:5432/ride-my-way';
 
 class RideOffersController {
   /**
@@ -9,7 +14,25 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static getAllRideOffers(req, res) {
-    return res.status(200).json({ rides });
+    pg.connect(connectionString, (err, client, done) => {
+      if (err) {
+        // done()
+        console.log(`Unable to connect: ${err}`)
+        return res.status(400).json({ error: err });
+      }
+      client.query('SELECT * FROM rides ORDER BY id ASC;', (err, result) => {
+        done();
+        if (err) {
+          console.log(err);
+          res.status(400).json({ error: err });
+        }
+        res.status(200).json({ 
+          message: "success", 
+          result: result.rows
+        });
+      });
+    });
+    // return res.status(200).json({ rides });
   }
 
   /**
