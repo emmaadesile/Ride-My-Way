@@ -7,24 +7,20 @@
   --dark-green: #09bb8c;
 }
 
-.wrapper {
+.wrapper2 {
+  display: grid;
   background-image: url("../images/cool-background.png");
   background-color: rgb(25, 39, 57);
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
-/* 
-.navbar {
-  background: none !important;
-  box-shadow: none !important;
-  color: white !important;
-} */
 
 .form-wrapper {
   display: grid;
   align-items: center;
   justify-items: center;
-  min-height: 561px;
+  /* min-height: 561px; */
   padding-top: 50px;
 }
 

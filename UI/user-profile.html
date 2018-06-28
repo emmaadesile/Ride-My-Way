@@ -8,6 +8,8 @@
 
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/user-profile.css">
+  <link rel="stylesheet" href="./styles/rides.css">
+
   <title>Ride My Way</title>
 </head>
 
@@ -29,13 +31,13 @@
             <a href="./index.html"> Home </a>
           </li>
           <li class="navbar_items">
-            <a href="./signup.html"> Sign Up </a>
-          </li>
-          <li class="navbar_items">
-            <a href="./signin.html"> Sign In </a>
-          </li>
-          <li class="navbar_items">
             <a href="./rides.html"> Rides </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./ride-requests.html"> Requests </a>
+          </li>
+          <li class="navbar_items">
+            <a href="./index.html"> Signout </a>
           </li>
         </section>
 
@@ -57,46 +59,55 @@
       <div class="user-ride-count">
         <div class="text-center">
           <h5>Number of Rides Taken</h5>
-          <span class="user-count-num">10</span>
+          <span class="user-count-num">2</span>
         </div>
 
         <div class="text-center">
           <h5>Number of Rides Given</h5>
-          <span class="user-count-num">8</span>
+          <span class="user-count-num">2</span>
         </div>
       </div>
 
       <!-- List of Rides Taken -->
-      <div class="rides-block">
-        <!-- List of Rides Taken -->
-        <ul class="rides rides-taken">
-          <h3>List of Rides Taken</h3>
-          <li>Ikorodu to Yaba</li>          
-          <li>VI to Ikoyi</li>
-          <li>Mary Island to Ikeja</li>
-          <li>Ikorodu to CMS</li>
-          <li>Opebi to Computer Village</li>
-          <li>Ojuelegba to Falomo</li>
-          <li>Ikeja to obalende</li>
-          <li>Bariga to UNILAG</li>
-          <li>Lagos Island to Lagos Mainland</li>
-          <li></li>
-        </ul>
+      <div class="box mt-1">
+        <div class="box__header text-center">
+          <h4 class="box__title">Rides Taken</h4>
+        </div>
 
-        <!-- List of Ride Given -->
-        <ul class="rides rides-given">
-          <h3>List of Rides Given</h3>
-          <li>Ikorodu to Yaba</li>
-          <li>VI to Ikoyi</li>
-          <li>Mary Island to Ikeja</li>
-          <li>Ikorodu to CMS</li>
-          <li>Opebi to Computer Village</li>
-          <li>Ojuelegba to Falomo</li>
-          <li>Ikeja to obalende</li>
-          <li>Bariga to UNILAG</li>
-          <li>Lagos Island to Lagos Mainland</li>
-          <li></li>
-        </ul>
+        <!-- Rides details -->
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Ikorodu to Yaba</h5>
+            <p>Date-Given: 23/2/2018</p>
+          </div>
+        </div>
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Maryland to Ikeja</h5>
+            <p>Date-Given: 23/2/2018</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- List of Rides Given -->
+      <div class="box">
+        <div class="box__header text-center">
+          <h4 class="box__title">Rides Given</h4>
+        </div>
+
+        <!-- Rides details -->
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Ikorodu to Yaba</h5>
+            <p>Date-Taken: 23/2/2018</p>
+          </div>
+        </div>
+        <div class="box__group">
+          <div class="request-details">
+            <h5>Maryland to Ikeja</h5>
+            <p>Date-Taken: 23/2/2018</p>
+          </div>
+        </div>
       </div>
 
       <!-- Footer -->
