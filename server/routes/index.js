@@ -3,6 +3,11 @@ import RideRequestsController from '../controllers/rideRequestsController';
 
 // Routes for the RideOffersController;
 const routes = (app) => {
+  // Homepage
+  app.get('/', (req, res) => res.status(200).send({
+    Success: 'Welcome to Ride My Way API'
+  }));
+
   // Get all ride offers routes
   app.get('/api/v1/rides', RideOffersController.getAllRideOffers);
 

@@ -8,8 +8,13 @@
 }
 
 .wrapper2 {
+<<<<<<< HEAD
   background-image: url("../images/blur.jpg");
   /* background-color: #192739; */
+=======
+  background-image: url("http://res.cloudinary.com/dn6fnuhxr/image/upload/v1530273594/blur.jpg");
+  background-color: #192739;
+>>>>>>> 00dcc610e8459b50ec5323ec6bbb1226df33bb83
   background-size: cover;
   background-position: center;
   min-height: 100vh;

@@ -26,8 +26,4 @@ server.listen(port, () => {
 // Express router
 routes(app);
 
-app.get('/', (req, res) => res.status(200).send({
-  Success: 'Welcome to Ride My Way API'
-}));
-
 export default app;

@@ -1,9 +1,14 @@
-import { Pool, Client } from 'pg';
+import { Pool } from 'pg';
 
-const connectionString =
-  process.env.DATABASE_URL || 'postgres://manny:dbadmin900@localhost:5432/ride-my-way';
+const config = {
+  user: 'postgres',
+  database: 'ride-my-way',
+  password: 'dbadmin900',
+  port: 5432,
+  max: 10, // max number of connection that can be open to database
+  idleTimeoutMills: 3000 // how long client is allowed to remain idle before being closed
+};
 
-const client = new Client({ connectionString });
-client.connect();
+const pool = new Pool(config);
 
-export default client;
+export default pool;
