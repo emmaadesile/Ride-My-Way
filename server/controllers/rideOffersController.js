@@ -24,8 +24,6 @@ class RideOffersController {
       });
     });
   }
-
-  
 }
 
 export default RideOffersController;
