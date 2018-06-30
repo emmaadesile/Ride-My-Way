@@ -9,15 +9,18 @@ CREATE TABLE users(
 
 CREATE TABLE rides (
   id SERIAL PRIMARY KEY,
-  location VARCHAR(255) NOT NULL,
+  currentLocation VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
   departure_time TIME NOT NULL,
-  time_created DATE NOT NULL DEFAULT CURRENT_DATE,
-  seats_available INT NOT NULL
+  date_created DATE NOT NULL DEFAULT CURRENT_DATE,
+  seats_available INT NOT NULL,
+  FOREIGN KEY(id) REFERENCES users(id)
 );
 
 CREATE TABLE ride_requests(
   id SERIAL PRIMARY KEY,
   ride_id INT NOT NULL,
-  user_id NOT NULL
+  user_id NOT NULL,
+  accepted BOOLEAN,
+  FOREIGN KEY(ride_id) REFERENCES rides(id)
 );
