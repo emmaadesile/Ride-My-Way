@@ -13,7 +13,7 @@ describe('Test for Ride Offers Endpoints', () => {
       .get('/api/v1/rides')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body).to.be.an('object');
         done();
       });
   });
@@ -24,7 +24,7 @@ describe('Test for Ride Offers Endpoints', () => {
       .get('/api/v1/rides/1')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
+        expect(res.body).to.be.an('object');
         expect(res.body.location).to.equal('Ikeja');
         expect(res.body.destination).to.equal('Victoria Island');
         expect(res.body.timeOfDeparture).to.equal('1:00pm');
