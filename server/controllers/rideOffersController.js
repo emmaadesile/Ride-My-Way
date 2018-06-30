@@ -31,7 +31,7 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static createARideOffer(req, res) {
-    
+
   }
 
   /**
@@ -42,7 +42,7 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static editRideOffer(req, res) {
-    
+
   }
 
   /**

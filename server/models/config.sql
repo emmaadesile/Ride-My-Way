@@ -4,7 +4,7 @@ CREATE TABLE users(
   lastname VARCHAR(255) NOT NULL,
   phone INT NOT NOT NULL
   username VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  email VARCHAR(2s55) NOT NULL
 );
 
 CREATE TABLE rides (
@@ -15,7 +15,6 @@ CREATE TABLE rides (
   time_created DATE NOT NULL DEFAULT CURRENT_DATE,
   seats_available INT NOT NULL
 );
-
 
 CREATE TABLE ride_requests(
   id SERIAL PRIMARY KEY,
