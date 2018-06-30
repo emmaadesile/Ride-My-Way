@@ -1,4 +1,4 @@
-import pool from '../models/db';
+import dbConfig from '../models/dbConfig';
 
 class RideOffersController {
   /**
@@ -9,7 +9,7 @@ class RideOffersController {
    * @memberof RideOffersController
    */
   static getAllRideOffers(req, res) {
-    pool.connect((err, client, done) => {
+    dbConfig.connect((err, client, done) => {
       if (err) {
         console.log(`cannot connect to database: ${err}`);
         res.status(400).send(err);
@@ -34,7 +34,7 @@ class RideOffersController {
  */
   static getASingleRideOffer(req, res) {
     const rideId = parseInt(req.params.rideId);
-    pool.connect((err, client, done) => {
+    dbConfig.connect((err, client, done) => {
       if (err) {
         console.log(`cannot connect to database: ${err}`);
         res.status(400).send(err);
