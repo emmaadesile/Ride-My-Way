@@ -1,37 +1,22 @@
-import { isEmpty } from 'lodash';
-import Validator from 'validator';
+import { body, check, validationResult } from 'express-validator/check';
 
-const validateLogin = (req, res, next) => {
-  const { email, password } = req.body
-  const error = {};
-
-  if (!password) {
-    error.password = "Password is required";
-  }
-
-  if (password && Validator.isEmpty(password.trim() || "")) {
-    error.password = "Password is required";
-  }
-
-  if (!email) {
-    error.email = "Email is required";
-  }
-
-  if (email && !Validator.isEmail(email.trim() || "")) {
-    error.email = "Email is required";
-  }
-
-  if (isEmpty(error)) return next();
-  return res.status(400).jsom({ error });
+const validateSignup = (req, res) => {
+  const {
+    firstname, lastname, username, phone, email, password
+  } = req.body;
+  check('firstname', 'firstname cannot be empty').notEmpty();
+  check('lastname', 'lastname cannot be empty').notEmpty();
+  check('username', 'username cannot be empty').notEmpty();
+  check('phone', 'phone number cannot be empty').notEmpty();
+  check('email', 'Please enter a valid email').isEmail();
+  check('password', 'Password must be 5+ chars long and contain a number')
+    .isLength({ min: 5 })
+    .equals(req.body.confirmPassword).withMessage('Password does not match confirm password')
+    .matches(/\d/);
 };
 
-const validateSignup = (req, res, next) => {
-  const {username, email, password, confirmPassword} = req.body;
-  const error = {};
+const validateSignin = (req, res) => {
+  const { email, password } = req.body;
 
-  if (!username) {
-    error.username = "Username is required";
-  }
-
-  if ()
-}
+  check('email', 'Invalid Email').isEmail();
+};

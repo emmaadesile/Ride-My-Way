@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
+import expressValidator from 'express-validator';
+import expressSession from 'express-session';
 import routes from './routes/index';
 
 // Setup express app
@@ -12,6 +14,12 @@ app.use(logger('dev'));
 // Parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Validation
+app.use(expressValidator());
+
+// Express sesion
+app.use(expressSession());
 
 const port = process.env.PORT || 8000;
 app.set('port', port);
