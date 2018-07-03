@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { check, validationResult } from 'express-validator/check';
 import { matchedData } from 'express-validator/filter';
 
@@ -35,3 +36,5 @@ const validateSignin = [
 ];
 
 export { validateSignup, validateSignin };
+=======
+>>>>>>> eae85bb063e917f67ea669f3c5175f13f224c458
