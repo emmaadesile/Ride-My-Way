@@ -1,12 +1,17 @@
 import RideOffersController from '../controllers/rideOffersController';
-import RideRequestsController from '../controllers/rideRequestsController';
+// import RideRequestsController from "../controllers/rideRequestsController";
+import UsersController from '../controllers/usersController';
 
 // Routes for the RideOffersController;
 const routes = (app) => {
   // Homepage
-  app.get('/', (req, res) => res.status(200).send({
-    Success: 'Welcome to Ride My Way API'
-  }));
+  app.get('/', (req, res) =>
+    res.status(200).send({
+      Success: 'Ride My Way API is live'
+    }));
+
+  // User sign up
+  app.post('/api/v1/auth/signup', UsersController.createNewUser);
 
   // Get all ride offers routes
   app.get('/api/v1/rides', RideOffersController.getAllRideOffers);

@@ -2,7 +2,7 @@ import dbConfig from '../models/dbConfig';
 
 class RideOffersController {
   /**
-   * Get All Ride Offers
+   * Get All Ride Of fers
    * @param {obj} req
    * @param {obj} res
    * @returns All the rides in db
@@ -33,7 +33,7 @@ class RideOffersController {
  * @memberof RideOffersController
  */
   static getASingleRideOffer(req, res) {
-    const rideId = parseInt(req.params.rideId);
+    const rideId = parseInt(req.params.rideId, 10);
     dbConfig.connect((err, client, done) => {
       if (err) {
         console.log(`cannot connect to database: ${err}`);
