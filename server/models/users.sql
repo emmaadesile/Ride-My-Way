@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS ride_my_way;
 CREATE DATABASE ride_my_way;
+
 \c ride_my_way;
--- DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users(
   user_id SERIAL PRIMARY KEY,

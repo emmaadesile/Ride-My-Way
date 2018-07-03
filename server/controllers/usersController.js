@@ -3,10 +3,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from '../helpers/config';
 
+const secretKey = process.env.SECRET_KEY;
 
 class UsersController {
   /**
-   * Get All Ride Offers
+   * Create a new user
    * @param {obj} req
    * @param {obj} res
    * @returns All the rides in db
@@ -51,6 +52,42 @@ class UsersController {
         }
       });
     });
+  }
+
+  /**
+  * Sign in a user
+  * @param {obj} req
+  * @param {obj} res
+  * @returns Sign in a user
+  * @memberof UsersController
+  */
+  static signin(req, res) {
+    const { email, password } = req.body;
+
+    pool.connect((err, client, done) => {
+      if (err) {
+        done();
+        res.status(500).send({ success: false, error: err });
+      }
+      client.query(`SELECT password from users WHERE email = ${email}`, (err, result) => {
+        if (err) {
+          res.status(401).json({ success: false, message: 'Problem connecting to server' });
+        }
+        if (result) {
+          const passWordIsValid = bcrypt.compareSync(password, result.password);
+          if (passWordIsValid) {
+            return res.status(401).send({
+            auth: false,
+            token: null
+            });
+          } 
+          const token = jwt.sign({ id: result.row[0].user_id }, config.secretKey, { expiresIn: 86400 });
+          res.status(200).send({
+            auth: true, token
+          });
+        }
+      })
+    })
   }
 }
 

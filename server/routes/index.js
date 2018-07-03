@@ -13,6 +13,9 @@ const routes = (app) => {
   // User sign up
   app.post('/api/v1/auth/signup', UsersController.createNewUser);
 
+  // User sign in
+  app.post('/api/v1/auth/signin', UsersController.signin);
+
   // Get all ride offers routes
   app.get('/api/v1/rides', RideOffersController.getAllRideOffers);
 
