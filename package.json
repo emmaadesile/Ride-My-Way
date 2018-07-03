@@ -7,6 +7,7 @@
     "node": "8.11.2"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
@@ -44,6 +45,7 @@
     "test": "nyc mocha server/test/**/*.spec.js --require babel-register --timeout 10000 --exit",
     "start:dev": "nodemon server/app.js --exec babel-node",
     "start": "",
+    "build": "babel server -d server/dist",
     "lint": "eslint server --fix",
     "migrate": "psql -U postgres -f server/models/index.sql",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
