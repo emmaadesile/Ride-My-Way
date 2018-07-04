@@ -20,20 +20,29 @@ class UserValidation {
     const { email, password } = req.body;
     const error = {};
 
+    const validateEmail = (checkMail) => {
+      const testEmail = /\S+@\S+\.\S+/;
+      return testEmail.test(email);
+    };
+
     if (!password) {
       error.password = 'Password is required';
     }
 
-    if (password && Validator.isEmpty(password.trim() || '')) {
+    if (password && password.trim() === '') {
       error.password = 'Password is required';
     }
+
+    // if (password && Validator.isEmpty(password.trim() || '')) {
+    //   error.password = 'Password is required';
+    // }
 
     if (!email) {
       error.email = 'Email field cannot be empty';
     }
 
-    if (email && !Validator.isEmail(email.trim() || '')) {
-      error.email = 'Please enter a valid email address';
+    if (validateEmail(email) === false) {
+      error.email = 'Email address is invalid or empty';
     }
 
     if (isEmpty(error)) {
@@ -58,6 +67,11 @@ class UserValidation {
     } = req.body;
     const error = {};
 
+    const validateEmail = (checkMail) => {
+      const testEmail = /\S+@\S+\.\S+/;
+      return testEmail.test(email);
+    };
+
     if (!firstname) {
       error.firstname = 'Firstname field cannot be empty';
     }
@@ -78,7 +92,7 @@ class UserValidation {
       error.confirmPassword = 'Please confirm your password';
     }
 
-    if (email && !Validator.isEmail(email.trim() || '')) {
+    if (validateEmail(email) === false) {
       error.email = 'Email address is invalid or empty';
     }
 
@@ -86,11 +100,7 @@ class UserValidation {
       Validator.isEmpty(confirmPassword || '') ||
       (password.trim() !== confirmPassword.trim())
     ) {
-      error.password = 'Passwords do not match or field is empty';
-    }
-
-    if (email && Validator.isEmail(email.trim() || '')) {
-      error.email = 'Email is invalid or empty';
+      error.password = 'Password and confirm password fields do not match';
     }
 
     if (isEmpty(error)) return next();
@@ -110,21 +120,26 @@ class UserValidation {
   static validateInputLength(req, res, next) {
     const { username, password } = req.body;
 
-    if (!Validator.isAlphanumeric(username)) {
+    function validUser(user) {
+      const testUser = /^([a-zA-Z0-9_]+)$/;
+      return testUser.test(user);
+    }
+
+    if (validUser(username) === false) {
       return res.status(406).json({
         status: 'Fail',
         error: 'Username can only contain numbers and letters'
       });
     }
 
-    if (!Validator.isLength(username, { min: 4, max: 12 })) {
+    if (username.length < 4 || username.length > 12) {
       return res.status(406).json({
         status: 'Fail',
         error: 'Username can only be 4 to 12 characters long'
       });
     }
 
-    if (!Validator.isLength(password, { min: 6, max: 15 })) {
+    if (password.length < 6 || password.length > 15) {
       return res.status(406).json({
         status: 'Fail',
         error: 'Password must be at least 6 chars and at most 15 characters'
