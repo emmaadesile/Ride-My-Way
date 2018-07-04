@@ -70,7 +70,7 @@ class UsersController {
         done();
         res.status(500).send({ success: false, error: err });
       }
-      client.query("SELECT * from users WHERE email = $1", [email], (err, result) => {
+      client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
         if (err) {
           res.status(500).json({ success: false, message: 'There seems to be an error on the server' });
         }
@@ -78,7 +78,7 @@ class UsersController {
         if (!user) {
           return res.status(404).json({
             auth: false,
-            error: "User not found"
+            error: 'User not found'
           });
         }
         // if user exists in database
@@ -87,7 +87,7 @@ class UsersController {
           return res.status(401).json({
             auth: false,
             token: null,
-            error: "You entered the wrong passowrd"
+            error: 'You entered the wrong passowrd'
           });
         }
         const userId = result.rows[0].user_id;
