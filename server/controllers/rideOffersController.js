@@ -1,6 +1,6 @@
 import pool from '../models/dbConfig';
-import bcrypt from "bcryptjs";
-import TokenAuth from "../helpers/token";
+import bcrypt from 'bcryptjs';
+import TokenAuth from '../helpers/token';
 
 
 class RideOffersController {
@@ -40,7 +40,7 @@ class RideOffersController {
         console.log(`cannot connect to database: ${err}`);
         res.status(400).send(err);
       }
-      client.query(`SELECT * FROM rides WHERE id = ${rideId}`, (err, result) => {
+      client.query(`SELECT * FROM rides WHERE ride_id = ${rideId}`, (err, result) => {
         done();
         if (err) {
           console.log(err);
@@ -83,7 +83,7 @@ class RideOffersController {
         if (result) {
           res.status(200).send({
             success: true,
-            message: "Ride offer successfully created",
+            message: 'Ride offer successfully created',
           });
         }
       });
