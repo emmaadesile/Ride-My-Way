@@ -39,15 +39,23 @@ class TokenAuth {
    * @returns {string} jwt token
    * @memberof TokenAuth
    */
-  // static decryptToken(token) {
-  //   const userId = jwt.sign(token, secret, (err, decoded) => {
-  //     if (err) {
-  //       return { auth: false, error: err };
-  //     }
-  //     return decoded.user_id;
-  //   })
-  //   return userId;
-  // }
+  static verifyToken(req, res, next) {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(403).send({
+        auth: false, message: 'No token provided' });
+    }
+
+    jwt.verify(token, secret, ((err, decoded) => {
+      if (err) {
+        return res.status(500).send({
+          auth: false, message: 'Failed to authenticate token'});
+      }
+      // if everything is good, authorise user to view other routes
+      req.userId = decoded.user_id;
+      next();
+    }));
+  }
 }
 
 export default TokenAuth;

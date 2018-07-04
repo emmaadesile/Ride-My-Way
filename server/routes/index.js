@@ -3,6 +3,7 @@ import RideOffersController from '../controllers/rideOffersController';
 import UsersController from '../controllers/usersController';
 import UserValidator from '../middleware/userValidator';
 import RidesValidator from '../middleware/ridesValidator';
+import TokenAuth from '../helpers/token';
 
 // Routes for the RideOffersController;
 const routes = (app) => {
@@ -19,13 +20,13 @@ const routes = (app) => {
   app.post('/api/v1/auth/signin', UserValidator.validateLogin, UsersController.signin);
 
   // Get all ride offers routes
-  app.get('/api/v1/rides', RidesValidator.validateRidesDetails, RideOffersController.getAllRideOffers);
+  app.get('/api/v1/rides', TokenAuth.verifyToken, RideOffersController.getAllRideOffers);
 
   // Get a single ride offer
-  app.get('/api/v1/rides/:rideId', RideOffersController.getASingleRideOffer);
+  // app.get('/api/v1/rides/:rideId', RideOffersController.getASingleRideOffer);
 
   // Post a ride offer
-  // app.post('/api/v1/rides', RideOffersController.createARideOffer);
+  app.post('/api/v1/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
 
   // Edit a ride offer
   // app.put('/api/v1/rides/:rideId', RideOffersController.editRideOffer);
