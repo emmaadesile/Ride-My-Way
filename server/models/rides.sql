@@ -3,10 +3,10 @@
 CREATE TABLE rides
 (
   ride_id SERIAL PRIMARY KEY,
-  currentLocation VARCHAR(255) NOT NULL,
+  user_id SERIAL REFERENCES users(id),
+  location VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
-  departure_time TIME NOT NULL,
-  date_created DATE NOT NULL,
-  seats_available INT NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES users(user_id)
+  departuretime TIME NOT NULL,
+  datecreated DATE NOT NULL,
+  seatsavailable INT NOT NULL
 );

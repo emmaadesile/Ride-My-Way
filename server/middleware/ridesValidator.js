@@ -13,13 +13,19 @@ class RidesValidation {
  * @param {object} req - The request object
  * @param {object} res - The response object
  * @param {function} next - The next Middleware
- * @return {object} Message and user data
+ * @return {object} Message and user datecreated
  * @memberof RidesValidation
  */
   static validateRidesDetails(req, res, next) {
     const {
-      location, destination, time, date, seatsAvailable
+      location, destination, departuretime, datecreated, seatsavailable
     } = req.body;
+
+    // Use this to check if the seats value provied is a number
+    function checkValidNumber(val) {
+      const numCheck = /^\d+$/;
+      return numCheck.test(val);
+    }
 
     const error = {};
 
@@ -39,32 +45,32 @@ class RidesValidation {
       error.destination = 'Please enter destination';
     }
 
-    if (!time) {
-      error.time = 'Please enter the time';
+    if (!departuretime) {
+      error.departuretime = 'Please enter the departuretime';
     }
 
-    if (time && Validator.isEmpty(time.trim() || '')) {
-      error.time = 'Please enter time';
+    if (departuretime && Validator.isEmpty(departuretime.trim() || '')) {
+      error.departuretime = 'Please enter departuretime';
     }
 
-    if (!date) {
-      error.data = 'Please enter the date';
+    if (!datecreated) {
+      error.datecreated = 'Please enter the datecreated';
     }
 
-    if (date && Validator.isEmpty(date.trim() || '')) {
-      error.time = 'Please enter date';
+    if (datecreated && Validator.isEmpty(datecreated.trim() || '')) {
+      error.departuretime = 'Please enter datecreated';
     }
 
-    if (!seatsAvailable) {
-      error.seatsAvailable = 'Please enter the seatsAvailable';
+    if (!seatsavailable) {
+      error.seatsavailable = 'Please enter the seats available';
     }
 
-    if (seatsAvailable && Validator.isEmpty(seatsAvailable.trim() || '')) {
-      error.seatsAvailable = 'Please enter the seatsAvailable';
+    if (checkValidNumber(seatsavailable) !== true) {
+      error.seatsavailable = 'Seats available must be a number';
     }
 
-    if (!Validator.isInt(seatsAvailable)) {
-      error.seatsAvailable = 'Seats available can only be numbers';
+    if (seatsavailable && Validator.isEmpty(seatsavailable.trim() || '')) {
+      error.seatsavailable = 'Please enter the seatsavailable';
     }
 
     if (isEmpty(error)) return next();

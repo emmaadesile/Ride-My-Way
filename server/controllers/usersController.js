@@ -1,13 +1,9 @@
 import pool from '../models/dbConfig';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import TokenAuth from '../helpers/token';
 
 dotenv.config();
-
-const secret = process.env.SECRET_KEY;
-
 
 class UsersController {
   /**
@@ -18,11 +14,11 @@ class UsersController {
    * @memberof UsersController
    */
   static createNewUser(req, res) {
-    let {
+    const {
       firstname, lastname, username, email, password
     } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    password = hashedPassword;
+    // password = hashedPassword;
 
     // declare the sign up query
     const query = {
@@ -33,9 +29,10 @@ class UsersController {
     pool.connect((err, client, done) => {
       if (err) {
         done();
-        res.status(500).json({ success: false, message: 'There seems to be an error on the server' }); // error in the database
+        res.status(500).json({ success: false, message: 'There seems to be an error on the server' }); // error connecting to database
       }
       client.query(query, (err, result) => {
+        done();
         if (err) {
           res.status(400).json({ success: false, message: 'There was an error registering the user' });
         }
@@ -47,9 +44,6 @@ class UsersController {
           if (result) {
             const userId = result.rows[0].user_id;
             const userToken = TokenAuth.makeToken(userId);
-            // const token = jwt.sign({ userId }, secret, {
-            //   expiresIn: "24h"
-            // });
             res.status(200).send({
               auth: true,
               userToken,
