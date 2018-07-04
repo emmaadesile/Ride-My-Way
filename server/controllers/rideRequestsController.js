@@ -1,5 +1,6 @@
-import rideRequests from '../models/rideRequests';
-import rides from '../models/rides';
+import pool from '../models/dbConfig';
+import bcrypt from "bcryptjs";
+import TokenAuth from "../helpers/token";
 
 class RideRequestsController {
   static getAllRideRequests(req, res) {
