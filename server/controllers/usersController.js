@@ -1,7 +1,12 @@
 import pool from '../models/dbConfig';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import config from '../helpers/config';
+
+dotenv.config();
+
+const secretKey = process.env.SECRET_KEY;
 
 
 class UsersController {
@@ -38,7 +43,7 @@ class UsersController {
               res.status(400).send('cannot connect');
             }
             if (result) {
-              const token = jwt.sign({ id: result.rows[0].user_id }, config.secretKey, {
+              const token = jwt.sign({ id: result.rows[0].user_id }, secretKey, {
                 expiresIn: 86400
               });
               res.status(200).send({
