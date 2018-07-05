@@ -23,7 +23,7 @@ class RideOffersController {
     });
   }
 
-/**
+  /**
  * Get A Ride Offer
  * @param {obj} req
  * @param {obj} res
@@ -49,7 +49,7 @@ class RideOffersController {
       });
     });
   }
-/**
+  /**
  * Get A Ride Offer
  * @param {obj} req
  * @param {obj} res

@@ -23,11 +23,7 @@ const routes = (app) => {
   app.get('/api/v1/rides', TokenAuth.verifyToken, RideOffersController.getAllRideOffers);
 
   // Get a single ride offer
-<<<<<<< HEAD
-  app.get('/api/v1/rides/:rideId', TokenAuth.verifyToken , RideOffersController.getASingleRideOffer);
-=======
   app.get('/api/v1/rides/:rideId', TokenAuth.verifyToken, RideOffersController.getASingleRideOffer);
->>>>>>> ft/#158787498/create-ride-offer
 
   // Post a ride offer
   app.post('/api/v1/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
