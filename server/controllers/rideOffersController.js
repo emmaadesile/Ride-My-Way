@@ -1,10 +1,4 @@
 import pool from '../models/dbConfig';
-<<<<<<< HEAD
-import bcrypt from 'bcryptjs';
-import TokenAuth from '../helpers/token';
-
-=======
->>>>>>> ft/#158787498/create-ride-offer
 
 class RideOffersController {
   /**
