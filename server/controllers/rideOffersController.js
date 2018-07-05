@@ -1,4 +1,6 @@
 import pool from '../models/dbConfig';
+import bcrypt from 'bcryptjs';
+import TokenAuth from '../helpers/token';
 
 class RideOffersController {
   /**
@@ -43,7 +45,9 @@ class RideOffersController {
           console.log(err);
           res.status(400).send(err);
         }
-        res.status(200).send(result.rows);
+        if (result) {
+          res.status(200).send(result.rows);
+        }
       });
     });
   }
