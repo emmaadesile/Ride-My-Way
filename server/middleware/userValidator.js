@@ -82,10 +82,10 @@ class UserValidation {
       error.username = 'Username field cannot be empty';
     }
     if (!email) {
-      error.username = 'Email field cannot be empty';
+      error.email = 'Email field cannot be empty';
     }
     if (!password) {
-      error.username = 'Password field cannot be empty';
+      error.password = 'Password field cannot be empty';
     }
 
     if (!confirmPassword) {
