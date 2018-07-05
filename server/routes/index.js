@@ -23,7 +23,11 @@ const routes = (app) => {
   app.get('/api/v1/rides', TokenAuth.verifyToken, RideOffersController.getAllRideOffers);
 
   // Get a single ride offer
+<<<<<<< HEAD
   app.get('/api/v1/rides/:rideId', TokenAuth.verifyToken , RideOffersController.getASingleRideOffer);
+=======
+  app.get('/api/v1/rides/:rideId', TokenAuth.verifyToken, RideOffersController.getASingleRideOffer);
+>>>>>>> ft/#158787498/create-ride-offer
 
   // Post a ride offer
   app.post('/api/v1/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
@@ -35,7 +39,7 @@ const routes = (app) => {
   // app.delete('/api/v1/rides/:rideId', RideOffersController.deleteRideoffer);
 
   // Request to join a ride offer
-  // app.post('/api/v1/rides/:rideId/requests', RideRequestsController.requestToJoinARideOffer);
+  app.post('/api/v1/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
   // View Ride Requests
   // app.get('/api/v1/rideRequests', RideRequestsController.getAllRideRequests);

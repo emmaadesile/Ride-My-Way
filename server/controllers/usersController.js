@@ -94,7 +94,7 @@ class UsersController {
         const userToken = TokenAuth.makeToken(userId);
         res.status(200).send({
           auth: true,
-          userToken
+          message: 'Login Successful'
         });
       });
     });

@@ -1,10 +1,27 @@
 import pool from '../models/dbConfig';
+<<<<<<< HEAD
 import bcrypt from "bcryptjs";
 import TokenAuth from "../helpers/token";
+=======
+>>>>>>> ft/#158787498/create-ride-offer
 
 class RideRequestsController {
   static getAllRideRequests(req, res) {
-    return res.status(200).json({ rideRequests });
+    pool.connect((err, client, done) => {
+      if (err) {
+        res.status(500).send('Unable to connect to database');
+      }
+      client.query('SELECT * FROM ride_requests', (err, result) => {
+        if (err) {
+          done();
+          res.status(400).send('Unable to get ride requests');
+        }
+        res.status(200).send({
+          success: true, 
+          result
+        });
+      });
+    });
   }
 
   /**
@@ -15,21 +32,24 @@ class RideRequestsController {
    * @memberof RideOffersController
    */
   static requestToJoinARideOffer(req, res) {
-    const rideIndex = rides.findIndex(ride => (
-      ride.id === parseInt(req.params.rideId, 10)
-    ));
-    if (rideIndex !== -1) {
-      if (rideRequests[rideIndex].seatsAvailable > 0) {
-        rideRequests[rideIndex].seatsAvailable -= 1;
-        rideRequests[rideIndex].noOfRequests += 1;
-        rideRequests[rideIndex].passengersId.push(rideRequests[rideIndex].passengersId.length + 1);
-        return res.status(202).json({ success: 'Ride request accepted' });
-      } else if (rideRequests[rideIndex].seatsAvailable === 0) {
-        return res.status(400).json({ error: 'Ride request rejected. No more seats available' });
+    const {user_id, ride_id, accepted} = req.body;
+    const query = {
+      text: 'INSERT INTO ride_requests(user_id, ride_id, accepted) VALUES($1, $2, $3);',
+      values: [user_id, ride_id, accepted],
+    };
+    pool.connect((err, client, done) => {
+      if (err) {
+        done();
+        res.status(500).send({success: false, message: 'Unable to connect to database'});
       }
-    }
-    return res.status(404).json({
-      error: 'Ride not found'
+      client.query(query, (err, result) => {
+        if (err) {
+          res.status(400).send({
+            success: false, message: 'Could process request to join ride offer' });
+        }
+        res.status(200).send({
+          success: true, message: 'Request to join ride offer pending approval from ride owner' });
+      });
     });
   }
 }

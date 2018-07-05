@@ -1,7 +1,10 @@
 import pool from '../models/dbConfig';
+<<<<<<< HEAD
 import bcrypt from 'bcryptjs';
 import TokenAuth from '../helpers/token';
 
+=======
+>>>>>>> ft/#158787498/create-ride-offer
 
 class RideOffersController {
   /**
@@ -14,7 +17,7 @@ class RideOffersController {
   static getAllRideOffers(req, res) {
     pool.connect((err, client, done) => {
       if (err) {
-        res.status(400).send(err);
+        res.status(500).send({message: 'Internal sever error'});
       }
       client.query('SELECT * FROM rides', (err, result) => {
         done();
