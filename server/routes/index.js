@@ -38,7 +38,7 @@ const routes = (app) => {
   app.post('/api/v1/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
   // View Ride Requests
-  // app.get('/api/v1/rideRequests', RideRequestsController.getAllRideRequests);
+  app.get('/api/v1/rideRequests', TokenAuth.verifyToken, RideRequestsController.getRideRequests);
 };
 
 export default routes;

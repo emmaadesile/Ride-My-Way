@@ -1,6 +1,4 @@
 import pool from '../models/dbConfig';
-import bcrypt from 'bcryptjs';
-import TokenAuth from '../helpers/token';
 
 class RideOffersController {
   /**
@@ -25,7 +23,7 @@ class RideOffersController {
     });
   }
 
-/**
+  /**
  * Get A Ride Offer
  * @param {obj} req
  * @param {obj} res
@@ -51,7 +49,7 @@ class RideOffersController {
       });
     });
   }
-/**
+  /**
  * Get A Ride Offer
  * @param {obj} req
  * @param {obj} res

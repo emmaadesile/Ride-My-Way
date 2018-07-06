@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import TokenAuth from "../helpers/token";
 
 class RideRequestsController {
-  static getAllRideRequests(req, res) {
+  static getRideRequests(req, res) {
     pool.connect((err, client, done) => {
       if (err) {
         res.status(500).send('Unable to connect to database');
@@ -29,7 +29,7 @@ class RideRequestsController {
    * @memberof RideOffersController
    */
   static requestToJoinARideOffer(req, res) {
-    const {user_id, ride_id, accepted} = req.body;
+    const { user_id, ride_id, accepted } = req.body;
     const query = {
       text: 'INSERT INTO ride_requests(user_id, ride_id, accepted) VALUES($1, $2, $3);',
       values: [user_id, ride_id, accepted],
@@ -39,14 +39,18 @@ class RideRequestsController {
         done();
         res.status(500).send({success: false, message: 'Unable to connect to database'});
       }
-      client.query(query, (err, result) => {
-        if (err) {
-          res.status(400).send({
-            success: false, message: 'Could process request to join ride offer' });
-        }
-        res.status(200).send({
-          success: true, message: 'Request to join ride offer pending approval from ride owner' });
-      });
+      else {
+        client.query(query, (err, result) => {
+          if (err) {
+            res.status(400).send({
+              success: false, message: err.message });
+          }
+          else {
+            res.status(200).send({
+              success: true, message: 'Request to join ride offer pending approval from ride owner' });
+          }
+        });
+      }
     });
   }
 }

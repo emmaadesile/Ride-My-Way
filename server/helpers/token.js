@@ -52,7 +52,7 @@ class TokenAuth {
           auth: false, message: 'Failed to authenticate token'});
       }
       // if everything is good, authorise user to view other routes
-      req.userId = decoded.user_id;
+      req.user_id = decoded.user_id;
       next();
     }));
   }
