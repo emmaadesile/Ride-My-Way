@@ -53,7 +53,7 @@ class RideOffersController {
  * Get A Ride Offer
  * @param {obj} req
  * @param {obj} res
- * @returns A Single rides in db
+ * @returns Creates a new ride in db
  * @memberof RideOffersController
  */
   static createARideOffer(req, res) {
