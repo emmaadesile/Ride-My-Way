@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -40,7 +40,7 @@ class TokenAuth {
    * @memberof TokenAuth
    */
   static verifyToken(req, res, next) {
-    const token = req.headers["x-access-token"];
+    const token = req.headers['x-access-token'];
     if (!token) {
       return res.status(403).send({
         auth: false, message: 'No token provided' });
@@ -54,6 +54,7 @@ class TokenAuth {
       // if everything is good, authorise user to view other routes
       req.user_id = decoded.user_id;
       next();
+      return req.user_id;
     }));
   }
 }

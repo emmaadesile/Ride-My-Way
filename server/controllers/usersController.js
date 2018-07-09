@@ -37,17 +37,18 @@ class UsersController {
           res.status(400).json({ success: false, message: 'There was an error registering the user' });
         }
         // select the new user from database     
-        client.query('SELECT user_id from users WHERE email = $1', [email], (err, result) => {
+        client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
           if (err) {
             res.status(400).send('cannot connect');
           }
           if (result) {
-            const userId = result.rows[0].user_id;
-            const userToken = TokenAuth.makeToken(userId);
+            const newUser = result.rows[0];
+            const userToken = TokenAuth.makeToken(newUser);
             res.status(200).send({
-              auth: true,
+              status: 'Sucess',
               userToken,
-              result: result.rows,
+              message: 'Sign up successful',
+              newUser,
             });
           }
         });        
