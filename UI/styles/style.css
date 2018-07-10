@@ -173,7 +173,7 @@ a {
   height: 60px;
   display: grid;
   align-items: center;
-  /* background: white; */
+  background-color: rgb(25, 39, 57);
   /* box-shadow: -2px 2px 2px #d3d3d3; */
   position: fixed;
   z-index: 100;
@@ -206,12 +206,8 @@ a {
   text-align: center;
   padding: 10px 16px;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
-
-/* .navbar li a:hover {
-  background: #000;
-} */
 
 .navbar ul {
   height: inherit;
@@ -219,7 +215,7 @@ a {
 }
 
 .navbar li.navbar_items a:hover {
-  color: var(--blue);
+  color: white;
 }
 
 .navbar li.icon {
@@ -418,6 +414,4 @@ a {
 .footer {
   padding: 30px 0;
   text-align: center;
-  /* background-color: rgb(25, 39, 57); */
-  /* color: rgb(120, 208, 233); */
 }
