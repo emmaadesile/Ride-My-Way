@@ -4,6 +4,11 @@ import http from 'http';
 import logger from 'morgan';
 import routes from './routes/index';
 
+
+const router = express.Router();
+routes(router);
+
+
 // Setup express app
 const app = express();
 
@@ -25,5 +30,7 @@ server.listen(port, () => {
 
 // Express router
 routes(app);
+
+app.use('/api/v1', router);
 
 export default app;

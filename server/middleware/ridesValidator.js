@@ -1,5 +1,4 @@
 import { isEmpty } from 'lodash';
-import Validator from 'validator';
 
 /*
   @class ridesValidation
@@ -13,7 +12,7 @@ class RidesValidation {
  * @param {object} req - The request object
  * @param {object} res - The response object
  * @param {function} next - The next Middleware
- * @return {object} Message and user datecreated
+ * @return {object} next() or error
  * @memberof RidesValidation
  */
   static validateRidesDetails(req, res, next) {
@@ -33,48 +32,68 @@ class RidesValidation {
       error.location = 'Please enter the location';
     }
 
-    if (location && Validator.isEmpty(location.trim() || '')) {
+    if (location && location.trim() === '') {
       error.location = 'Please enter the location';
+    }
+
+    if (location && location.trim() !== location) {
+      error.location = 'Please remove extra space(s) added to the location';
     }
 
     if (!destination) {
       error.destination = 'Please enter the destination';
     }
 
-    if (destination && Validator.isEmpty(destination.trim() || '')) {
+    if (destination && destination.trim() === '') {
       error.destination = 'Please enter destination';
+    }
+
+    if (destination && destination.trim() !== destination) {
+      error.destination = 'Please remove extra space(s) added to the destination';
     }
 
     if (!departuretime) {
       error.departuretime = 'Please enter the departuretime';
     }
 
-    if (departuretime && Validator.isEmpty(departuretime.trim() || '')) {
+    if (departuretime && departuretime.trim() === '') {
       error.departuretime = 'Please enter departuretime';
+    }
+
+    if (departuretime && departuretime.trim() !== departuretime) {
+      error.departuretime = 'Please remove extra space(s) added to the departuretime';
     }
 
     if (!datecreated) {
       error.datecreated = 'Please enter the datecreated';
     }
 
-    if (datecreated && Validator.isEmpty(datecreated.trim() || '')) {
+    if (datecreated && datecreated.trim() === '') {
       error.departuretime = 'Please enter datecreated';
+    }
+
+    if (datecreated && datecreated.trim() !== datecreated) {
+      error.datecreated = 'Please remove extra space(s) added to the datecreated';
     }
 
     if (!seatsavailable) {
       error.seatsavailable = 'Please enter the seats available';
     }
 
+    if (seatsavailable && seatsavailable.trim() === '') {
+      error.seatsavailable = 'Please enter the seatsavailable';
+    }
+
+    if (seatsavailable && seatsavailable.trim() !== seatsavailable) {
+      error.seatsavailable = 'Please remove extra space(s) added to the seatsavailable';
+    }
+
     if (checkValidNumber(seatsavailable) !== true) {
       error.seatsavailable = 'Seats available must be a number';
     }
 
-    if (seatsavailable && Validator.isEmpty(seatsavailable.trim() || '')) {
-      error.seatsavailable = 'Please enter the seatsavailable';
-    }
-
     if (isEmpty(error)) return next();
-    // return res.status(400).json({ error });
+    return res.status(400).json({ error });
   }
 }
 

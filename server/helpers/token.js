@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -14,8 +14,8 @@ class TokenAuth {
    * @returns {string} jwt token
    * @memberof TokenAuth
    */
-  static makeToken({ id }) {
-    const token = jwt.sign({ id }, secret, { expiresIn: 86400 });
+  static makeToken({ userId }) {
+    const token = jwt.sign({ userId }, secret, { expiresIn: 86400 });
     return token;
   }
 
@@ -27,8 +27,8 @@ class TokenAuth {
    * @returns {string} jwt token
    * @memberof TokenAuth
    */
-  static issueToken(id) {
-    const token = jwt.sign({ id }, secret, { expiresIn: 86400 });
+  static issueToken({ userId }) {
+    const token = jwt.sign({ userId }, secret, { expiresIn: 86400 });
     return token;
   }
   /**
@@ -40,20 +40,24 @@ class TokenAuth {
    * @memberof TokenAuth
    */
   static verifyToken(req, res, next) {
-    const token = req.headers["x-access-token"];
+    const token = req.headers['x-access-token'];
     if (!token) {
       return res.status(403).send({
-        auth: false, message: 'No token provided' });
+        status: 'Failed',
+        error: 'User not authorised to access this page'
+      });
     }
 
     jwt.verify(token, secret, ((err, decoded) => {
       if (err) {
-        return res.status(500).send({
-          auth: false, message: 'Failed to authenticate token'});
+        return res.status(401).send({
+          status: 'Failed',
+          error: 'User not authorised'
+        });
       }
-      // if everything is good, authorise user to view other routes
-      req.user_id = decoded.user_id;
-      next();
+      req.userId = decoded.userId;
+      // if everything is good, authorise user to view this route
+      return next();
     }));
   }
 }

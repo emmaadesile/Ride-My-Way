@@ -33,10 +33,6 @@ class UserValidation {
       error.password = 'Password is required';
     }
 
-    // if (password && Validator.isEmpty(password.trim() || '')) {
-    //   error.password = 'Password is required';
-    // }
-
     if (!email) {
       error.email = 'Email field cannot be empty';
     }
@@ -68,32 +64,77 @@ class UserValidation {
     const error = {};
 
     const validateEmail = (checkMail) => {
-      const testEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const testEmail = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return testEmail.test(email);
     };
 
+    // Firstname Validation
     if (!firstname) {
       error.firstname = 'Firstname field cannot be empty';
     }
+
+    if (firstname && firstname.trim() === '') {
+      error.firstname = 'Firstname field cannot be empty';
+    }
+
+    if (firstname && firstname.trim() !== firstname) {
+      error.firstname = 'Please remove extra space(s) added to the firstname';
+    }
+
+    // lastname validation
     if (!lastname) {
       error.lastname = 'Lastname field cannot be empty';
     }
+
+    if (lastname && lastname.trim() === '') {
+      error.lastname = 'Lastname field cannot be empty';
+    }
+
+    if (lastname && lastname.trim() !== lastname) {
+      error.lastname = 'Please remove extra space(s) added to the lastname';
+    }
+
+    // username validation
     if (!username) {
       error.username = 'Username field cannot be empty';
     }
+
+    if (username && username.trim() === '') {
+      error.username = 'Username field cannot be empty';
+    }
+
+    if (username && username.trim() !== username) {
+      error.username = 'Please remove extra space(s) added to the username';
+    }
+
+    // email validation
     if (!email) {
       error.email = 'Email field cannot be empty';
     }
+
+    if (email && email.trim() === '') {
+      error.email = 'Email field cannot be empty';
+    }
+
+    if (validateEmail(email) === false) {
+      error.email = 'Email address is invalid';
+    }
+
+    // password validation
     if (!password) {
       error.password = 'Password field cannot be empty';
     }
 
-    if (!confirmPassword) {
-      error.confirmPassword = 'Please confirm your password';
+    if (password && password.trim() === '') {
+      error.password = 'Password cannot be empty';
     }
 
-    if (validateEmail(email) === false) {
-      error.email = 'Email address is invalid or empty';
+    if (password && password.trim() !== password) {
+      error.password = 'Please remove extra space(s) added to the password';
+    }
+
+    if (!confirmPassword) {
+      error.confirmPassword = 'Please confirm your password';
     }
 
     if (Validator.isEmpty(password || '') ||
@@ -104,7 +145,10 @@ class UserValidation {
     }
 
     if (isEmpty(error)) return next();
-    return res.status(400).json({ error });
+    return res.status(406).json({ 
+      status: 'Fail',
+      ...error
+    });
   }
 
   /**
@@ -118,11 +162,27 @@ class UserValidation {
  * @memberof UserValidation
  */
   static validateInputLength(req, res, next) {
-    const { username, password } = req.body;
+    const { 
+      firstname, lastname, username, password
+    } = req.body;
 
     function validUser(user) {
       const testUser = /^([a-zA-Z0-9_]+)$/;
       return testUser.test(user);
+    }
+
+    if (validUser(firstname) === false) {
+      return res.status(406).json({
+        status: 'Fail',
+        error: 'Firstname can only contain numbers and letters'
+      });
+    }
+
+    if (validUser(lastname) === false) {
+      return res.status(406).json({
+        status: 'Fail',
+        error: 'Lastname can only contain numbers and letters'
+      });
     }
 
     if (validUser(username) === false) {
@@ -135,7 +195,7 @@ class UserValidation {
     if (username.length < 4 || username.length > 12) {
       return res.status(406).json({
         status: 'Fail',
-        error: 'Username can only be 4 to 12 characters long'
+        error: 'Username must be at least 6 chars and at most 10 characters'
       });
     }
 
