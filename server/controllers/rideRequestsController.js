@@ -1,37 +1,77 @@
-import rideRequests from '../models/rideRequests';
-import rides from '../models/rides';
+import pool from '../models/dbConfig';
 
 class RideRequestsController {
-  static getAllRideRequests(req, res) {
-    return res.status(200).json({ rideRequests });
+  /**
+   * Get All Ride Requests
+   * @param {obj} req
+   * @param {obj} res
+   * @returns A ride requests
+   * @memberof RideRequestsController
+   */
+  static getRideRequests(req, res) {
+    pool.connect((err, client, done) => {
+      if (err) {
+        res.status(500).josn({
+          status: 'Failed',
+          error: 'There seems to be an error on the server',
+        });
+      }
+      client.query('SELECT * FROM ride_requests', (err, result) => {
+        if (err) {
+          done();
+          res.status(500).json({
+            status: 'Failed',
+            error: 'Could not get ride requests',
+          });
+        }
+        res.status(200).json({
+          status: 'Success',
+          request: result.rows[0]
+        });
+      });
+    });
   }
 
   /**
-   * Post a Ride Request
+   * Post A Ride Requests
    * @param {obj} req
    * @param {obj} res
-   * @returns All the rides in db
-   * @memberof RideOffersController
+   * @returns post a ride request
+   * @memberof RideRequestsController
    */
   static requestToJoinARideOffer(req, res) {
-    const rideIndex = rides.findIndex(ride => (
-      ride.id === parseInt(req.params.rideId, 10)
-    ));
-    if (rideIndex !== -1) {
-      if (rideRequests[rideIndex].seatsAvailable > 0) {
-        rideRequests[rideIndex].seatsAvailable -= 1;
-        rideRequests[rideIndex].noOfRequests += 1;
-        rideRequests[rideIndex].passengersId.push(rideRequests[rideIndex].passengersId.length + 1);
-        return res.status(202).json({ success: 'Ride request accepted' });
-      } else if (rideRequests[rideIndex].seatsAvailable === 0) {
-        return res.status(400).json({ error: 'Ride request rejected. No more seats available' });
+    const userId = req.userId;
+    console.log(userId);
+    const rideId = parseInt(req.params.rideId, 10);
+    const accepted = false;
+    const query = {
+      text: 'INSERT INTO ride_requests(user_id, ride_id, accepted) VALUES($1, $2, $3);',
+      values: [userId, rideId, accepted],
+    };
+    pool.connect((err, client, done) => {
+      if (err) {
+        done();
+        res.status(500).json({
+          status: 'Failed',
+          message: 'There seems to be an error on the server'
+        });
       }
-    }
-    return res.status(404).json({
-      error: 'Ride not found'
+      client.query(query, (err, result) => {
+        if (err) {
+          res.status(500).json({
+            status: 'Failed',
+            error: 'Unable to make request to join ride offer',
+          });
+        }
+        else {
+          res.status(200).json({
+            status: 'Success',
+            message: 'Request to join ride offer pending approval from ride owner' 
+          });
+        }
+      });
     });
   }
 }
-
 
 export default RideRequestsController;
