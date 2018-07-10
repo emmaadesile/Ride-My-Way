@@ -175,7 +175,7 @@ a {
   align-items: center;
   background-color: rgb(25, 39, 57);
   /* box-shadow: -2px 2px 2px #d3d3d3; */
-  /* position: fixed; */
+  position: fixed;
   z-index: 100;
   overflow: hidden;
   margin: auto;

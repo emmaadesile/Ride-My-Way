@@ -19,15 +19,16 @@
   display: grid;
   align-items: center;
   justify-items: center;
-  height: 90vh;
+  height: 100vh;
   padding-top: 20px;
 }
 
 .form {
-  width: 350px;
+  width: 400px;
   display: grid;
   grid-template-columns: repeat(minmax(150px, 1fr));
   box-sizing: border-box;
+  margin-top: 4em;
   padding: 20px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   background: #fff;
