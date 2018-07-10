@@ -31,8 +31,8 @@ const routes = (app) => {
   // Get a single ride offer
   app.get('/rides/:rideId', TokenAuth.verifyToken, RideOffersController.getASingleRideOffer);
 
-  // Post a ride offer
-  app.post('/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
+  // Create a ride offer
+  app.post('/users/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
 
   // Edit a ride offer
   // app.put('/rides/:rideId', RideOffersController.editRideOffer);
@@ -40,11 +40,14 @@ const routes = (app) => {
   // Delete a ride offer
   // app.delete('/rides/:rideId', RideOffersController.deleteRideoffer);
 
-  // Request to join a ride offer
+  // Make a ride request
   app.post('/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
-  // View Ride Requests
-  app.get('/rideRequests', TokenAuth.verifyToken, RideRequestsController.getRideRequests);
+  // Fetch All Ride Requests
+  app.get('/users/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.getRideRequests);
+
+  // Accept or reject a ride request
+  // app.put('/users/rides/:rideId/requests/:requestId', TokenAuth.verifyToken, RideRequestsController.acceptOrRejectARideRequest);
 };
 
 export default routes;

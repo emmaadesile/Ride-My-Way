@@ -1,6 +1,6 @@
-import pool from '../models/dbConfig';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
+import pool from '../models/dbConfig';
 import TokenAuth from '../helpers/token';
 
 dotenv.config();
@@ -34,7 +34,10 @@ class UsersController {
       client.query(query, (err, result) => {
         done();
         if (err) {
-          res.status(400).json({ success: false, message: 'There was an error registering the user' });
+          res.status(500).json({
+            status: 'Failed',
+            message: 'There was an error registering the user'
+          });
         }
         // select the new user from database     
         client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
@@ -43,12 +46,11 @@ class UsersController {
           }
           if (result) {
             const newUser = result.rows[0];
-            const userToken = TokenAuth.makeToken(newUser);
-            res.status(200).send({
+            const token = TokenAuth.makeToken(newUser);
+            res.status(200).json({
               status: 'Sucess',
-              userToken,
               message: 'Sign up successful',
-              newUser,
+              token,
             });
           }
         });        
@@ -73,12 +75,15 @@ class UsersController {
       }
       client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
         if (err) {
-          res.status(500).json({ success: false, message: 'There seems to be an error on the server' });
+          res.status(500).json({
+            success: false,
+            message: 'There seems to be an error on the server'
+          });
         }
         const user = result.rows[0];
         if (!user) {
           return res.status(404).json({
-            auth: false,
+            status: 'Failed',
             error: 'User not found'
           });
         }
@@ -86,17 +91,17 @@ class UsersController {
         const passwordIsValid = bcrypt.compareSync(password, user.password);
         if (!passwordIsValid) {
           return res.status(401).json({
-            auth: false,
-            token: null,
-            error: 'You entered the wrong passowrd'
+            status: 'Failed',
+            error: 'Invalid login credentials'
           });
         }
-        const userId = result.rows[0].user_id;
-        const userToken = TokenAuth.makeToken(userId);
+        const userId = user.user_id;
+        const userToken = TokenAuth.makeToken({ userId });
+
         res.status(200).send({
-          auth: true,
+          status: 'Success',
           message: 'Login Successful',
-          userToken
+          userToken,
         });
       });
     });

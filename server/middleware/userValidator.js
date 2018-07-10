@@ -162,7 +162,9 @@ class UserValidation {
  * @memberof UserValidation
  */
   static validateInputLength(req, res, next) {
-    const { firstname, lastname, username, password } = req.body;
+    const { 
+      firstname, lastname, username, password
+    } = req.body;
 
     function validUser(user) {
       const testUser = /^([a-zA-Z0-9_]+)$/;
