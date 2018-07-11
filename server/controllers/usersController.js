@@ -39,7 +39,7 @@ class UsersController {
             message: 'There was an error registering the user'
           });
         }
-        // select the new user from database     
+        // select the new user from database
         client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
           if (err) {
             res.status(400).send('cannot connect');
