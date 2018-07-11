@@ -35,10 +35,10 @@ const routes = (app) => {
   app.post('/users/rides', TokenAuth.verifyToken, RidesValidator.validateRidesDetails, RideOffersController.createARideOffer);
 
   // Edit a ride offer
-  // app.put('/rides/:rideId', RideOffersController.editRideOffer);
+  // app.put('/rides/:rideId', TokenAuth.verifyToken, RideOffersController.editRideOffer);
 
   // Delete a ride offer
-  // app.delete('/rides/:rideId', RideOffersController.deleteRideoffer);
+  // app.delete('/rides/:rideId', TokenAuth.verifyToken, RideOffersController.deleteRideoffer);
 
   // Make a ride request
   app.post('/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
@@ -47,7 +47,7 @@ const routes = (app) => {
   app.get('/users/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.getRideRequests);
 
   // Accept or reject a ride request
-  // app.put('/users/rides/:rideId/requests/:requestId', TokenAuth.verifyToken, RideRequestsController.acceptOrRejectARideRequest);
+  app.put('/users/rides/:rideId/requests/:requestId', TokenAuth.verifyToken, RideRequestsController.acceptOrRejectRideRequest);
 };
 
 export default routes;

@@ -47,7 +47,17 @@ class RideOffersController {
             error: 'Could not fetch this ride',
           });
         }
-        res.status(200).send(result.rows);
+        if (result.rows === undefined || result.rows.length === 0) {
+          res.status(404).json({
+            status: 'Failed',
+            message: 'Ride not found'
+          });
+        }
+        
+        res.status(200).json({
+          status: 'Success',
+          ride: result.rows,
+        });
       });
     });
   }
