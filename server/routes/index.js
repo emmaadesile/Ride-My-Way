@@ -1,5 +1,5 @@
 import TokenAuth from '../helpers/token';
-import { 
+import {
   UserValidator,
   RidesValidator,
 } from '../middleware/index';
@@ -16,7 +16,7 @@ const routes = (app) => {
   // Homepage
   app.get('/', (req, res) =>
     res.status(200).send({
-      Success: 'Ride My Way API is live'
+      success: 'Ride My Way API is live'
     }));
 
   // User sign up

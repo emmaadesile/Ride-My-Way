@@ -64,8 +64,7 @@ class RideRequestsController {
             error: 'Unable to make request to join ride offer',
             err
           });
-        }
-        else {
+        } else {
           res.status(200).json({
             status: 'Success',
             message: 'Request to join ride offer pending approval from ride owner'

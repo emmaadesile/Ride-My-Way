@@ -16,7 +16,10 @@ class RideOffersController {
       client.query('SELECT * FROM rides', (err, result) => {
         done();
         if (err) {
-          res.status(400).send(err);
+          res.status(500).json({
+            status: 'Failed',
+            error: 'An error occured while getting the rides'
+          });
         }
         res.status(200).send(result.rows);
       });
@@ -53,7 +56,7 @@ class RideOffersController {
             message: 'Ride not found'
           });
         }
-        
+
         res.status(200).json({
           status: 'Success',
           ride: result.rows,
