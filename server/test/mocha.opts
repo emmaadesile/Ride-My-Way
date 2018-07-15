@@ -1,3 +1,0 @@
---require babel-register
---require mocha.env.js
---timeout 60000

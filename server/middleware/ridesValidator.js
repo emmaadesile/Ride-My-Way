@@ -80,20 +80,20 @@ class RidesValidation {
       error.seatsavailable = 'Please enter the seats available';
     }
 
-    if (seatsavailable && seatsavailable.trim() === '') {
-      error.seatsavailable = 'Please enter the seatsavailable';
-    }
+    // if (seatsavailable && seatsavailable.trim() === '') {
+    //   error.seatsavailable = 'Please enter the seatsavailable';
+    // }
 
-    if (seatsavailable && seatsavailable.trim() !== seatsavailable) {
-      error.seatsavailable = 'Please remove extra space(s) added to the seatsavailable';
-    }
+    // if (seatsavailable && seatsavailable.trim() !== seatsavailable) {
+    //   error.seatsavailable = 'Please remove extra space(s) added to the seatsavailable';
+    // }
 
     if (checkValidNumber(seatsavailable) !== true) {
       error.seatsavailable = 'Seats available must be a number';
     }
 
     if (isEmpty(error)) return next();
-    return res.status(400).json({ error });
+    return res.status(406).json({ error });
   }
 }
 

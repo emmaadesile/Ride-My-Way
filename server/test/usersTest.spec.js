@@ -1,5 +1,6 @@
 import chaiHttp from 'chai-http';
 import chai, { expect } from 'chai';
+import { Pool } from 'pg';
 
 import app from '../app';
 import pool from '../models/dbConfig';
@@ -18,20 +19,17 @@ describe('Tests homepage route GET /', () => {
   });
 });
 
-// describe('Clean up database before running tests', () => {
-
-// });
 
 describe('Test for Sign up endpoint', () => {
   // Signup
   describe('When all form fields are valid', () => {
-    // before((done) => {
-    //   const delUser = 'DELETE FROM TABLE IF EXISTS users WHERE firstname = \'adekunle\';';
-    //   pool.query(delUser, (err, res) => {
-    //     pool.end();
-    //   });
-    //   done();
-    // });
+    before((done) => {
+      const delUser = 'DELETE FROM TABLE IF EXISTS users WHERE firstname = \'adekunle\';';
+      pool.query(delUser, (err, res) => {
+        pool.end();
+      });
+      done();
+    });
 
     it('signs up a new user', (done) => {
       const newUser = {

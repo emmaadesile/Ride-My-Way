@@ -27,21 +27,22 @@ class UsersController {
     // connect to database
     pool.connect((err, client, done) => {
       if (err) {
-        done();
+        console.log(err);
         res.status(500).json({
           status: 'Failed',
           error: 'There seems to be an error on the server'
         }); // error connecting to database
+        done();
       }
 
       // insert the new user into the database
       client.query(query, (err, result) => {
         if (err) {
+          done();
           res.status(500).json({
             status: 'Failed',
             error: 'There was an error registering the user',
           });
-          done();
         }
         if (result) {
           const newUser = result.rows[0];
@@ -68,7 +69,7 @@ class UsersController {
 
     pool.connect((err, client, done) => {
       if (err) {
-        done();
+        // done();
         res.status(500).send({
           status: 'Failed',
           error: 'Oops! An error occurred on the server',
@@ -76,6 +77,7 @@ class UsersController {
       }
       client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
         if (err) {
+          console.log(err);
           res.status(500).json({
             status: 'Failed',
             error: 'An error occurred during sign in'

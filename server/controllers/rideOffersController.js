@@ -21,7 +21,10 @@ class RideOffersController {
             error: 'An error occured while getting the rides'
           });
         }
-        res.status(200).send(result.rows);
+        res.status(200).json({
+          status: 'Success', 
+          rides: result.rows,
+        });
       });
     });
   }
@@ -85,6 +88,7 @@ class RideOffersController {
     };
     pool.connect((err, client, done) => {
       if (err) {
+        console.log(err);
         res.status(500).json({
           status: 'False',
           error: 'There seems to be an error on the server'
@@ -93,14 +97,15 @@ class RideOffersController {
       client.query(query, (err, result) => {
         done();
         if (err) {
+          console.log(err);
           res.status(500).json({
             status: 'Failed',
             error: 'An error occurred while creating the the ride',
           });
         }
         if (result) {
-          res.status(201).send({
-            success: true,
+          res.status(201).json({
+            status: 'Success',
             message: 'Ride offer successfully created',
           });
         }
