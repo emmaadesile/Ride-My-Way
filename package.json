@@ -4,7 +4,8 @@
   "description": "Carpooling Application",
   "main": "index.js",
   "engines": {
-    "node": "8.11.2"
+    "node": "8.11.2",
+    "npm": "6.1.0"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
