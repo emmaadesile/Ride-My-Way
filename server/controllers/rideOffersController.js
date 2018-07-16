@@ -53,17 +53,15 @@ class RideOffersController {
             error: 'Could not fetch this ride',
           });
         }
-        if (result.rows === undefined || result.rows.length === 0) {
-          res.status(404).json({
+        return (result.rows === undefined || result.rows.length === 0)
+          ? res.status(404).json({
             status: 'Failed',
-            message: 'Ride not found'
+            error: 'Ride not found'
+          })
+          : res.status(200).json({
+            status: 'Success',
+            ride: result.rows,
           });
-        }
-
-        res.status(200).json({
-          status: 'Success',
-          ride: result.rows,
-        });
       });
     });
   }
@@ -88,7 +86,6 @@ class RideOffersController {
     };
     pool.connect((err, client, done) => {
       if (err) {
-        console.log(err);
         res.status(500).json({
           status: 'False',
           error: 'There seems to be an error on the server'
@@ -96,19 +93,15 @@ class RideOffersController {
       }
       client.query(query, (err, result) => {
         done();
-        if (err) {
-          console.log(err);
-          res.status(500).json({
+        return err
+          ? res.status(500).json({
             status: 'Failed',
             error: 'An error occurred while creating the the ride',
-          });
-        }
-        if (result) {
-          res.status(201).json({
+          })
+          : res.status(201).json({
             status: 'Success',
             message: 'Ride offer successfully created',
           });
-        }
       });
     });
   }

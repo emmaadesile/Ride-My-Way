@@ -2,7 +2,7 @@
   "name": "ride-my-way",
   "version": "1.0.0",
   "description": "Carpooling Application",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
     "node": "8.11.2",
     "npm": "6.1.0"
@@ -47,12 +47,14 @@
   },
   "scripts": {
     "start:dev": "nodemon server/app.js --exec babel-node",
-    "start": "",
+    "start": "node server/dist/app.js",
     "build": "babel server -d server/dist",
     "lint": "eslint server --fix",
     "migrate": "psql -U postgres -f server/models/index.sql",
-    "test": "nyc mocha server/test/**/*.spec.js --require babel-register --timeout 10000 --exit",
-    "test:migrate": "psql -U postgres -f server/models/testdb.sql",
+    "test": "nyc mocha server/test/tests.spec.js --require babel-register --exit",
+    "test:watch": "nyc mocha -w server/test/tests.spec.js --require babel-register",
+    "test:localdb": "npm run testdb:migrate && nyc mocha server/test/**/*.spec.js --require babel-register --exit",
+    "testdb:migrate": "psql -U postgres -f server/models/testdb.sql",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

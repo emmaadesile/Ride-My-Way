@@ -15,8 +15,8 @@ const config =
     idleTimeoutMills: process.env.idleTimeoutMills
   },
   test: {
-    user: process.env.DB_DATABASE_TEST,
-    database: process.env.DB_USERNAME_TEST,
+    user: process.env.DB_USERNAME_TEST,
+    database: process.env.DB_DATABASE_TEST,
     password: process.env.DB_PASSWORD_TEST,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT_TEST,

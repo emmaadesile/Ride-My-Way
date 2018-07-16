@@ -3,12 +3,19 @@ language: node_js
 env:
   global:
     - CODECLIMATE_REPO_TOKEN= ba269ec96691d5b3e128f92e85a71763e4c1dfec9c7435cdd55f6e0b1d6a9d8d
-   - NODE_ENV=test
+    - NODE_ENV=test
 
 node_js:
   "stable"
 
+services:
+  - postgresql
+
+addons:
+  postgresql: "10.1"
+
 before_script:
+  - npm run test:migrate
   - npm install codeclimate-test-reporter -g
   - npm install
 
