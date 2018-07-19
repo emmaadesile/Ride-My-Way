@@ -4,8 +4,6 @@ env:
   global:
     - NODE_ENV=test
     - SECRET_KEY=20hiddensecrets
-    - PGPORT=5432
-    - PGHOST=localhost
 
 dist: trusty
 
@@ -16,8 +14,6 @@ services:
   - postgresql
 
 addons:
-  codeclimate:
-    repo_token: ba269ec96691d5b3e128f92e85a71763e4c1dfec9c7435cdd55f6e0b1d6a9d8d
   postgresql: "9.5"
 
 before_script:
@@ -31,6 +27,5 @@ script:
 after_success:
   - npm run coveralls
 
-after_script:  
-  - psql -c 'drop database ridemyway_test;' -U postgres
+after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info
