@@ -6,6 +6,7 @@ env:
     - NODE_ENV=test
     - SECRET_KEY=20hiddensecrets
 
+dist: trusty
 
 node_js:
   "stable"
