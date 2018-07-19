@@ -2,9 +2,10 @@
   "name": "ride-my-way",
   "version": "1.0.0",
   "description": "Carpooling Application",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
-    "node": "8.11.2"
+    "node": "8.11.2",
+    "npm": "6.1.0"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
@@ -13,6 +14,7 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "cli-js": "0.0.9",
+    "cors": "^2.8.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
@@ -44,12 +46,15 @@
     "nyc": "^12.0.2"
   },
   "scripts": {
-    "test": "nyc mocha server/test/**/*.spec.js --require babel-register --timeout 10000 --exit",
     "start:dev": "nodemon server/app.js --exec babel-node",
-    "start": "",
+    "start": "node server/dist/app.js",
     "build": "babel server -d server/dist",
     "lint": "eslint server --fix",
     "migrate": "psql -U postgres -f server/models/index.sql",
+    "test": "nyc mocha server/test/*.spec.js --require babel-register --timeout 300000 --exit",
+    "test:watch": "nyc mocha -w server/test/*.spec.js --require babel-register",
+    "test:localdb": "npm run testdb:migrate && nyc mocha server/test/*.spec.js --require babel-register --timeout 300000 --exit",
+    "testdb:migrate": "psql -U postgres -f server/models/testdb.sql",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

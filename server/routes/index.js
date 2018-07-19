@@ -1,5 +1,5 @@
 import TokenAuth from '../helpers/token';
-import { 
+import {
   UserValidator,
   RidesValidator,
 } from '../middleware/index';
@@ -16,7 +16,7 @@ const routes = (app) => {
   // Homepage
   app.get('/', (req, res) =>
     res.status(200).send({
-      Success: 'Ride My Way API is live'
+      success: 'Ride My Way API is live'
     }));
 
   // User sign up
@@ -40,7 +40,7 @@ const routes = (app) => {
   // Delete a ride offer
   // app.delete('/rides/:rideId', TokenAuth.verifyToken, RideOffersController.deleteRideoffer);
 
-  // Make a ride request
+  // Request to join a ride offer
   app.post('/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
   // Fetch All Ride Requests

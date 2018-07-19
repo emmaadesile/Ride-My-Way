@@ -1,18 +1,22 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import config from '../config/config';
 
 dotenv.config();
 
-const pool = new Pool({
-  user: process.env.DB_USERNAME,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  min: 0,
-  max: 10, // max number of connection that can be open to database
-  idleTimeoutMills: 3000 // how long client is allowed to remain idle before being closed
-});
+const environment = process.env.NODE_ENV;
 
-// pool.connect();
+let pool;
+
+if (environment === 'development') {
+  pool = new Pool(config.development);
+}
+if (environment === 'test') {
+  pool = new Pool(config.test);
+}
+
+if (environment === 'production') {
+  pool = new Pool(config.production);
+}
 
 export default pool;

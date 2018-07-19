@@ -1,6 +1,6 @@
 -- DROP TABLE IF EXISTS rides CASCADE;
 
-CREATE TABLE rides
+CREATE TABLE rides 
 (
   ride_id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(user_id),
