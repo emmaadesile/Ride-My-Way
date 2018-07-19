@@ -41,7 +41,7 @@ class UsersController {
           done();
           res.status(500).json({
             status: 'Failed',
-            error: 'User already exists. Please login.',
+            error: 'User already exists',
           });
         }
         if (result) {

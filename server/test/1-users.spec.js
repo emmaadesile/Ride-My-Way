@@ -86,7 +86,7 @@ describe.only('Test for Sign up endpoint', () => {
           expect(res).to.have.status(500);
           expect(res.body).to.have.property('status');
           expect(res.body.status).to.equal('Failed');
-          expect(res.body.error).to.equal('There was an error registering the user');
+          expect(res.body.error).to.equal('User already exists');
           done();
         });
     });

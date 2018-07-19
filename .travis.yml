@@ -20,7 +20,7 @@ addons:
   postgresql: "9.5"
 
 before_script:
-  - psql -c 'create database ridemyway_test;' -U postgres
+  - npm run testdb:migrate
   - npm install codeclimate-test-reporter -g
   - npm install
 
