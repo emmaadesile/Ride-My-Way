@@ -15,6 +15,7 @@ class RideRequestsController {
         res.status(500).josn({
           status: 'Failed',
           error: 'There was an error connecting to the server',
+          err
         });
       }
       // check if ride exists
@@ -23,12 +24,14 @@ class RideRequestsController {
           res.status(500).josn({
             status: 'Failed',
             error: 'There was an error checking if ride exists',
+            err
           });
         }
         return result.rows.length === 0
           ? res.status(400).json({
             status: 'Failed',
             error: 'Ride does not exist. Cannot make request to join',
+            err
           })
           // if ride exists, check if there are requests for the ride
           : client.query('SELECT * FROM ride_requests WHERE ride_id = $1', [rideId], (err, result) => {
@@ -37,6 +40,7 @@ class RideRequestsController {
               res.status(500).json({
                 status: 'Failed',
                 error: 'Something went wrong on the server',
+                err
               });
             }
             return result.rows === 'undefined' || result.rows.length === 0
@@ -62,12 +66,13 @@ class RideRequestsController {
    */
   static requestToJoinARideOffer(req, res) {
     const userId = req.userId;
+    const fullname = req.fullname;
     const rideId = parseInt(req.params.rideId, 10);
     const requestId = req.userId;
 
     const query = {
-      text: 'INSERT INTO ride_requests(user_id, ride_id, request_id) VALUES($1, $2, $3);',
-      values: [userId, rideId, requestId],
+      text: 'INSERT INTO ride_requests(user_id, ride_id, request_id, requester_name) VALUES($1, $2, $3, $4);',
+      values: [userId, rideId, requestId, fullname],
     };
     pool.connect((err, client, done) => {
       if (err) {

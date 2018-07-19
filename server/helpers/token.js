@@ -43,7 +43,8 @@ class TokenAuth {
           error: 'User not authorised'
         });
       }
-      req.userId = decoded.userId;
+      req.userId = decoded.userId.user_id;
+      req.fullname = `${decoded.userId.firstname} ${decoded.userId.lastname}`;
       // if everything is good, authorise user to view this route
       return next();
     }));

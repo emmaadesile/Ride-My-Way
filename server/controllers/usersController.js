@@ -98,8 +98,8 @@ class UsersController {
             error: 'Invalid login credentials'
           });
         }
-        const userId = user.user_id;
-        const userToken = TokenAuth.makeToken({ userId });
+        // const userId = user.user_id;
+        const userToken = TokenAuth.makeToken({ userId: user });
 
         res.status(200).send({
           status: 'Success',

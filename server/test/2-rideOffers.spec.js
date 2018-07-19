@@ -286,6 +286,7 @@ describe.only('Tests for Rides Endpoints', () => {
           expect(res.body.request).to.have.property('user_id');
           expect(res.body.request).to.have.property('request_id');
           expect(res.body.request).to.have.property('request_status');
+          expect(res.body.request).to.have.property('requester_name');
           done();
         });
     });

@@ -31,6 +31,7 @@ CREATE TABLE ride_requests
   ride_id INT REFERENCES rides(ride_id),
   user_id INT REFERENCES users(user_id),
   request_id INT REFERENCES users(user_id),
+  requester_name VARCHAR(255),
   request_status status DEFAULT('pending'),
   UNIQUE(ride_id, user_id, request_id)
 );
