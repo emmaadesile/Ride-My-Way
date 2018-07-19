@@ -9,25 +9,46 @@ class RideRequestsController {
    * @memberof RideRequestsController
    */
   static getRideRequests(req, res) {
+    const rideId = parseInt(req.params.rideId, 10);
     pool.connect((err, client, done) => {
       if (err) {
         res.status(500).josn({
           status: 'Failed',
-          error: 'There seems to be an error on the server',
+          error: 'There was an error connecting to the server',
         });
       }
-      client.query('SELECT * FROM ride_requests', (err, result) => {
+      // check if ride exists
+      client.query('SELECT * FROM rides WHERE ride_id = $1', [rideId], (err, result) => {
         if (err) {
-          done();
-          res.status(500).json({
+          res.status(500).josn({
             status: 'Failed',
-            error: 'Could not get ride requests',
+            error: 'There was an error checking if ride exists',
           });
         }
-        res.status(200).json({
-          status: 'Success',
-          request: result.rows[0]
-        });
+        return result.rows.length === 0
+          ? res.status(400).json({
+            status: 'Failed',
+            error: 'Ride does not exist. Cannot make request to join',
+          })
+          // if ride exists, check if there are requests for the ride
+          : client.query('SELECT * FROM ride_requests WHERE ride_id = $1', [rideId], (err, result) => {
+            if (err) {
+              done();
+              res.status(500).json({
+                status: 'Failed',
+                error: 'Something went wrong on the server',
+              });
+            }
+            return result.rows === 'undefined' || result.rows.length === 0
+              ? res.status(400).json({
+                status: 'Failed',
+                error: 'There are no requests for this ride',
+              })
+              : res.status(200).json({
+                status: 'Success',
+                request: result.rows[0]
+              });
+          });
       });
     });
   }
@@ -42,12 +63,11 @@ class RideRequestsController {
   static requestToJoinARideOffer(req, res) {
     const userId = req.userId;
     const rideId = parseInt(req.params.rideId, 10);
-    const accepted = false;
     const requestId = req.userId;
 
     const query = {
-      text: 'INSERT INTO ride_requests(user_id, ride_id, request_id, accepted) VALUES($1, $2, $3, $4);',
-      values: [userId, rideId, requestId, accepted],
+      text: 'INSERT INTO ride_requests(user_id, ride_id, request_id) VALUES($1, $2, $3);',
+      values: [userId, rideId, requestId],
     };
     pool.connect((err, client, done) => {
       if (err) {
@@ -57,37 +77,51 @@ class RideRequestsController {
           message: 'There seems to be an error on the server'
         });
       }
-      client.query(query, (err, result) => {
+      // check if ride exists
+      client.query('SELECT ride_id FROM rides WHERE ride_id = $1', [rideId], (err, result) => {
         if (err) {
+          done();
           res.status(500).json({
             status: 'Failed',
-            error: 'Unable to make request to join ride offer',
-            err
-          });
-        } else {
-          res.status(200).json({
-            status: 'Success',
-            message: 'Request to join ride offer pending approval from ride owner'
+            message: 'An error occurred while checking if the ride exists'
           });
         }
+        return result.rows === 'undefined' || result.rows.length === 0
+          ? res.status(400).json({
+            status: 'Failed',
+            error: 'Cannot request to join because ride does not exist'
+          })
+          : client.query(query, (err, result) => {
+            if (err) {
+              res.status(500).json({
+                status: 'Failed',
+                error: 'Unable to make request to join ride offer',
+              });
+            } else {
+              res.status(200).json({
+                status: 'Success',
+                message: 'Request to join ride offer pending approval from ride owner'
+              });
+            }
+          });
       });
     });
   }
 
   /**
-   * Post A Ride Requests
+   * Accept or reject Ride Requests
    * @param {obj} req
    * @param {obj} res
    * @returns accept or reject a ride request
    * @memberof RideRequestsController
    */
   static acceptOrRejectRideRequest(req, res) {
-    const { accepted } = req.body;
+    const requestStatus = req.body.requestStatus;
     const rideId = parseInt(req.params.rideId, 10);
     const requestId = parseInt(req.params.requestId, 10);
     const query = {
-      text: 'INSERT INTO ride_requests(user_id, accepted, ride_id, request_id) VALUES($1, $2, $3, $4) RETURNING *;',
-      values: [req.userId, accepted, rideId, requestId]
+      text: 'UPDATE ride_requests SET request_status = $1 WHERE request_id = $2;',
+      values: [requestStatus, requestId]
     };
     pool.connect((err, client, done) => {
       if (err) {
@@ -96,33 +130,40 @@ class RideRequestsController {
           error: 'There seems to be an error on the server'
         });
       }
-      client.query(query, (err, result) => {
-        done();
-        if (err) {
-          res.status(500).json({
+      // check if the ride exists in the db
+      client.query('SELECT ride_id from rides WHERE ride_id = $1', [rideId], (err, result) => {
+        if (result.rows === 'undefined' || result.rows.length === 0) {
+          res.status(400).json({
             status: 'Failed',
-            error: 'Your request could not be completed'
+            error: 'You Cannot respond to request because ride does not exist'
           });
         }
-        // if the request completes successfully
-        res.status(200).json({
-          status: 'Success',
-          message: 'The ride request has been been completed'
+        // If the ride exist
+        // check if this user is the creator of the ride
+        client.query('SELECT user_id from rides WHERE ride_id = $1', [rideId], (err, result) => {
+          if (result.rows === 'undefined' || result.rows.length === 0) {
+            res.status(400).json({
+              status: 'Failed',
+              error: 'You cannot modify ride requests for another user'
+            });
+          }
+
+          // if user's identity is verified, respond to the ride request
+          client.query(query, (err, result) => {
+            done();
+            return err
+              ? res.status(500).json({
+                status: 'Failed',
+                error: 'Your have already responded to this ride request',
+                err
+              })
+              // if the request completes successfully
+              : res.status(200).json({
+                status: 'Success',
+                message: `The ride request has been successfully ${requestStatus}`
+              });
+          });
         });
-        // client.query('SELECT * FROM ride_requests WHERE ride_request = $1', [requestId], (err, result) => {
-        //   if (err) {
-        //     res.status(500).json({
-        //       status: 'Failed',
-        //       error: 'Could not complete the request'
-        //     });
-        //   }
-        //   if (result) {
-        //     res.status(200).json({
-        //       status: 'Success',
-        //       rideRequest: result.rows[0]
-        //     });
-        //   }
-        // });
       });
     });
   }

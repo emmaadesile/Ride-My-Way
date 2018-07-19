@@ -4,6 +4,8 @@ env:
   global:
     - CODECLIMATE_REPO_TOKEN= ba269ec96691d5b3e128f92e85a71763e4c1dfec9c7435cdd55f6e0b1d6a9d8d
     - NODE_ENV=test
+    - SECRET_KEY=20hiddensecrets
+
 
 node_js:
   "stable"
@@ -15,7 +17,8 @@ addons:
   postgresql: "10.1"
 
 before_script:
-  - npm run test:migrate
+  - psql -c 'drop database if exists ridemyway_test;' -U postgres
+  - psql -c 'create database if exists ridemyway_test;' -U postgres
   - npm install codeclimate-test-reporter -g
   - npm install
 

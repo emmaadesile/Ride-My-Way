@@ -1,14 +1,11 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import { Client } from 'pg';
 
 import app from '../app';
-import pool from '../models/dbConfig';
 
 chai.use(chaiHttp);
-const client = new Client();
 
-describe('Tests homepage route GET /', () => {
+describe.only('Tests homepage route GET /', () => {
   it('returns a success message on homepage', (done) => {
     chai.request(app)
       .get('/')
@@ -20,30 +17,56 @@ describe('Tests homepage route GET /', () => {
   });
 });
 
+describe.only('Test for Sign up endpoint', () => {
+  // This user will be the creator of the ride
+  const newUser = {
+    firstname: 'adekunle',
+    lastname: 'gold',
+    username: 'adekunlegold',
+    email: 'adekunlegold@gmail.com',
+    password: 'adekunlegold',
+    confirmPassword: 'adekunlegold'
+  };
 
-describe('Test for Sign up endpoint', () => {
-  // sign up a new user
-  // before((done) => {
-  //   const newUser = {
-  //     firstname: 'adekunle',
-  //     lastname: 'gold',
-  //     username: 'adekunlegold',
-  //     email: 'adekunlegold@gmail.com',
-  //     password: 'adekunlegold',
-  //     confirmPassword: 'adekunlegold'
-  //   };
-  //   chai.request(app)
-  //     .post('/auth/signup')
-  //     .send(newUser)
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(201);
-  //       expect(res.body.status).to.equal('Success');
-  //       expect(res.body.message).to.equal('Sign up successful');
-  //       expect(res.body).to.have.property('token');
-  //       expect(res.body.token).to.be.a('string');
-  //       done();
-  //     });
-  // });
+  // This user will be the requester of the ride
+  const newUser2 = {
+    firstname: 'reekado',
+    lastname: 'banks',
+    username: 'reekadobanks',
+    email: 'reekadobanks@gmail.com',
+    password: 'reekadobanks',
+    confirmPassword: 'reekadobanks'
+  };
+
+  describe('Tests for when all form fields are valid', () => {
+    it('Signs up a new user(ride creator)', (done) => {
+      chai.request(app)
+        .post('/auth/signup')
+        .send(newUser)
+        .end((err, res) => {
+          expect(res).to.have.status(201);
+          expect(res.body.status).to.equal('Success');
+          expect(res.body.message).to.equal('Sign up successful');
+          expect(res.body).to.have.property('token');
+          expect(res.body.token).to.be.a('string');
+          done();
+        });
+    });
+
+    it('Signs up another new user(ride requester)', (done) => {
+      chai.request(app)
+        .post('/auth/signup')
+        .send(newUser2)
+        .end((err, res) => {
+          expect(res).to.have.status(201);
+          expect(res.body.status).to.equal('Success');
+          expect(res.body.message).to.equal('Sign up successful');
+          expect(res.body).to.have.property('token');
+          expect(res.body.token).to.be.a('string');
+          done();
+        });
+    });
+  });
 
   describe('When any form field is empty or invalid', () => {
     // When user already exists
@@ -351,67 +374,9 @@ describe('Test for Sign up endpoint', () => {
     });
   });
 });
-
-
+  
 // Sign in ===================================================================
-describe('Test for Sign in endpoint', () => {
-  // Login an exisiting user
-  it('Logs in an exisiting user', (done) => {
-    const exisitingUser = {
-      email: 'adekunlegold@gmail.com',
-      password: 'adekunlegold'
-    };
-    chai.request(app)
-      .post('/auth/signin')
-      .send(exisitingUser)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body).to.have.property('userToken');
-        expect(res.body.status).to.equal('Success');
-        expect(res.body.message).to.equal('Login Successful');
-        expect(res.body.userToken).to.be.a('string');
-        done();
-      });
-  });
-
-  // Invalid login details
-  it('Does not login if credentials are wrong', (done) => {
-    const exisitingUser = {
-      email: 'adekunlegold@gmail.com',
-      password: 'adekunle'
-    };
-    chai.request(app)
-      .post('/auth/signin')
-      .send(exisitingUser)
-      .end((err, res) => {
-        expect(res).to.have.status(401);
-        expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal('Failed');
-        expect(res.body.error).to.equal('Invalid login credentials');
-        done();
-      });
-  });
-
-  // User not found
-  it('returns user not found if user is not registered', (done) => {
-    const exisitingUser = {
-      email: 'sesan@gmail.com',
-      password: 'sesandi'
-    };
-    chai.request(app)
-      .post('/auth/signin')
-      .send(exisitingUser)
-      .end((err, res) => {
-        expect(res).to.have.status(401);
-        expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal('Failed');
-        expect(res.body.error).to.equal('User does not exist');
-        done();
-      });
-  });
-
+describe.only('Test for Sign in endpoint', () => {
   // Password not provided
   it('returns an error if password is not provided', (done) => {
     const exisitingUser = {
@@ -461,3 +426,4 @@ describe('Test for Sign in endpoint', () => {
       });
   });
 });
+

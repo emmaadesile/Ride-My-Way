@@ -41,7 +41,7 @@ class UsersController {
           done();
           res.status(500).json({
             status: 'Failed',
-            error: 'There was an error registering the user',
+            error: 'User already exists. Please login.',
           });
         }
         if (result) {

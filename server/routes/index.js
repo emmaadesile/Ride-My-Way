@@ -40,7 +40,7 @@ const routes = (app) => {
   // Delete a ride offer
   // app.delete('/rides/:rideId', TokenAuth.verifyToken, RideOffersController.deleteRideoffer);
 
-  // Make a ride request
+  // Request to join a ride offer
   app.post('/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
   // Fetch All Ride Requests

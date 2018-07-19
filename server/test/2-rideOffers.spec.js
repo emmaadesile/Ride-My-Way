@@ -2,44 +2,47 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 
 import app from '../app';
-import pool from '../models/dbConfig';
 
 chai.use(chaiHttp);
 
-describe('Tests for Rides Endpoints', () => {
-  before((done) => {
-  const newUser = {
-    firstname: 'adekunle',
-    lastname: 'gold',
-    username: 'adekunlegold',
+describe.only('Tests for Rides Endpoints', () => {
+  // Ride offer creator
+  const existingUser = {
     email: 'adekunlegold@gmail.com',
     password: 'adekunlegold',
-    confirmPassword: 'adekunlegold'
   };
-  chai.request(app)
-    .post('/auth/signup')
-    .send(newUser)
-    .end((err, res) => {
-      expect(res).to.have.status(201);
-      expect(res.body.status).to.equal('Success');
-      expect(res.body.message).to.equal('Sign up successful');
-      expect(res.body).to.have.property('token');
-      expect(res.body.token).to.be.a('string');
-    });
-    done();
-});
+
+  // User which requests to join ride
+  const existingUser2 = {
+    email: 'reekadobanks@gmail.com',
+    password: 'reekadobanks',
+  };
+
   let token;
+  let requestToken;
+
+  // Hook for the creator of the ride
   before((done) => {
-    //===================================================
-    const existingUser = {
-      email: 'adekunlegold@gmail.com',
-      password: 'adekunlegold',
-    };
     chai.request(app)
       .post('/auth/signin')
       .send(existingUser)
       .end((err, res) => {
         token = res.body.userToken;
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.equal('Success');
+        expect(res.body.message).to.equal('Login Successful');
+        expect(res.body.userToken).to.be.a('string');
+        done();
+      });
+  });
+
+  // Hook for requester of ride
+  before((done) => {
+    chai.request(app)
+      .post('/auth/signin')
+      .send(existingUser2)
+      .end((err, res) => {
+        requestToken = res.body.userToken;
         expect(res).to.have.status(200);
         expect(res.body.status).to.equal('Success');
         expect(res.body.message).to.equal('Login Successful');
@@ -91,7 +94,7 @@ describe('Tests for Rides Endpoints', () => {
           done();
         });
     });
-      
+
     // Returns error if location filed is missing
     it('returns error if location is missing', (done) => {
       const newRide = {
@@ -202,7 +205,7 @@ describe('Tests for Rides Endpoints', () => {
     it('Gets all rides for an authenticated user', (done) => {
       chai.request(app)
         .get('/rides')
-        .set('x-access-token', token)
+        .set('x-access-token', requestToken)
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.property('status');
@@ -222,7 +225,7 @@ describe('Tests for Rides Endpoints', () => {
     it('Gets a single ride for an authenticated user', (done) => {
       chai.request(app)
         .get('/rides/1')
-        .set('x-access-token', token)
+        .set('x-access-token', requestToken)
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.property('status');
@@ -231,5 +234,44 @@ describe('Tests for Rides Endpoints', () => {
           done();
         });
     });
+
+    // Returns error if ride is not found
+    it('Returns 404 error if ride is not found', (done) => {
+      chai.request(app)
+        .get('/rides/10')
+        .set('x-access-token', requestToken)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal('Failed');
+          expect(res.body.error).to.be.equal('Ride not found');
+          done();
+        });
+    });
+  });
+
+  describe('Tests for ride requests', () => {
+    it('returns 200 ok when user requests to join ride offer', (done) => {
+      chai.request(app)
+        .post('/rides/1/requests')
+        .set('x-access-token', requestToken)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body.message).to.be.equal('Request to join ride offer pending approval from ride owner');
+          done();
+        });
+    });
+
+    // it('returns error if user tries to join ride that does not exist', (done) => {
+    //   chai.request(app)
+    //     .post('/rides/10/requests')
+    //     .set('x-access-token', requestToken)
+    //     .end((err, res) => {
+    //       expect(res).to.have.status(400);
+    //       expect(res.body.status).to.be.equal('Failed');
+    //       expect(res.body.error).to.be.equal('Cannot request to join because ride does not exist');
+    //       done();
+    //     });
+    // });
   });
 });

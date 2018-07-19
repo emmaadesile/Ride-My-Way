@@ -22,7 +22,7 @@ class RideOffersController {
           });
         }
         res.status(200).json({
-          status: 'Success', 
+          status: 'Success',
           rides: result.rows,
         });
       });
@@ -66,7 +66,7 @@ class RideOffersController {
     });
   }
   /**
-   * Get A Ride Offer
+   * Create A Ride Offer
    * @param {obj} req
    * @param {obj} res
    * @returns A Single rides in db
@@ -105,6 +105,14 @@ class RideOffersController {
       });
     });
   }
+
+  /**
+   * Delete A Ride Offer
+   * @param {obj} req
+   * @param {obj} res
+   * @returns A Single rides in db
+   * @memberof RideOffersController
+   */
 }
 
 export default RideOffersController;
