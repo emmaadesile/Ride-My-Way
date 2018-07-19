@@ -262,16 +262,47 @@ describe.only('Tests for Rides Endpoints', () => {
         });
     });
 
-    // it('returns error if user tries to join ride that does not exist', (done) => {
-    //   chai.request(app)
-    //     .post('/rides/10/requests')
-    //     .set('x-access-token', requestToken)
-    //     .end((err, res) => {
-    //       expect(res).to.have.status(400);
-    //       expect(res.body.status).to.be.equal('Failed');
-    //       expect(res.body.error).to.be.equal('Cannot request to join because ride does not exist');
-    //       done();
-    //     });
-    // });
+    it('returns error if user tries to join ride that does not exist', (done) => {
+      chai.request(app)
+        .post('/rides/10/requests')
+        .set('x-access-token', requestToken)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body.status).to.be.equal('Failed');
+          expect(res.body.error).to.be.equal('Cannot request to join because ride does not exist');
+          done();
+        });
+    });
+
+    it('returns requests for a particular ride', (done) => {
+      chai.request(app)
+        .get('/users/rides/1/requests')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body.status).to.be.equal('Success');
+          expect(res.body.request).to.have.property('id');
+          expect(res.body.request).to.have.property('ride_id');
+          expect(res.body.request).to.have.property('user_id');
+          expect(res.body.request).to.have.property('request_id');
+          expect(res.body.request).to.have.property('request_status');
+          done();
+        });
+    });
+
+    it('returns request status after ride owner responds to request', (done) => {
+      const requestStatus = {
+        requestStatus: 'accepted'
+      };
+      chai.request(app)
+        .put('/users/rides/1/requests/2')
+        .send(requestStatus)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body.message).to.be.equal('The ride request has been successfully accepted');
+          done();
+        });
+    });
   });
 });
