@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS ride_my_way_test;
-CREATE DATABASE ride_my_way_test;
+DROP DATABASE IF EXISTS ridemyway_test;
+CREATE DATABASE ridemyway_test;
 
-\c ride_my_way_test;
+\c ridemyway_test;
 
 CREATE TABLE users
 (

@@ -374,7 +374,7 @@ describe.only('Test for Sign up endpoint', () => {
     });
   });
 });
-  
+
 // Sign in ===================================================================
 describe.only('Test for Sign in endpoint', () => {
   // Password not provided
