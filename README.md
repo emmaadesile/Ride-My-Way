@@ -13,37 +13,64 @@ You need nodejs version 8 and above to run this app.
 
 ### Installing
 
-- To install the dependencies run
+To install the dependencies run
 
 ```
 npm install
 ```
 
-- To start the development server
+## Stating the Server
+
+To start the development server
 
 ```
 npm run start:dev
 ```
 
-### Running the tests
+To start production server
+```
+npm run start
+```
+
+
+
+## API Endpoints
+
+|        |                                          |                            |
+| ------ | ---------------------------------------- | -------------------------- |
+| method | route                                    | action                     |
+| POST   | `api/v1/signup`                          | Sign up                    |
+| POST   | `api/v1/signin`                          | Sign in                    |
+| GET    | `api/v1/rides`                           | Get all rides              |
+| POST   | `api/v1/users/rides`                     | Post a ride                |
+| POST   | `api/v1/rides/:rideId/requests`          | Make a ride request        |
+| GET    | `api/v1/users/rides/:rideId/requests`    | Get requests for a ride    |
+| PUT    | `api/v1/users/:rideId/requests/:requestId` | Accept or reject a request |
+
+
+
+## Running the tests
 
 To run tests
 
 ```
-npm run test
+npm run test:localdb
 ```
 
-### Deployment
+## 
 
-Notes to deploy to deploy this app on a live system
+## Deployment
+You can view the live server on https://emmaadesile-ridemyway.herokuapp.com
 
-### Built With
+## Built With
 
 [Express](https://expressjs.com/) -Nodejs web framework
 
 [Postgres](https://www.postgresql.org/) - Database for the app
 
 [Travis](https://travis-ci.org) - Continuous Integration
+
+[JWT](https://jwt.io) - Token based authentication
 
 ### License
 
