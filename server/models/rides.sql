@@ -1,5 +1,3 @@
--- DROP TABLE IF EXISTS rides CASCADE;
-
 CREATE TABLE rides 
 (
   ride_id SERIAL PRIMARY KEY,
