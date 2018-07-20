@@ -52,6 +52,14 @@ var routes = function routes(app) {
 
   // Accept or reject a ride request
   app.put('/users/rides/:rideId/requests/:requestId', _token2['default'].verifyToken, _index2.RideRequestsController.acceptOrRejectRideRequest);
+
+  // Error page
+  app.get('/*', function (req, res) {
+    return res.send({
+      status: 'Failed',
+      error: 'Oops! This page doesn\'t exist'
+    });
+  });
 };
 
 exports['default'] = routes;
