@@ -56,7 +56,7 @@
     "test:localdb": "npm run testdb:migrate && nyc mocha server/test/*.spec.js --require babel-register --timeout 300000 --exit",
     "testdb:migrate": "psql -U postgres -f server/models/testdb.sql",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
   },
   "repository": {
     "type": "git",
