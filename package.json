@@ -57,6 +57,7 @@
     "testdb:migrate": "psql -U postgres -f server/models/testdb.sql",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "heroku-postbuild": "npm install --production"
   },
   "repository": {
     "type": "git",
