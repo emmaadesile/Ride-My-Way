@@ -48,6 +48,12 @@ const routes = (app) => {
 
   // Accept or reject a ride request
   app.put('/users/rides/:rideId/requests/:requestId', TokenAuth.verifyToken, RideRequestsController.acceptOrRejectRideRequest);
+
+  // Error page
+  app.get('*', res.status(404).send({
+    status: 'Failed',
+    error: 'Oops! This page doesn\'t exist'
+  });
 };
 
 export default routes;
