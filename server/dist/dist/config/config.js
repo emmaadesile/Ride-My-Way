@@ -1,9 +1,20 @@
-import dotenv from 'dotenv';
+'use strict';
 
-dotenv.config();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-const config =
-{
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+_dotenv2['default'].config();
+
+var config = {
   development: {
     user: process.env.DB_USERNAME,
     database: process.env.DB_DATABASE,
@@ -29,4 +40,4 @@ const config =
   }
 };
 
-export default config;
+exports['default'] = config;

@@ -1,3 +1,5 @@
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -22,7 +24,12 @@ var _index = require('./routes/index');
 
 var _index2 = _interopRequireDefault(_index);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+var router = _express2['default'].Router();
+(0, _index2['default'])(router);
 
 // Setup express app
 var app = (0, _express2['default'])();
@@ -45,5 +52,7 @@ server.listen(port, function () {
 
 // Express router
 (0, _index2['default'])(app);
+
+app.use('/api/v1', router);
 
 exports['default'] = app;

@@ -32,17 +32,9 @@ var config = {
     max: 10,
     idleTimeoutMills: 5000
   },
-  // test: {
-  //   user: process.env.DB_USERNAME_TEST,
-  //   database: process.env.DB_DATABASE_TEST,
-  //   host: process.env.DB_HOST,
-  //   port: process.env.DB_PORT_TEST,
-  //   min: process.env.DB_MIN_TEST,
-  //   max: process.env.DB_MAX_TEST,
-  //   idleTimeoutMills: process.env.idleTimeoutMills
-  // },
   production: {
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
   }
 };
 
