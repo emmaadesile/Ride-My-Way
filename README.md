@@ -1,6 +1,6 @@
 # Ride-My-Way
 
-[![Build Status](https://travis-ci.org/emmaadesile/Ride-My-Way.svg?branch=develop)](https://travis-ci.org/emmaadesile/Ride-My-Way) [![Coverage Status](https://coveralls.io/repos/github/emmaadesile/Ride-My-Way/badge.svg)](https://coveralls.io/github/emmaadesile/Ride-My-Way) [![Maintainability](https://api.codeclimate.com/v1/badges/a745f7b804d4b7bb491d/maintainability)](https://codeclimate.com/github/emmaadesile/Ride-My-Way/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a745f7b804d4b7bb491d/test_coverage)](https://codeclimate.com/github/emmaadesile/Ride-My-Way/test_coverage)
+[![Build Status](https://travis-ci.org/emmaadesile/Ride-My-Way.svg?branch=develop)](https://travis-ci.org/emmaadesile/Ride-My-Way) [![Coverage Status](https://coveralls.io/repos/github/emmaadesile/Ride-My-Way/badge.svg?branch=ft%2F%23158974064%2Ftest-api-endpoints)](https://coveralls.io/github/emmaadesile/Ride-My-Way?branch=ft%2F%23158974064%2Ftest-api-endpoints) [![Maintainability](https://api.codeclimate.com/v1/badges/a745f7b804d4b7bb491d/maintainability)](https://codeclimate.com/github/emmaadesile/Ride-My-Way/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a745f7b804d4b7bb491d/test_coverage)](https://codeclimate.com/github/emmaadesile/Ride-My-Way/test_coverage)
 
 Ride My Way is a carpooling application that allows users to post ride offers and request to join a ride offer.
 
