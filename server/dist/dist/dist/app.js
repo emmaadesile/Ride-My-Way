@@ -20,6 +20,10 @@ var _morgan = require('morgan');
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
+var _cors = require('cors');
+
+var _cors2 = _interopRequireDefault(_cors);
+
 var _index = require('./routes/index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -36,6 +40,8 @@ var app = (0, _express2['default'])();
 
 app.use((0, _morgan2['default'])('dev'));
 
+app.use((0, _cors2['default'])());
+
 // Parse incoming requests
 app.use(_bodyParser2['default'].json());
 app.use(_bodyParser2['default'].urlencoded({ extended: false }));
@@ -48,14 +54,6 @@ var server = _http2['default'].createServer(app);
 
 server.listen(port, function () {
   console.log('Server is running on localhost:' + String(port));
-});
-
-// Enable cors
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
 });
 
 // Express router

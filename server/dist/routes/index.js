@@ -54,7 +54,7 @@ var routes = function routes(app) {
   app.put('/users/rides/:rideId/requests/:requestId', _token2['default'].verifyToken, _index2.RideRequestsController.acceptOrRejectRideRequest);
 
   // Error page
-  app.get('/*', function (req, res) {
+  app.get('*', function (req, res) {
     return res.send({
       status: 'Failed',
       error: 'Oops! This page doesn\'t exist'
