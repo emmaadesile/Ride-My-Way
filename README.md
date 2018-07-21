@@ -32,13 +32,13 @@ To start production server
 npm run start
 ```
 
-
+## API Documentation
+Full documentation for the api endpoints in available [here](https://emmaadesile.github.io/ridemyway-docs/build/index.html)
 
 ## API Endpoints
 
-|        |                                          |                            |
 | ------ | ---------------------------------------- | -------------------------- |
-| method | route                                    | action                     |
+| Method | Route                                    | Action                     |
 | POST   | `api/v1/signup`                          | Sign up                    |
 | POST   | `api/v1/signin`                          | Sign in                    |
 | GET    | `api/v1/rides`                           | Get all rides              |
