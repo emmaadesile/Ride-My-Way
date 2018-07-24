@@ -37,25 +37,31 @@
 
     <!-- Signup Form -->
     <div class="form-wrapper">
-      <form action="" class="form">
-        <label class="form-label">Sign Up</label>
-        <input class="form-control" type="text" name="firstname" placeholder="Firstname">
-        <input class="form-control" type="text" name="lastname" placeholder="Lastname">
-        <input class="form-control" type="text" name="username" placeholder="Username">
-        <input class="form-control" type="text" name="email" placeholder="Email">
-        <input class="form-control" type="password" name="password" placeholder="Password">
-        <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password">
+      <form action="" class="form signup-form">
+        <label class="form-label">Create an account</label>
+        <div class="message"></div>
+        <input class="form-control firstname" type="text" name="firstname" placeholder="Firstname" >
+        <input class="form-control lastname" type="text" name="lastname" placeholder="Lastname" >
+        <input class="form-control username" type="text" name="username" placeholder="Username" >
+        <input class="form-control email" type="text" name="email" placeholder="Email" >
+        <input class="form-control password" type="password" name="password" placeholder="Password" minlength="5" maxlength="15">
+        <input class="form-control confirmPassword" type="password" name="confirmPassword" minlength="6" maxlength="15" placeholder="Confirm Password" >
 
-        <a class="btn btn__primary btn__inline" href="./signin.html">Sign Up</a>
+        <a class="btn btn__primary btn__inline signup-btn" type="submit" role="button" href="#">Sign Up</a>
         <p>Already Registered?
-          <a href="signin.html">Sign in</a>
+          <a href="./signin.html">Sign in</a>
         </p>
       </form>
     </div>
 
+    <!-- Message returned after request has been completed -->
+    <div class="loader-bg">
+      <span class="loader"></span>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
-      <p>&copy; 2018. Made by Emmanuel.</p>
+      <p style="color:rgb(124, 124, 124)">&copy; 2018. Made by Emmanuel.</p>
     </footer>
   </div>
   <script>
@@ -63,6 +69,8 @@
       document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }
   </script>
+  <!-- <script src="../client/validate.js"></script> -->
+  <script src="../client/signup.js"></script>
 </body>
 
 </html>

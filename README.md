@@ -33,12 +33,12 @@ npm run start
 ```
 
 ## API Documentation
-Full documentation for the api endpoints in available [here](https://emmaadesile.github.io/ridemyway-docs/build/index.html)
+Full documentation for the api endpoints is available [here](https://emmaadesile.github.io/ridemyway-docs/build/index.html)
 
 ## API Endpoints
 
-| ------ | ---------------------------------------- | -------------------------- |
 | Method | Route                                    | Action                     |
+| ------ | ---------------------------------------- | -------------------------- |
 | POST   | `api/v1/signup`                          | Sign up                    |
 | POST   | `api/v1/signin`                          | Sign in                    |
 | GET    | `api/v1/rides`                           | Get all rides              |
@@ -46,8 +46,6 @@ Full documentation for the api endpoints in available [here](https://emmaadesile
 | POST   | `api/v1/rides/:rideId/requests`          | Make a ride request        |
 | GET    | `api/v1/users/rides/:rideId/requests`    | Get requests for a ride    |
 | PUT    | `api/v1/users/:rideId/requests/:requestId` | Accept or reject a request |
-
-
 
 ## Running the tests
 
