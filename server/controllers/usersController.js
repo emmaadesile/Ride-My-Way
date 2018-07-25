@@ -18,7 +18,6 @@ class UsersController {
       firstname, lastname, username, email, password
     } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    // password = hashedPassword;
 
     // declare the sign up query
     const query = {
@@ -28,32 +27,32 @@ class UsersController {
     // connect to database
     pool.connect((err, client, done) => {
       if (err) {
+        console.log(err);
+        res.status(500).json({
+          status: 'Failed',
+          error: 'There seems to be an error on the server'
+        }); // error connecting to database
         done();
-        res.status(500).json({ success: false, message: 'There seems to be an error on the server' }); // error connecting to database
       }
+
+      // insert the new user into the database
       client.query(query, (err, result) => {
-        done();
         if (err) {
+          done();
           res.status(500).json({
             status: 'Failed',
-            message: 'There was an error registering the user'
+            error: 'User already exists',
           });
         }
-        // select the new user from database     
-        client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
-          if (err) {
-            res.status(400).send('cannot connect');
-          }
-          if (result) {
-            const newUser = result.rows[0];
-            const token = TokenAuth.makeToken(newUser);
-            res.status(200).json({
-              status: 'Sucess',
-              message: 'Sign up successful',
-              token,
-            });
-          }
-        });        
+        if (result) {
+          const newUser = result.rows[0];
+          const token = TokenAuth.makeToken(newUser);
+          res.status(201).json({
+            status: 'Success',
+            message: 'Sign up successful',
+            token,
+          });
+        }
       });
     });
   }
@@ -70,21 +69,25 @@ class UsersController {
 
     pool.connect((err, client, done) => {
       if (err) {
-        done();
-        res.status(500).send({ success: false, error: err });
+        // done();
+        res.status(500).send({
+          status: 'Failed',
+          error: 'Oops! An error occurred on the server',
+        });
       }
       client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
         if (err) {
+          console.log(err);
           res.status(500).json({
-            success: false,
-            message: 'There seems to be an error on the server'
+            status: 'Failed',
+            error: 'An error occurred during sign in'
           });
         }
         const user = result.rows[0];
         if (!user) {
-          return res.status(404).json({
+          return res.status(401).json({
             status: 'Failed',
-            error: 'User not found'
+            error: 'User does not exist'
           });
         }
         // if user exists in database
@@ -95,8 +98,8 @@ class UsersController {
             error: 'Invalid login credentials'
           });
         }
-        const userId = user.user_id;
-        const userToken = TokenAuth.makeToken({ userId });
+        // const userId = user.user_id;
+        const userToken = TokenAuth.makeToken({ userId: user });
 
         res.status(200).send({
           status: 'Success',

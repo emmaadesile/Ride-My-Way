@@ -1,6 +1,8 @@
 {
   "root": true,
-  "extends": ["airbnb"],
+  "extends": [
+    "airbnb"
+  ],
   "env": {
     "node": true,
     "es6": true,
@@ -8,13 +10,14 @@
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true,
       "classes": true
     }
   },
   "rules": {
+    "linebreak-style": 0,
     "no-console": "off",
     "indent": 2,
     "trailingComma": false,
@@ -28,7 +31,7 @@
       "error",
       {
         "object": true,
-        "array": false
+        "array": true
       }
     ]
   }

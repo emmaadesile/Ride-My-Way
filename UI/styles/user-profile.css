@@ -9,17 +9,40 @@
 .profile-page {
   display: grid;
   justify-items: center;
+  align-items: center;
   padding-top: 80px;
+  background-color: #f4f4ef;
+  padding: 0 30px;
 }
 
 .profile-info {
-  width: 140px;
-  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 20px 30px;
+  min-height: 250px;
   margin-bottom: 50px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  width: 90%;
+  border-radius: 6px;
+  margin-top: 3rem;
 }
 
 .profile-info img {
   border-radius: 50%;
+  width: 150px;
+  height: auto;
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+
+.profile-name {
+  justify-self: start;
 }
 
 .ride-img {

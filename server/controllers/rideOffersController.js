@@ -16,9 +16,15 @@ class RideOffersController {
       client.query('SELECT * FROM rides', (err, result) => {
         done();
         if (err) {
-          res.status(400).send(err);
+          res.status(500).json({
+            status: 'Failed',
+            error: 'An error occured while getting the rides'
+          });
         }
-        res.status(200).send(result.rows);
+        res.status(200).json({
+          status: 'Success',
+          rides: result.rows,
+        });
       });
     });
   }
@@ -47,12 +53,20 @@ class RideOffersController {
             error: 'Could not fetch this ride',
           });
         }
-        res.status(200).send(result.rows);
+        return (result.rows === undefined || result.rows.length === 0)
+          ? res.status(404).json({
+            status: 'Failed',
+            error: 'Ride not found'
+          })
+          : res.status(200).json({
+            status: 'Success',
+            ride: result.rows,
+          });
       });
     });
   }
   /**
-   * Get A Ride Offer
+   * Create A Ride Offer
    * @param {obj} req
    * @param {obj} res
    * @returns A Single rides in db
@@ -79,21 +93,26 @@ class RideOffersController {
       }
       client.query(query, (err, result) => {
         done();
-        if (err) {
-          res.status(500).json({
+        return err
+          ? res.status(500).json({
             status: 'Failed',
             error: 'An error occurred while creating the the ride',
-          });
-        }
-        if (result) {
-          res.status(201).send({
-            success: true,
+          })
+          : res.status(201).json({
+            status: 'Success',
             message: 'Ride offer successfully created',
           });
-        }
       });
     });
   }
+
+  /**
+   * Delete A Ride Offer
+   * @param {obj} req
+   * @param {obj} res
+   * @returns A Single rides in db
+   * @memberof RideOffersController
+   */
 }
 
 export default RideOffersController;

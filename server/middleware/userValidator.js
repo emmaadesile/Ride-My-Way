@@ -21,9 +21,21 @@ class UserValidation {
     const error = {};
 
     const validateEmail = (checkMail) => {
-      const testEmail = /\S+@\S+\.\S+/;
+      const testEmail = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return testEmail.test(email);
     };
+
+    if (!email) {
+      error.email = 'Email is required';
+    }
+
+    if (email && email.trim === '') {
+      error.email = 'Email is required';
+    }
+
+    if (email && validateEmail(email) === false) {
+      error.email = 'Email address is invalid';
+    }
 
     if (!password) {
       error.password = 'Password is required';
@@ -33,18 +45,11 @@ class UserValidation {
       error.password = 'Password is required';
     }
 
-    if (!email) {
-      error.email = 'Email field cannot be empty';
-    }
-
-    if (validateEmail(email) === false) {
-      error.email = 'Email address is invalid or empty';
-    }
 
     if (isEmpty(error)) {
       return next();
     }
-    return res.status(400).json({ error });
+    return res.status(406).json({ ...error });
   }
 
   /**
@@ -126,7 +131,11 @@ class UserValidation {
     }
 
     if (password && password.trim() === '') {
-      error.password = 'Password cannot be empty';
+      error.password = 'Password field cannot be empty';
+    }
+
+    if (!password && !confirmPassword) {
+      error.password = 'Password field cannot be empty';
     }
 
     if (password && password.trim() !== password) {
@@ -134,6 +143,10 @@ class UserValidation {
     }
 
     if (!confirmPassword) {
+      error.confirmPassword = 'Please confirm your password';
+    }
+
+    if (password && !confirmPassword) {
       error.confirmPassword = 'Please confirm your password';
     }
 
@@ -145,8 +158,8 @@ class UserValidation {
     }
 
     if (isEmpty(error)) return next();
-    return res.status(406).json({ 
-      status: 'Fail',
+    return res.status(406).json({
+      status: 'Failed',
       ...error
     });
   }
@@ -162,7 +175,7 @@ class UserValidation {
  * @memberof UserValidation
  */
   static validateInputLength(req, res, next) {
-    const { 
+    const {
       firstname, lastname, username, password
     } = req.body;
 
@@ -173,36 +186,36 @@ class UserValidation {
 
     if (validUser(firstname) === false) {
       return res.status(406).json({
-        status: 'Fail',
+        status: 'Failed',
         error: 'Firstname can only contain numbers and letters'
       });
     }
 
     if (validUser(lastname) === false) {
       return res.status(406).json({
-        status: 'Fail',
+        status: 'Failed',
         error: 'Lastname can only contain numbers and letters'
       });
     }
 
     if (validUser(username) === false) {
       return res.status(406).json({
-        status: 'Fail',
+        status: 'Failed',
         error: 'Username can only contain numbers and letters'
       });
     }
 
     if (username.length < 4 || username.length > 12) {
       return res.status(406).json({
-        status: 'Fail',
+        status: 'Failed',
         error: 'Username must be at least 6 chars and at most 10 characters'
       });
     }
 
-    if (password.length < 6 || password.length > 15) {
+    if (password.length < 6 || password.length > 20) {
       return res.status(406).json({
-        status: 'Fail',
-        error: 'Password must be at least 6 chars and at most 15 characters'
+        status: 'Failed',
+        error: 'Password must be at least 6 chars and at most 20 characters'
       });
     }
     next();
