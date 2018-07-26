@@ -20,7 +20,7 @@
   display: grid;
   align-items: center;
   justify-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
   padding-top: 20px;
 }
 
@@ -38,7 +38,7 @@
 
 .form-label {
   font-size: 2em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   text-align: center;
 }
 
@@ -112,7 +112,7 @@ textarea {
 }
 
 /* message */
-.message {
+/* .message {
   display: none;
   padding: 15px 15px;
   margin: 5px 0;
@@ -123,4 +123,12 @@ textarea {
   font-size: 18px;
   text-align: center;
   transition: s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+} */
+
+.red-border {
+  border-color: #e60000;
+}
+
+.grey-border {
+  border-color: #d3d3d3;
 }
