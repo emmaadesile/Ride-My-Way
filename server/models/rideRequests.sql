@@ -6,5 +6,6 @@ CREATE TABLE ride_requests
   user_id INT REFERENCES users(user_id),
   request_id INT REFERENCES users(user_id),
   request_status status DEFAULT('pending'),
+  requester_name VARCHAR(255),
   UNIQUE(ride_id, user_id, request_id)
 );

@@ -50,6 +50,7 @@
     "start": "node server/dist/app.js",
     "build": "babel server -d server/dist",
     "lint": "eslint server --fix",
+    "lint-all": "eslint . --fix",
     "migrate": "psql -U postgres -f server/models/index.sql",
     "test": "nyc mocha server/test/*.spec.js --require babel-register --timeout 300000 --exit",
     "test:watch": "nyc mocha -w server/test/*.spec.js --require babel-register",

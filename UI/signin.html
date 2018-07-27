@@ -5,10 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/ride-logo-favicon.png">
   <link rel="stylesheet" href="./styles/form.css">
   <link rel="stylesheet" href="./styles/style.css">
-
   <title>Ride-My-Way</title>
+
+  <style>
+    .message {
+      display: none;
+      background: rgb(225, 69, 69);
+      color: white;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 0.8rem;
+      text-align: left;
+      margin-bottom: 10px;
+      transition: 0.5s ease-in-out all;
+    }
+  </style>
 </head>
 
 <body>
@@ -40,16 +54,22 @@
     </div>
     <!-- Signup Form -->
     <div class="form-wrapper">
-      <form action="" class="form">
+      <form action="" class="form signin-form">
         <label class="form-label" for="signin">Sign In</label>
-        <input class="form-control" type="text" placeholder="Email" name="email" required>
-        <input class="form-control" type="text" placeholder="Password" name="password" required>
+        <div class="message"></div>
+        <input class="form-control email" type="text" placeholder="Email" name="email" required>
+        <input class="form-control password" type="password" placeholder="Password" name="password" required>
 
-        <a class="btn btn__primary btn__inline" href="./user-profile.html">Sign In</a>
+        <a class="btn btn__primary btn__inline signin-btn" href="#">Sign In</a>
         <p>Not a member?
           <a href="signup.html">Sign up</a>
         </p>
       </form>
+    </div>
+
+    <!-- loading animation while signup is processing-->
+    <div class="loader-bg">
+      <span class="loader"></span>
     </div>
 
     <!-- FOOTER -->
@@ -63,6 +83,7 @@
       document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }
   </script>
+  <script src="../client/signin.js"></script>
 </body>
 
 </html>
