@@ -51,7 +51,7 @@ var UserValidation = function () {
         var validateEmail = function () {
           function validateEmail(checkMail) {
             var testEmail = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return testEmail.test(email);
+            return testEmail.test(checkMail);
           }
 
           return validateEmail;
@@ -114,7 +114,7 @@ var UserValidation = function () {
         var validateEmail = function () {
           function validateEmail(checkMail) {
             var testEmail = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return testEmail.test(email);
+            return testEmail.test(checkMail);
           }
 
           return validateEmail;
