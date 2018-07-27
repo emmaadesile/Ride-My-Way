@@ -1,7 +1,6 @@
 /* eslint-disable*/
 const loaderBg = document.querySelector('.loader-bg');
 const signupButton = document.querySelector('.signup-btn');
-const message = document.querySelector('.message');
 const form = document.querySelector('form');
 const formFields = form.querySelectorAll('input');
 const firstname = form.querySelector('.firstname');
@@ -10,8 +9,7 @@ const username = form.querySelector('.username');
 const email = form.querySelector('.email');
 const password = form.querySelector('.password');
 const confirmPassword = form.querySelector('.confirmPassword');
-const redBorder = '#e60000';
-const greyBorder = '#d3d3d3';
+const message = document.querySelector('.message');
 const signupUrl = 'https://emmaadesile-ridemyway.herokuapp.com/auth/signup';
 
 // validate email
@@ -20,7 +18,7 @@ const validateEmail = checkMail => {
   return testEmail.test(checkMail);
 };
 
-// request data
+// form data
 let formData = {};
 
 // Get the form data
@@ -31,65 +29,69 @@ function getFormData() {
   return formData;
 }
 
-function showError(e) {
-  const targetName = e.target.name;
-  e.target.placeholder = `${targetName.slice(0, 1).toUpperCase()}${targetName.slice(1)} is required`;
+function isEmpty(obj) {
+  const keys = Object.keys(obj);
+  return keys;
 }
 
-function removeError(e) {
-  const targetName = e.target.name;
-  e.target.placeholder = `${targetName.slice(0, 1).toUpperCase()}${targetName.slice(1)}`;
-}
+// Sign up validation
+function validateSignup() {
+  let isValid;
+  const error = {};
+  if (firstname.value === "") {
+    error.firstname = "Firstname is required";
+  }
+  if (lastname.value === "") {
+    error.lastname = "Lastname is required";
+  }
+  if (username.value === "") {
+    error.username = "Username is required";
+  }
+  if (email.value === "") {
+    error.email = "Email is required";
+  }
+  if (email.value && validateEmail(email.value) === false) {
+    error.email = "Email address is invalid";
+  }
+  if (password.value === "") {
+    error.password = "Password is required";
+  }
+  if (password.value.length > 2 && password.value.length < 6) {
+    error.password = "Password must have at least 6 characters"
+  }
+  if (password.value.length > 15) {
+    error.password = "Password cannot have more than 15 characters"
+  }
+  if (confirmPassword.value === "") {
+    error.confirmPassword = "Please confirm your password"
+  }
+  if ((password.value && confirmPassword.value) && (password.value !== confirmPassword.value)) {
+    error.confirmPassword = "Passwords do not match";
+  }
 
-
-const formFieldArray = [];
-formFields.forEach(field => formFieldArray.push(field));
-
-// check if form data are valid
-function validateForm() {
-  let isValid = false;
-  
-  formFields.forEach((field) => {
-    field.style.borderColor = greyBorder;
-    if (field.value === '' || field.value.trim() === '') {
-      field.style.borderColor = redBorder;
-      field.addEventListener('mouseenter', showError);
-      field.addEventListener('mouseout', removeError);
-      isValid = false;
+  if (isEmpty(error).length === 0) {
+    message.style.display = "none";
+    isValid = true;
+  } else {
+    message.style.display = "block";
+    message.innerHTML = "";
+    for (const err of Object.entries(error)) {
+      message.innerHTML += `
+        ${err[1]} <br/>
+     `;
     }
-    else if (field.name === "email") {
-      if (validateEmail(field.value) === false) {
-        field.style.borderColor = redBorder;
-        field.title = 'Email is invalid';
-        isValid = false;
-      }
-    }
-    else if (field.name === "password") {
-      if (field.value > 2 && field.value.length < 6) {
-        field.style.borderColor = redBorder;
-        field.title = 'Password must be at least 6 characters long';
-        isValid = false;
-      }
-      else if (field.value != confirmPassword.value) {
-        password.style.borderColor = redBorder;
-        confirmPassword.style.borderColor = redBorder;
-        password.title = 'Password does not match';
-        isValid = false;
-      }
-    }
-  })
-  isValid = formFieldArray.every(field => field.style.borderColor !== redBorder);
+    isValid = false;
+  }
   return isValid;
 }
-
 
 // handle signup
 function signupHandler(e) {
   e.preventDefault();
 
-  if (validateForm() === false) return;
+  if (validateSignup() === false) return;
   
-  loaderBg.style.display = "grid";
+  loaderBg.style.display = 'grid';
 
   fetch(signupUrl, {
     method: 'POST',
@@ -108,24 +110,24 @@ function signupHandler(e) {
       // clear the formfield
       form.reset();
       // loading animation
-      loaderBg.style.display = "none";
+      loaderBg.style.display = 'none';
       return resp.json();
     })
     .then((data) => {
       console.log(data);
-      message.style.display = "block";
+      message.style.display = 'block';
 
       // show message after signup
       function doHide() {
-        message.style.display = "none";
+        message.style.display = 'none';
       }
       function hideMessage() {
         setTimeout(doHide, 5000);
       }
 
       // if success redirect to sign in page
-      if (data.status === "Success") {
-        message.style.backgroundColor = "#40ac01";
+      if (data.status === 'Success') {
+        message.style.backgroundColor = '#40ac01';
         message.innerHTML = data.message;
         // redirect to sign in page
         function redirect() {
@@ -136,17 +138,16 @@ function signupHandler(e) {
         }
         redirect();
       }
-      if (data.status === "Failed") {
-        message.innerHTML = JSON.stringify(data.status);
+      if (data.status === 'Failed') {
+        message.innerHTML = data.status;
       }
       hideMessage();
     })
     .catch((error) => {
       console.log(error);
-      message.innerHTML = JSON.stringify(error.error);
+      message.innerHTML = error.error;
     });
 }
 
 // add event listener to sign up button
-signupButton.addEventListener('click', validateForm);
 signupButton.addEventListener('click', signupHandler);

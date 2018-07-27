@@ -5,9 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/ride-logo-favicon.png">
   <link rel="stylesheet" href="./styles/form.css">
   <link rel="stylesheet" href="./styles/style.css">
   <title>Ride-My-Way</title>
+  <style>
+    .message {
+      display: none;
+      background: rgb(225, 69, 69);
+      color: white;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -40,12 +53,12 @@
       <form action="" class="form signup-form">
         <label class="form-label">Create an account</label>
         <div class="message"></div>
-        <input class="form-control firstname" type="text" name="firstname" placeholder="Firstname" >
-        <input class="form-control lastname" type="text" name="lastname" placeholder="Lastname" >
-        <input class="form-control username" type="text" name="username" placeholder="Username" >
-        <input class="form-control email" type="text" name="email" placeholder="Email" >
+        <input class="form-control firstname" type="text" name="firstname" placeholder="Firstname">
+        <input class="form-control lastname" type="text" name="lastname" placeholder="Lastname">
+        <input class="form-control username" type="text" name="username" placeholder="Username">
+        <input class="form-control email" type="text" name="email" placeholder="Email">
         <input class="form-control password" type="password" name="password" placeholder="Password" minlength="5" maxlength="15">
-        <input class="form-control confirmPassword" type="password" name="confirmPassword" minlength="6" maxlength="15" placeholder="Confirm Password" >
+        <input class="form-control confirmPassword" type="password" name="confirmPassword" minlength="6" maxlength="15" placeholder="Confirm Password">
 
         <a class="btn btn__primary btn__inline signup-btn" type="submit" role="button" href="#">Sign Up</a>
         <p>Already Registered?
@@ -54,14 +67,14 @@
       </form>
     </div>
 
-    <!-- Message returned after request has been completed -->
+    <!-- loading animation while signup is processing-->
     <div class="loader-bg">
       <span class="loader"></span>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-      <p style="color:rgb(124, 124, 124)">&copy; 2018. Made by Emmanuel.</p>
+      <p>&copy; 2018. Made by Emmanuel.</p>
     </footer>
   </div>
   <script>
@@ -69,7 +82,6 @@
       document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }
   </script>
-  <!-- <script src="../client/validate.js"></script> -->
   <script src="../client/signup.js"></script>
 </body>
 

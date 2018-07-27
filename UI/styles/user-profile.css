@@ -5,44 +5,82 @@
   --green: #06d19c;
 }
 
+.wrapper {
+  background-color: #e2e2e2;
+}
 /* Profile */
 .profile-page {
   display: grid;
   justify-items: center;
   align-items: center;
-  padding-top: 80px;
-  background-color: #f4f4ef;
   padding: 0 30px;
 }
 
 .profile-info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
   padding: 20px 30px;
-  min-height: 250px;
+  min-height: 200px;
   margin-bottom: 50px;
   background-color: #fff;
-  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   width: 90%;
-  border-radius: 6px;
+  border-radius: 3px;
   margin-top: 3rem;
 }
 
 .profile-info img {
   border-radius: 50%;
-  width: 150px;
+  width: 140px;
   height: auto;
+  padding: 4px;
 }
 
 .user-info {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
+  border-right: 1px solid grey;
 }
 
 .profile-name {
   justify-self: start;
+}
+
+.profile-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  background: #fff;
+  width: 90%;
+  margin-top: -48px;
+}
+
+.profile-links li {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  transition: 0.3s ease-in all;
+}
+
+.profile-links li a {
+  display: block;
+}
+
+.profile-links li:hover {
+  border-bottom: 2px solid #0c6ebf;
+}
+
+.rides-count {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.rides-count h1 {
+  color: #0c6ebf;
 }
 
 .ride-img {
@@ -56,14 +94,6 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   margin-bottom: 30px;
-}
-
-.user-count-num {
-  padding: 5px 30px;
-  border-radius: 10px;
-  background: var(--blue);
-  color: white;
-  text-align: center;
 }
 
 .rides-block {
@@ -80,5 +110,33 @@
 @media (max-width: 800px) {
   .rides-block {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-info {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .profile-page {
+    padding: 0 5px;
+  }
+  .user-info {
+    display: grid;
+    grid-template-columns: 1fr;
+   justify-items: center; 
+    border: none;
+  }
+
+  .profile-name {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
   }
 }
