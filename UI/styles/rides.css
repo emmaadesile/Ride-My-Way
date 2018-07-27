@@ -91,7 +91,7 @@
 }
 
 .box__group {
-  padding: 10px 20px 0 20px;
+  padding: 10px 20px;
   display: grid;
   grid-template-columns: 4fr 1fr;
   border-bottom: 1px solid #d1d5da;
@@ -106,7 +106,7 @@
     background-color: #fff;
     border: 1px solid #d1d5da;
     border-radius: 3px;
-    width: 80%;
+    width: 90%;
   }
 
   .box__group {
