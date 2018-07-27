@@ -66,7 +66,13 @@ function signinHandler(e) {
   // check if signin form is valid
   if (validateSignin() === false) return;
 
-  loaderBg.style.display = 'grid';
+  const loading = setTimeout(() => {
+    loaderBg.style.display = 'grid';
+  }, 100);
+
+  if (window.navigator.onLine === false) {
+    clearTimeout(loading);
+  }
 
   fetch(signinUrl, {
     method: 'POST',
