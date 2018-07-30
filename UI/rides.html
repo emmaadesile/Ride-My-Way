@@ -47,114 +47,14 @@
       </div>
       <!-- End of Navigation -->
 
-    <!-- <div class="ride-options">
-      <a href="./offer-ride.html" class="btn btn__primary btn__inline">Offer Ride</a>
-    </div> -->
-
     <!-- Features -->
     <section class="rides mt-1 pb-4">
-      <h4 class="ride-heading">Available Rides</h4>
-      <div class="ride ride-1">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Ikorodu to Yaba</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-
-      </div>
-      <div class="ride ride-2">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Ikeja to Maryland</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-3">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Lagos to Ibadan</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-1">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>VI to Ikoyi</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-2">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Obalende to Falomo</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-3">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Mile 12 - CMS</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-1">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Maryland to Ikorodu</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-2">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Ojuelegba to Ikeja</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-      </div>
-      <div class="ride ride-3">
-        <div class="icon">
-          <img src="./images/car2.png" alt="">
-        </div>
-        <h5>Lagos to Ijebu</h5>
-        <p></p>
-        <button id="btn-modal" class="btn btn__secondary">View</button>
-        <!-- <a href="" class="btn btn__secondary" id="btn-modal">View</a> -->
-      </div>
+      <h4 class="ride-heading"></h4>
+  
     </section>
 
     <!-- Modal -->
     <div id="modal" class="modal">
-
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-          <h4>Ride Details</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-            Destination: Ikeja
-          </p>
-          <p>
-            Time: 4:00pm
-          </p>
-          <p>
-            Seats Availalble: 3
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn__grey">Cancel</button>
-          <button class="btn btn__primary">Join</button>
-        </div>
-      </div>
 
     </div>
     <!-- closing container -->
@@ -173,33 +73,29 @@
 
     // Modal Scripts
     // Get the modal
-    var modal = document.getElementById('modal');
+    // var modal = document.getElementById('modal');
 
     // Get the button that opens the modal
-    var btns = document.querySelectorAll("#btn-modal");
+    // var btns = document.querySelectorAll("#btn-modal");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    // var span = document.getElementsByClassName("close")[0];
 
 
     // When the user clicks on <span> (x), close the modal
-    function closeModal() {
-      modal.style.display = "none";
-    }
-    span.addEventListener("click", closeModal);
+    // function closeModal() {
+    //   modal.style.display = "none";
+    // }
+    // span.addEventListener("click", closeModal);
 
-    function displayModal() {
-      modal.style.display = "block";
-    }
-    btns.forEach(button => button.addEventListener("click", displayModal));
+    // function displayModal() {
+    //   modal.style.display = "block";
+    // }
+    // btns.forEach(button => button.addEventListener("click", displayModal));
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
+
   </script>
+  <script src="../client/rides.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/user-profile.css">
   <link rel="stylesheet" href="./styles/rides.css">
-
   <title>Ride My Way</title>
 </head>
 
@@ -35,7 +34,7 @@
             <a href="./ride-requests.html"> Requests </a>
           </li>
           <li class="navbar_items">
-            <a href="./index.html"> Signout </a>
+            <a href="#" class="signout-btn"> Signout </a>
           </li>
         </section>
 
@@ -50,8 +49,8 @@
       <!-- Profile Image -->
       <div class="profile-info">
         <div class="user-info">
-          <img src="./images//user-image.png" class="profle-image" alt="profile-img">
-          <h4 class="profile-name text-center">Shawn Mendez</h4>
+          <img src="./images/avatar.png" class="profle-image" alt="profile-img">
+          <h4 class="profile-name text-center"></h4>
         </div>
 
         <div class="rides-count">
@@ -67,10 +66,18 @@
       </div>
 
       <div class="profile-links">
-        <li><a href="#rides-taken">Rides Taken</a></li>
-        <li><a href="#rides-given" target>Rides Given</a></li>
-        <li><a href="#">Profile Settings</a></li>
-        <li><a href="#">Edit ride</a></li>
+        <li>
+          <a href="#rides-taken">Rides Taken</a>
+        </li>
+        <li>
+          <a href="#rides-given" target>Rides Given</a>
+        </li>
+        <li>
+          <a href="./rides.html" class="btn-rides">Rides</a>
+        </li>
+        <li>
+          <a href="#">Profile Settings</a>
+        </li>
       </div>
 
 
@@ -124,12 +131,14 @@
   </div>
 
 
-    <!-- Javascript for responsive navigation -->
-    <script>
-      function navBarFunction() {
-        document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
-      }
-    </script>
+  <!-- Javascript for responsive navigation -->
+  <script>
+    function navBarFunction() {
+      document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
+    }
+  </script>
+  <script src="../client/profile.js"></script>
+
 </body>
 
 </html>
