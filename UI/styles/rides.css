@@ -32,6 +32,10 @@
   margin-top: 40px;
 }
 
+.ride-name {
+  color: #6a6a6a;
+}
+
 .ride .icon {
   width: 100%;
   height: auto;
@@ -45,6 +49,14 @@
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   align-items: center;
   padding-top: 100px;
+}
+
+.ride-id {
+  background: #1381db;
+  padding: 3px 8px;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {
