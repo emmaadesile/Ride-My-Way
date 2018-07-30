@@ -122,16 +122,17 @@ function signupHandler(e) {
         message.style.display = 'none';
       }
       function hideMessage() {
-        setTimeout(doHide, 5000);
+        setTimeout(doHide, 2000);
       }
 
       // if success redirect to sign in page
       if (data.status === 'Success') {
         message.style.backgroundColor = '#40ac01';
+        message.style.color = '#fff';
         message.innerHTML = data.message;
         // redirect to sign in page
         function redirect() {
-          setTimeout(signinRedirect, 5000);
+          setTimeout(signinRedirect, 3000);
         }
         function signinRedirect() {
           window.location = './signin.html';

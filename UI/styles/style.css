@@ -1,7 +1,7 @@
 /* Base Syles ================================ */
 :root {
   --red: #f50000;
-  --blue: #0b7fdd;
+  --blue: #0c6ebf;
   --dark-blue: #0c6ebf;
   --green: #06d19c;
   --dark-green: #09bb8c;
@@ -294,7 +294,7 @@ a {
 
 /* Button styles ===============================*/
 .btn {
-  padding: 0.9rem 2rem;
+  padding: 0.4rem 1.3rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 5px;
@@ -354,6 +354,10 @@ a {
 
 .btn__inline {
   display: inline-block;
+}
+
+.signup-btn, .signin-btn {
+  padding: 0.9rem 2rem;
 }
 /* End of button styles==================================== */
 
