@@ -4,10 +4,15 @@ const ridesHeading = document.querySelector('.ride-heading');
 let viewRideButtons;
 let closeButton;
 let cancelButton;
+let joinRideButton;
 const modal = document.getElementById('modal');
+let modalBody;
+let modalFooter;
 const loading = document.querySelector('.loader-bg');
 // Get the <span> element that closes the modal
 const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
+
+
 
 // These event executed after the rides have been loaded to the page
 // they are triggered when the user clicks to view the details of a ride
@@ -17,7 +22,7 @@ function rideEventListeners() {
 }
 
 // close modal
-function closeModal(e) {
+function closeModal() {
   modal.style.display = 'none';
 }
 
@@ -105,6 +110,7 @@ function viewRideDetails(e) {
             <h4>Ride Details</h4>
           </div>
           <div class='modal-body'>
+            <span class='ride-id'>${data.ride[0].ride_id}</span>
             <h6>Location: ${data.ride[0].location}</h6>
             <h6>Destination: ${data.ride[0].destination}</h6>
             <h6>Departure Time: ${data.ride[0].departuretime}</h6>
@@ -113,19 +119,76 @@ function viewRideDetails(e) {
           </div>
           <div class='modal-footer'>
             <button class='btn btn__grey btn-cancel'>Cancel</button>
-            <button class='btn btn__secondary join-ride-btn'>Join</button>
+            <button class='btn btn__secondary btn-join-ride'>Join</button>
           </div>
         </div>
       `;
+        modalBody = document.querySelector('.modal-body');
+        modalFooter = document.querySelector('.modal-footer');
         closeButton = document.querySelector('.close');
         cancelButton = document.querySelector('.btn-cancel');
+        joinRideButton = document.querySelector('.btn-join-ride');
         // When the user clicks on <span> (x)
         // or the cancel button close the modal
         closeButton.addEventListener('click', closeModal);
         cancelButton.addEventListener('click', closeModal);
+        joinRideButton.addEventListener('click', joinRide);
       }
     })
     .catch(error => console.log({ error }));
+}
+
+// request to join a ride details
+const joinRideRequest = {
+  method: 'POST',
+  mode: 'cors',
+  cache: 'no-cache',
+  headers: new Headers({
+    Accept: 'application/json',
+    'Content-Type': 'application/json;charset=utf-8',
+    'x-access-token': userToken,
+  }),
+  redirect: 'follow',
+  referrer: 'no-referrer'
+};
+
+// User can make request to join ride
+function joinRide(e) {
+
+  // hide the footer of the modal after the user requests to join
+  modalFooter.style.display = "none";
+  // add the loading animation while the request is processed
+  modalBody.innerHTML +=`
+    <div>
+      <div class='loader'></div>
+    </div>
+  `;
+  const parentElement = e.target.parentNode;
+
+  const rideId = parentElement.previousElementSibling.firstElementChild.innerText;
+  const joinRideUrl = `https://emmaadesile-ridemyway.herokuapp.com/rides/${rideId}/requests`;
+  const request = new Request(joinRideUrl, joinRideRequest);
+  console.log(rideId);
+  fetch(request)
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.status === "Success") {
+        console.log(data);
+        modalBody.innerHTML = `
+          <h6>${data.message}</h6>
+        `;
+        closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', closeModal);
+      }
+      else {
+        console.log(data);
+        modalBody.style.backgroundColor =  "#F2DEDE";
+        modalBody.innerHTML = `
+          <h6>${data.error}</h6>
+        `;
+      }
+    })
+    .catch(error => console.log(error));
 }
 
 // When the user clicks anywhere outside of the modal, close the modal

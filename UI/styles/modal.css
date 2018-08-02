@@ -17,7 +17,7 @@
     /* Modal Content/Box */
     .modal-content {
       background-color: #fefefe;
-      margin: 11% auto;
+      margin: 15% auto;
       padding: 20px;
       max-width: 50%;
     }
@@ -33,6 +33,8 @@
     /* Modal Body */
     .modal-body {
       padding: 40px 16px;
+      display: grid;
+      justify-items: center;
     }
 
     /* Modal Footer */

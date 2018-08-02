@@ -91,8 +91,8 @@ function ridesGiven() {
             `;
           }
           else {
-            ridesGiventDetails.innerHTML += `
-              <h5>You have not created any ride</h5>
+            ridesGiventDetails.innerHTML = `
+              <p>You have not created any ride</p>
             `;
           }
         });
