@@ -1,5 +1,17 @@
 .offer-ride-form {
-  padding-top: 100px; 
+  padding-top: 30px; 
   display: grid; 
   justify-items: center;
-} 
+}
+
+/* .departuretime:before {
+  content: "Departure Time";
+}
+
+.departuretime:active {
+  content: "";
+}
+
+.datecreated:before {
+  content: "Date Created"
+} */

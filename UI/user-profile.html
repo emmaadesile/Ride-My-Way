@@ -34,7 +34,7 @@
             <a href="./ride-requests.html"> Requests </a>
           </li>
           <li class="navbar_items">
-            <a href="#" class="signout-btn"> Signout </a>
+            <a href="./signin.html" class="signout-btn"> Signout </a>
           </li>
         </section>
 
@@ -55,12 +55,12 @@
 
         <div class="rides-count">
           <div class="rides-taken">
-            <h1>25</h1>
-            <p>Rides Given</p>
+            <h1 class="rides-taken-num">0</h1>
+            <p>Rides Taken</p>
           </div>
           <div class="rides-given">
-            <h1>40</h1>
-            <p>Rides Taken</p>
+            <h1 class="rides-given-num">0</h1>
+            <p>Rides Given</p>
           </div>
         </div>
       </div>
@@ -84,20 +84,14 @@
       <!-- List of Rides Taken -->
       <div class="box mt-1" id="rides-taken">
         <div class="box__header text-center">
-          <h4 class="box__title">Rides Taken</h4>
+          <h4 class="box__title rides__taken-header">Rides Taken</h4>
         </div>
 
         <!-- Rides details -->
-        <div class="box__group">
+        <div class="box__group rides__taken-details">
           <div class="request-details">
             <h5>Ikorodu to Yaba</h5>
-            <p>Date-Given: 23/2/2018</p>
-          </div>
-        </div>
-        <div class="box__group">
-          <div class="request-details">
-            <h5>Maryland to Ikeja</h5>
-            <p>Date-Given: 23/2/2018</p>
+            <p>Date-Taken: 23-2-2018</p>
           </div>
         </div>
       </div>
@@ -105,20 +99,14 @@
       <!-- List of Rides Given -->
       <div class="box" id="rides-given">
         <div class="box__header text-center">
-          <h4 class="box__title">Rides Given</h4>
+          <h4 class="box__title rides__given-header">Rides Given</h4>
         </div>
 
         <!-- Rides details -->
-        <div class="box__group">
-          <div class="request-details">
+        <div class="box__group rides__given-details">
+          <div class="ride-details">
             <h5>Ikorodu to Yaba</h5>
-            <p>Date-Taken: 23/2/2018</p>
-          </div>
-        </div>
-        <div class="box__group">
-          <div class="request-details">
-            <h5>Maryland to Ikeja</h5>
-            <p>Date-Taken: 23/2/2018</p>
+            <p>Date-Given: 23-2-2018</p>
           </div>
         </div>
       </div>

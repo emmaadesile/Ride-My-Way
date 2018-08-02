@@ -229,7 +229,7 @@ a {
   padding-right: 1%;
 }
 
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 800px) {
   .navbar li.navbar_items {
     display: none;
   }
@@ -257,7 +257,7 @@ a {
 
 /* The "responsive" class is added to the navbar with JavaScript when the user clicks on the icon. This class makes the navbar look good on small screens */
 
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 800px) {
   .navbar.responsive {
     position: fixed;
     width: 100%;
@@ -356,7 +356,7 @@ a {
   display: inline-block;
 }
 
-.signup-btn, .signin-btn {
+.signup-btn, .signin-btn, .btn-ride {
   padding: 0.9rem 2rem;
 }
 /* End of button styles==================================== */

@@ -5,6 +5,7 @@ let viewRideButtons;
 let closeButton;
 let cancelButton;
 const modal = document.getElementById('modal');
+const loading = document.querySelector('.loader-bg');
 // Get the <span> element that closes the modal
 const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
 
@@ -17,8 +18,6 @@ function rideEventListeners() {
 
 // close modal
 function closeModal(e) {
-  console.log(e.target);
-  
   modal.style.display = 'none';
 }
 
@@ -57,7 +56,7 @@ function getAllRides() {
           <div class='ride'>
             <span class='ride-id'>${ride.ride_id}</span>
             <h5 class='ride-name'>${ride.location} to ${ride.destination}</h5>
-            <button class='btn btn__secondary btn-modal'>View</button>
+            <button class='btn btn__secondary btn-modal btn-view-rides'>View</button>
           </div>
           `;
           viewRideButtons = document.querySelectorAll('.btn-modal');

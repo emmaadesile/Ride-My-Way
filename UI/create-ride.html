@@ -10,6 +10,19 @@
   <link rel="stylesheet" href="./styles/form.css">
   <link rel="stylesheet" href="./styles/offer-ride.css">
   <title>Ride my way</title>
+  <style>
+    .message {
+      display: none;
+      background: #F2DEDE;
+      color: #C86F6E;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      text-align: left;
+      margin-bottom: 10px;
+      transition: 0.5s ease-in-out all;
+    }
+  </style>
 </head>
 
 <body>
@@ -26,7 +39,7 @@
 
           <section class="div_navbar_items">
             <li class="navbar_items">
-              <a href="./index.html"> Profile </a>
+              <a href="./user-profile.html"> Profile </a>
             </li>
             <li class="navbar_items">
               <a href="./rides.html"> Rides </a>
@@ -51,16 +64,26 @@
       <!-- Offer Ride Form -->
       <div class="offer-ride-form">
         <form action="" class="form">
-          <label class="form-label">Ride Offer</label>
-          <input class="form-control" type="text" name="location" placeholder="Location">
-          <input class="form-control" type="text" name="destination" placeholder="Destination">
-          <input class="form-control" type="time" name="time" placeholder="Departure Time">
-          <input class="form-control" type="date" name="date" placeholder="Date">
-          <input class="form-control" type="number" min="2" max="20" name="seats" placeholder="Seats Available">
+          <label class="form-label">Create Ride Offer</label>
+          <div class="message"></div>
+          <input class="form-control location" type="text" name="location" placeholder="Location"  required>
+          <input class="form-control destination" type="text" name="destination" placeholder="Destination" required>
+          <input class="form-control departuretime" type="time" pattern="^(?:2[0-3]|[01][0-9]):[0-5][0-9]$" name="departuretime" required 
+          placeholder="Depature Time [12:00:00]" title="Enter the time in this format HH:MM" value="00:00">
 
-          <a class="btn btn__primary btn__inline " href="#">Submit</a>
+          <input class="form-control datecreated" type="date" name="datecreated" placeholder="Date [YYYY-MM-DD]" 
+          title="Enter a date in this format YYYY-MM-DD">
+          <input class="form-control seatsavailable" type="number" min="2" max="7" name="seatsavailable" placeholder="Seats Available">
+
+          <a class="btn btn__primary btn__inline btn-ride" href="#">Create Ride</a>
         </form>
       </div>
+
+      <!-- loading animation while signup is processing-->
+      <div class="loader-bg">
+        <span class="loader"></span>
+      </div>
+
       <footer class="footer ">
         <p>&copy; 2018. Made by Emmanuel</p>
       </footer>
@@ -73,6 +96,7 @@
         document.getElementsByClassName("navbar ")[0].classList.toggle("responsive ");
       }
     </script>
+    <script src="../client/create-ride.js"></script>
 </body>
 
 </html>
