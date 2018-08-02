@@ -97,14 +97,14 @@ function signinHandler(e) {
     })
     .then((data) => {
       console.log(data);
-      // remove message from 
+      // remove message from form
       function showMessage() {
         message.style.display = 'block';
       }
       function removeMessage() {
         setTimeout(() => {
           message.style.display = 'none';
-        }, 2000);
+        }, 5000);
       }
       // redirect to user profile page
       function signinRedirect() {
@@ -134,7 +134,9 @@ function signinHandler(e) {
       }
     })
     .catch((error) => {
-      message.innerHTML = error.error;
+      if (error.message === "Failed to fetch") {
+        loaderBg.style.display = "none;"
+      }
       console.log(error);
     });
 }
