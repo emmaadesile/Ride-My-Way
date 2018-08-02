@@ -118,18 +118,13 @@
   border-bottom: 0;
 }
 
-@media screen and (min-width: 800px) {
-  .box {
-    width: 50%;
-  }
-}
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 600px) {
   .box {
     background-color: #fff;
     border: 1px solid #d1d5da;
     border-radius: 3px;
-    width: 80%;
+    width: 90%;
   }
 
   .box__group {
@@ -156,10 +151,15 @@
 }
 
 .ride-details {
-  background: #f2f1f1;
+  /* background: #f2f1f1; */
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 10px;
+}
+
+.ride-requests {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
 }
 
 .loader-bg {
