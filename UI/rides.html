@@ -28,7 +28,7 @@
               <a href="./user-profile.html"> Profile </a>
             </li>
             <li class="navbar_items">
-              <a href="./offer-ride.html"> New Ride </a>
+              <a href="./create-ride.html"> New Ride </a>
             </li>
             <li class="navbar_items">
               <a href="./ride-requests.html">
@@ -50,14 +50,16 @@
     <!-- Features -->
     <section class="rides mt-1 pb-4">
       <h4 class="ride-heading"></h4>
-  
     </section>
 
     <!-- Modal -->
-    <div id="modal" class="modal">
-
-    </div>
+    <div id="modal" class="modal"></div>
     <!-- closing container -->
+
+    <!-- loading animation while signup is processing-->
+    <div class="loader-bg">
+      <span class="loader"></span>
+    </div>
 
     <footer class="footer">
       <p>&copy; 2018. Made by Emmanuel</p>
@@ -70,29 +72,6 @@
     function navBarFunction() {
       document.getElementsByClassName("navbar")[0].classList.toggle("responsive");
     }
-
-    // Modal Scripts
-    // Get the modal
-    // var modal = document.getElementById('modal');
-
-    // Get the button that opens the modal
-    // var btns = document.querySelectorAll("#btn-modal");
-
-    // Get the <span> element that closes the modal
-    // var span = document.getElementsByClassName("close")[0];
-
-
-    // When the user clicks on <span> (x), close the modal
-    // function closeModal() {
-    //   modal.style.display = "none";
-    // }
-    // span.addEventListener("click", closeModal);
-
-    // function displayModal() {
-    //   modal.style.display = "block";
-    // }
-    // btns.forEach(button => button.addEventListener("click", displayModal));
-
 
   </script>
   <script src="../client/rides.js"></script>
