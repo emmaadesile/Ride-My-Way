@@ -98,9 +98,9 @@ class RideRequestsController {
           })
           : client.query(query, (err, result) => {
             if (err) {
-              res.status(500).json({
+              res.status(409).json({
                 status: 'Failed',
-                error: 'Unable to make request to join ride offer',
+                error: 'You already requested to join this ride',
               });
             } else {
               res.status(200).json({
@@ -156,17 +156,18 @@ class RideRequestsController {
           // if user's identity is verified, respond to the ride request
           client.query(query, (err, result) => {
             done();
-            return err
-              ? res.status(500).json({
+            if (err) {
+              res.status(500).json({
                 status: 'Failed',
                 error: 'Your have already responded to this ride request',
-                err
-              })
-              // if the request completes successfully
-              : res.status(200).json({
-                status: 'Success',
-                message: `The ride request has been successfully ${requestStatus}`
               });
+            } else {
+              // if the request completes successfully
+              res.status(200).json({
+                status: 'Success',
+                message: `The ride request has been successfully ${requestStatus}`,
+              });
+            }
           });
         });
       });
