@@ -13,10 +13,11 @@ routes(router);
 // Setup express app
 const app = express();
 
+app.use(logger('dev'));
+
 // user cors
 app.use(cors());
 
-app.use(logger('dev'));
 
 // Parse incoming requests
 app.use(bodyParser.json());
