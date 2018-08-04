@@ -36,8 +36,7 @@ var RideRequestsController = function () {
           if (err) {
             res.status(500).josn({
               status: 'Failed',
-              error: 'There was an error connecting to the server',
-              err: err
+              error: 'There was an error connecting to the server'
             });
           }
           // check if ride exists
@@ -45,14 +44,12 @@ var RideRequestsController = function () {
             if (err) {
               res.status(500).josn({
                 status: 'Failed',
-                error: 'There was an error checking if ride exists',
-                err: err
+                error: 'There was an error checking if ride exists'
               });
             }
             return result.rows.length === 0 ? res.status(400).json({
               status: 'Failed',
-              error: 'Ride does not exist. Cannot make request to join',
-              err: err
+              error: 'No request found because the ride does not exist'
             })
             // if ride exists, check if there are requests for the ride
             : client.query('SELECT * FROM ride_requests WHERE ride_id = $1', [rideId], function (err, result) {
@@ -60,8 +57,7 @@ var RideRequestsController = function () {
                 done();
                 res.status(500).json({
                   status: 'Failed',
-                  error: 'Something went wrong on the server',
-                  err: err
+                  error: 'Something went wrong on the server'
                 });
               }
               return result.rows === 'undefined' || result.rows.length === 0 ? res.status(400).json({
@@ -69,7 +65,7 @@ var RideRequestsController = function () {
                 error: 'There are no requests for this ride'
               }) : res.status(200).json({
                 status: 'Success',
-                request: result.rows[0]
+                request: result.rows
               });
             });
           });
@@ -171,7 +167,7 @@ var RideRequestsController = function () {
             if (result.rows === 'undefined' || result.rows.length === 0) {
               res.status(400).json({
                 status: 'Failed',
-                error: 'You Cannot respond to request because ride does not exist'
+                error: 'You Cannot respond to request because the ride does not exist'
               });
             }
             // If the ride exist
@@ -180,7 +176,7 @@ var RideRequestsController = function () {
               if (result.rows === 'undefined' || result.rows.length === 0) {
                 res.status(400).json({
                   status: 'Failed',
-                  error: 'You cannot modify ride requests for another user'
+                  error: 'You cannot respond to ride requests for another user'
                 });
               }
 

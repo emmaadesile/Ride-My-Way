@@ -38,6 +38,7 @@ var app = (0, _express2['default'])();
 
 app.use((0, _morgan2['default'])('dev'));
 
+// user cors
 app.use((0, _cors2['default'])());
 
 // Parse incoming requests

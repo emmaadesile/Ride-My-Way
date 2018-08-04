@@ -13,15 +13,10 @@ const app = express();
 
 app.use(logger('dev'));
 
-<<<<<<< HEAD
-app.use(cors());
-
-=======
 // user cors
 app.use(cors());
 
 
->>>>>>> cff8aca32727deff1bbb1e522b988bf2995dae40
 // Parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
