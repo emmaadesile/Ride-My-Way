@@ -122,9 +122,9 @@ var RideRequestsController = function () {
               error: 'Cannot request to join because ride does not exist'
             }) : client.query(query, function (err, result) {
               if (err) {
-                res.status(500).json({
+                res.status(409).json({
                   status: 'Failed',
-                  error: 'Unable to make request to join ride offer'
+                  error: 'You already requested to join this ride'
                 });
               } else {
                 res.status(200).json({
@@ -187,16 +187,18 @@ var RideRequestsController = function () {
               // if user's identity is verified, respond to the ride request
               client.query(query, function (err, result) {
                 done();
-                return err ? res.status(500).json({
-                  status: 'Failed',
-                  error: 'Your have already responded to this ride request',
-                  err: err
-                })
-                // if the request completes successfully
-                : res.status(200).json({
-                  status: 'Success',
-                  message: 'The ride request has been successfully ' + String(requestStatus)
-                });
+                if (err) {
+                  res.status(500).json({
+                    status: 'Failed',
+                    error: 'Your have already responded to this ride request'
+                  });
+                } else {
+                  // if the request completes successfully
+                  res.status(200).json({
+                    status: 'Success',
+                    message: 'The ride request has been successfully ' + String(requestStatus)
+                  });
+                }
               });
             });
           });

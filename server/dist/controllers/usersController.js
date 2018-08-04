@@ -62,7 +62,6 @@ var UsersController = function () {
         // connect to database
         _dbConfig2['default'].connect(function (err, client, done) {
           if (err) {
-            console.log(err);
             res.status(500).json({
               status: 'Failed',
               error: 'There seems to be an error on the server'
@@ -74,7 +73,7 @@ var UsersController = function () {
           client.query(query, function (err, result) {
             if (err) {
               done();
-              res.status(500).json({
+              res.status(409).json({
                 status: 'Failed',
                 error: 'User already exists'
               });
@@ -122,7 +121,6 @@ var UsersController = function () {
           }
           client.query('SELECT * from users WHERE email = $1', [email], function (err, result) {
             if (err) {
-              console.log(err);
               res.status(500).json({
                 status: 'Failed',
                 error: 'An error occurred during sign in'
