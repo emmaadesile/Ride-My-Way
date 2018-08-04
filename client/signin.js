@@ -14,12 +14,13 @@ const validateEmail = (checkMail) => {
   return testEmail.test(checkMail);
 };
 
-
+// check if there errors during signin
 function isEmpty(obj) {
   const keys = Object.keys(obj);
   return keys;
 }
 
+// Sign in validation
 function validateSignin() {
   let isValid;
   const error = {};
@@ -66,7 +67,13 @@ function signinHandler(e) {
   // check if signin form is valid
   if (validateSignin() === false) return;
 
-  loaderBg.style.display = 'grid';
+  const loading = setTimeout(() => {
+    loaderBg.style.display = 'grid';
+  }, 100);
+
+  if (window.navigator.onLine === false) {
+    clearTimeout(loading);
+  }
 
   fetch(signinUrl, {
     method: 'POST',
@@ -86,28 +93,50 @@ function signinHandler(e) {
       form.reset();
       // loading animation
       loaderBg.style.display = 'none';
-      return resp.json;
+      return resp.json();
     })
     .then((data) => {
       console.log(data);
-      // redirect to user profil in page
+      // remove message from form
+      function showMessage() {
+        message.style.display = 'block';
+      }
+      function removeMessage() {
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 5000);
+      }
+      // redirect to user profile page
       function signinRedirect() {
         window.location = './user-profile.html';
       }
       function redirect() {
-        setTimeout(signinRedirect, 3000);
+        setTimeout(signinRedirect, 2000);
       }
 
+      // if signin was successful
       if (data.status === 'Success') {
         loaderBg.style.display = 'grid';
         const token = data.userToken;
         sessionStorage.setItem('x-access-token', token);
         redirect();
       }
-      message.innerHTML = data.message;
+      // if user does not exist
+      if (data.error === 'User does not exist') {
+        showMessage();
+        message.innerHTML = data.error;
+        removeMessage();
+      }
+      if (data.error === 'Invalid login credentials') {
+        showMessage();
+        message.innerHTML = data.error;
+        removeMessage();
+      }
     })
     .catch((error) => {
-      message.innerHTML = error.error;
+      if (error.message === "Failed to fetch") {
+        loaderBg.style.display = "none;"
+      }
       console.log(error);
     });
 }

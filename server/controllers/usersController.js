@@ -27,7 +27,6 @@ class UsersController {
     // connect to database
     pool.connect((err, client, done) => {
       if (err) {
-        console.log(err);
         res.status(500).json({
           status: 'Failed',
           error: 'There seems to be an error on the server'
@@ -39,7 +38,7 @@ class UsersController {
       client.query(query, (err, result) => {
         if (err) {
           done();
-          res.status(500).json({
+          res.status(409).json({
             status: 'Failed',
             error: 'User already exists',
           });
@@ -77,7 +76,6 @@ class UsersController {
       }
       client.query('SELECT * from users WHERE email = $1', [email], (err, result) => {
         if (err) {
-          console.log(err);
           res.status(500).json({
             status: 'Failed',
             error: 'An error occurred during sign in'

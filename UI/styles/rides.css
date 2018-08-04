@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
-  /* margin: 100px 0; */
+  min-height: 100vh;
   background: #eeeeee;
   padding-right: 100px;
   padding-left: 100px;
@@ -32,6 +32,10 @@
   margin-top: 40px;
 }
 
+.ride-name {
+  color: #6a6a6a;
+}
+
 .ride .icon {
   width: 100%;
   height: auto;
@@ -45,6 +49,19 @@
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   align-items: center;
   padding-top: 100px;
+}
+
+.ride-id {
+  display: none;
+  background: #1381db;
+  padding: 3px 8px;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.btn-view-rides {
+  align-self: end;
 }
 
 @media (max-width: 600px) {
@@ -70,11 +87,11 @@
   background-color: #fff;
   border: 1px solid #d1d5da;
   border-radius: 3px;
-  width: 50%;
+  width: 70%;
 }
 
 .box__header {
-  padding: 16px;
+  padding: 8px;
   margin: -1px -1px 0 -1px;
   background-color: rgb(25, 39, 57);
   border-color: #d1d5da;
@@ -93,13 +110,14 @@
 .box__group {
   padding: 10px 20px;
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr;
   border-bottom: 1px solid #d1d5da;
 }
 
 .box:last-child {
   border-bottom: 0;
 }
+
 
 @media screen and (max-width: 600px) {
   .box {
@@ -110,7 +128,7 @@
   }
 
   .box__group {
-    padding: 10px 20px 0 20px;
+    padding: 20px;
     display: grid;
     grid-template-columns: 1fr;
     justify-self: left;
@@ -130,4 +148,49 @@
     background: #eeeeee;
     padding: 0 30px;
   }
+}
+
+.ride-details {
+  /* background: #f2f1f1; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.ride-requests {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.loader-bg {
+  display: none;
+}
+
+.loader {
+  display: block;
+  border: 5px solid #eee;
+  border-top: 5px solid #192739;
+  border-radius: 50%;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.request-loader {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  min-height: 50px;
+  width: 100%;
 }
