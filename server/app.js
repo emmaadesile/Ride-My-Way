@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
+import cors from 'cors';
 import routes from './routes/index';
 
 
@@ -11,6 +12,9 @@ routes(router);
 
 // Setup express app
 const app = express();
+
+// user cors
+app.use(cors());
 
 app.use(logger('dev'));
 

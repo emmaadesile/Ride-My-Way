@@ -84,7 +84,7 @@ function ridesGiven() {
         data.rides.filter((ride) => {
           if (ride.user_id === userId) {
             ridesGiventDetails.innerHTML += `
-              <div class="ride-details">
+              <div class="ride-detail">
                 <h5>${ride.location} to ${ride.destination}</h5>
                 <p>Date-Given: ${ride.datecreated.slice(0, 10)}</p>
               </div>
