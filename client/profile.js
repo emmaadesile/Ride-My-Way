@@ -1,12 +1,18 @@
 const profileName = document.querySelector('.profile-name');
 const signoutButton = document.querySelector('.signout-btn');
-const userToken = sessionStorage.getItem('x-access-token');
+// const userToken = sessionStorage.getItem('x-access-token');
 const ridesButton = document.querySelector('.btn-rides');
-const ridesTaken = document.querySelector(".rides-taken");
-const ridesGiventDetails = document.querySelector(".rides__given-details");
-const ridesGivenCount = document.querySelector(".rides-given-num");
-const ridesTakenCount = document.querySelector(".rides-taken-num");
-const ridesUrl = "https://emmaadesile-ridemyway.herokuapp.com/rides";
+const rides = [];
+const requests = [];
+const ridesGivenDetails = document.querySelector('.rides__given-details');
+const ridesTakenDetails = document.querySelector('.rides__taken-details');
+const ridesGivenCount = document.querySelector('.rides-given-num');
+const ridesTakenCount = document.querySelector('.rides-taken-num');
+// const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
+// const rideRequestUrl = 'https://emmaadesile-ridemyway.herokuapp.com/users/requests';
+const ridesTakenUrl = 'http://localhost:8000/users/requests';
+const ridesUrl = 'http://localhost:8000/rides';
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcl9pZCI6NCwiZmlyc3RuYW1lIjoidmFuZGFsIiwibGFzdG5hbWUiOiJzYXZhZ2UiLCJ1c2VybmFtZSI6InZhbmRhbHNhdmFnZSIsImVtYWlsIjoidmFuZGFsc2F2YWdlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtGZU9raWJTcjhKUm1wRVBXRWhpMS5oeWdMRXh1cDIudDlOTXF1cUFHdFA5UXg4UGlYbW8yIn0sImlhdCI6MTUzMzQ5MTIyNSwiZXhwIjoxNTMzNTc3NjI1fQ.wWYdeQBMMBCzSeTBpJ-g9Gjm_i_3YzakjP5brzL1kgw';
 
 // get user info from token
 function decodeToken(token) {
@@ -21,7 +27,6 @@ const userId = userInfo.userId.user_id;
 const firstname = userInfo.userId.firstname;
 const lastname = userInfo.userId.lastname;
 const fullname = `${firstname} ${lastname}`;
-console.log(fullname);
 
 /**
  * Loads profile of a user
@@ -32,7 +37,6 @@ console.log(fullname);
 function loadProfile() {
   profileName.textContent = fullname;
 }
-
 loadProfile();
 
 /**
@@ -41,13 +45,9 @@ loadProfile();
  * @param {obj} res
  * @returns a ride taken and given count
  */
-// function ridesTaken() {
-
-// }
-// ridesTaken();
 
 // request details for getting all rides
-const requestDetails = {
+const ridesGivenParams = {
   method: 'GET',
   mode: 'cors',
   cache: 'no-cache',
@@ -59,21 +59,16 @@ const requestDetails = {
   referrer: 'no-referrer'
 };
 
-/**
- * shows the num of ride taken and given
- * @param {obj} req
- * @param {obj} res
- * @returns a ride taken and given count
- */
 function ridesGiven() {
-  const request = new Request(ridesUrl, requestDetails);
+  const request = new Request(ridesUrl, ridesGivenParams);
 
   fetch(request)
     .then(resp => resp.json())
     .then((data) => {
       if (data.status === 'Success') {
+        rides.push(...data.rides)
         if (data.rides.length === 0) {
-          ridesGiventDetails.innerHTML = `
+          ridesGivenDetails.innerHTML = `
           <h6> There are no rides <h6>
           `;
         }
@@ -81,29 +76,75 @@ function ridesGiven() {
         const count = data.rides.filter(ride => ride.user_id === userId);
         ridesGivenCount.textContent = count.length;
 
-        data.rides.filter((ride) => {
+        data.rides.map((ride) => {
           if (ride.user_id === userId) {
-            ridesGiventDetails.innerHTML += `
-              <div class="ride-detail">
+            ridesGivenDetails.innerHTML += `
+              <div class='ride-detail'>
                 <h5>${ride.location} to ${ride.destination}</h5>
                 <p>Date-Given: ${ride.datecreated.slice(0, 10)}</p>
               </div>
-            `;
-          }
-          else {
-            ridesGiventDetails.innerHTML = `
-              <p>You have not created any ride</p>
             `;
           }
         });
       }
     })
     .catch((error) => {
-      console.log({ error });
+      console.log(error);
     });
 }
-
 ridesGiven();
+
+
+/**
+ * shows the num of ride taken and given
+ * @param {obj} req
+ * @param {obj} res
+ * @returns a ride taken and given count
+ */
+
+// request details for getting all requests
+const ridesTakenParams = {
+  method: 'GET',
+  mode: 'cors',
+  cache: 'no-cache',
+  credentials: 'same-origin',
+  headers: new Headers({
+    'x-access-token': userToken,
+  }),
+  redirect: 'follow',
+  referrer: 'no-referrer'
+};
+
+function ridesTaken() {
+  const request = new Request(ridesTakenUrl, ridesTakenParams);
+
+  fetch(request)
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.status === 'Success') {
+        console.log(data.requests);
+        ridesTakenCount.textContent = data.requests.length;
+        requests.push(...data.requests);
+        rides.map((ride) => {
+          requests.map((request) => {
+            if (ride.ride_id === request.ride_id) {
+              console.log(ride);
+              ridesTakenDetails.innerHTML += `
+                <div class='ride-detail'>
+                  <h5>${ride.location} to ${ride.destination}</h5>
+                  <p>Date Taken: ${ride.datecreated.slice(0, 10)}</p>
+                  <p class='request-status'>Status: ${request.request_status}</p>
+                </div>
+              `;
+            }
+          })
+        })
+      }
+    })
+    .catch(error => console.log(error));
+}
+ridesTaken();
+
 
 // rides button redirects to rides page
 function ridesPageRedirect() {

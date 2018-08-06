@@ -2,7 +2,7 @@ import pool from '../models/dbConfig';
 
 class RideRequestsController {
   /**
-   * Get All Ride Requests
+   * Get All Requests fpr a ride
    * @param {obj} req
    * @param {obj} res
    * @returns A ride requests
@@ -12,7 +12,7 @@ class RideRequestsController {
     const rideId = parseInt(req.params.rideId, 10);
     pool.connect((err, client, done) => {
       if (err) {
-        res.status(500).josn({
+        res.status(500).json({
           status: 'Failed',
           error: 'There was an error connecting to the server',
         });
@@ -20,7 +20,7 @@ class RideRequestsController {
       // check if ride exists
       client.query('SELECT * FROM rides WHERE ride_id = $1', [rideId], (err, result) => {
         if (err) {
-          res.status(500).josn({
+          res.status(500).jsn({
             status: 'Failed',
             error: 'There was an error checking if ride exists',
           });
@@ -49,6 +49,44 @@ class RideRequestsController {
                 request: result.rows
               });
           });
+      });
+    });
+  }
+
+  /**
+   * Get All Ride Requests for a user
+   * @param {obj} req
+   * @param {obj} res
+   * @returns A ride requests
+   * @memberof RideRequestsController
+   */
+  static getAllRideRequests(req, res) {
+    const userId = req.userId;
+    const query = {
+      text: 'SELECT * FROM ride_requests WHERE user_id = $1',
+      values: [userId]
+    };
+    pool.connect((err, client, done) => {
+      if (err) {
+        res.status(500).json({
+          status: 'Failed',
+          message: 'There seems to be an error on the server'
+        });
+        done();
+      }
+      client.query(query, (err, result) => {
+        if (err) {
+          done();
+          res.status(500).json({
+            status: 'Failed',
+            message: 'An error occurred while fetching the ride requests'
+          });
+        } else {
+          res.status(200).json({
+            status: 'Success',
+            requests: result.rows
+          });
+        }
       });
     });
   }

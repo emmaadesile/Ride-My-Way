@@ -1,6 +1,8 @@
-const userToken = sessionStorage.getItem('x-access-token');
+// const userToken = sessionStorage.getItem('x-access-token');
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcl9pZCI6NCwiZmlyc3RuYW1lIjoidmFuZGFsIiwibGFzdG5hbWUiOiJzYXZhZ2UiLCJ1c2VybmFtZSI6InZhbmRhbHNhdmFnZSIsImVtYWlsIjoidmFuZGFsc2F2YWdlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtGZU9raWJTcjhKUm1wRVBXRWhpMS5oeWdMRXh1cDIudDlOTXF1cUFHdFA5UXg4UGlYbW8yIn0sImlhdCI6MTUzMzM5OTQwNiwiZXhwIjoxNTMzNDg1ODA2fQ.mQeoBIGRT43hyZ0dkgzYfGhjuIb5dTNpl8buDrHS6lc';
 // rides url
-const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
+// const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
+const ridesUrl = 'http://localhost:8000/rides';
 
 let rideRequestsUrl;
 // url for responding to ride requests
@@ -9,8 +11,8 @@ let rides = [];
 let rideIdArray = [];
 const rideRequestArray = [];
 let rideRequests = document.querySelector('.ride-requests');
-let acceptButton;
-let rejectButton;
+let acceptButtons;
+let rejectButtons;
 
 // get user info from token
 function decodeToken(token) {
@@ -81,14 +83,16 @@ function getAllRideRequests() {
     .then(() => {
       // get the requests for each ride using the ride id
       rideIdArray.map((rideId) => {
-        rideRequestsUrl = `https://emmaadesile-ridemyway.herokuapp.com/users/rides/${rideId}/requests`;
+        // rideRequestsUrl = `https://emmaadesile-ridemyway.herokuapp.com/users/rides/${rideId}/requests`;
+        rideRequestsUrl = `http://localhost:8000/users/rides/${rideId}/requests`;
         fetch(rideRequestsUrl, ridesRequestParams)
           .then(resp => resp.json())
           .then((data) => {
             if (data.status === 'Success') {
-              rideRequestArray.push(data.request);
+              console.log(data.request);
+              rideRequestArray.push(...data.request);
               data.request.map((ride, index) => {
-                rideRequests.innerHTML += `                  
+                rideRequests.innerHTML += `
                   <div class='box__group ride-request'>
                     <div class='request-details'>
                       <h5>${rides[index].location} to ${rides[index].destination}</h5>
@@ -98,21 +102,29 @@ function getAllRideRequests() {
                       <span class='request-status'>${ride.request_status}</span>
                     </div>
                     <div class='request-btns'>
-                      <a class='btn btn__secondary'>Accept</a>
-                      <a class='btn btn__grey'>Reject</a>
+                      <span class='request-id hidden'>${ride.request_id}</span>
+                      <span class='ride-id hidden'>${ride.ride_id}</span>
+                      <a class='btn btn__secondary btn-accept'>Accept</a>
+                      <a class='btn btn__grey btn-reject'>Reject</a>
                     </div>
                   </div>
                 `;
+                // select accept and reject buttons
+                acceptButtons = document.querySelectorAll('.btn-accept');
+                rejectButtons = document.querySelectorAll('.btn-reject');
+                // add event listeners to accept and reject buttons
+                acceptButtons.forEach(button => button.addEventListener('click', acceptRideRequest));
+                rejectButtons.forEach(button => button.addEventListener('click', rejectRideRequest));
               });
-            }
-            rideRequests.innerHTML += `
-              <div class='box__group ride-request'>
-                <div class='request-details'>
-                  <h6>You have no ride notifications for your ride(s)</h6>
+            } else {
+              rideRequests.innerHTML = `
+                <div class='box__group ride-request'>
+                  <div class='request-details'>
+                    <h6>You have no ride notifications for your ride(s)</h6>
+                  </div>
                 </div>
-              </div>
-            `;
-            console.log(data);
+              `;
+            }
           })
           .catch(error => console.log(error));
       });
@@ -122,6 +134,23 @@ function getAllRideRequests() {
 getAllRideRequests();
 
 // respond to ride requests
-function respontoRideRequests() {
+function acceptRideRequest(e) {
+  const parentElement = e.target.parentNode;
+  const rideId = parentElement.firstElementChild.textContent;
+  const requestId = parentElement.firstElementChild.nextElementSibling.textContent;
+  console.log({ rideId, requestId });
 
+  // rideRequestResponsesUrl = `https://emmadesile-ridemyway/heokuapp.com/users/rides/${rideId}/requests/${requestId}`;
+  rideRequestResponsesUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
+}
+
+// respond to ride requests
+function rejectRideRequest(e) {
+  const parentElement = e.target.parentNode;
+  const rideId = parentElement.firstElementChild.textContent;
+  const requestId = parentElement.firstElementChild.nextElementSibling.textContent;
+  console.log({ rideId, requestId });
+  
+  // rideRequestResponsesUrl = `https://emmadesile-ridemyway/heokuapp.com/users/rides/${rideId}/requests/${requestId}`;
+  rideRequestResponsesUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
 }

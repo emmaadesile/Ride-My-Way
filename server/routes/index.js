@@ -43,8 +43,11 @@ const routes = (app) => {
   // Request to join a ride offer
   app.post('/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.requestToJoinARideOffer);
 
-  // Fetch All Ride Requests
+  // Fetch All Ride Requests for a ride
   app.get('/users/rides/:rideId/requests', TokenAuth.verifyToken, RideRequestsController.getRideRequests);
+
+  // Fetch All Ride Requests
+  app.get('/users/requests', TokenAuth.verifyToken, RideRequestsController.getAllRideRequests);
 
   // Accept or reject a ride request
   app.put('/users/rides/:rideId/requests/:requestId', TokenAuth.verifyToken, RideRequestsController.acceptOrRejectRideRequest);

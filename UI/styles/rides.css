@@ -209,3 +209,8 @@
   font-size: 12px;
   border-radius: 10px;
 }
+
+/* this set any element display to none */
+.hidden {
+  display: none;
+}
