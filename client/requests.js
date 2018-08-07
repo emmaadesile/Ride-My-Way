@@ -1,18 +1,20 @@
 // const userToken = sessionStorage.getItem('x-access-token');
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcl9pZCI6NCwiZmlyc3RuYW1lIjoidmFuZGFsIiwibGFzdG5hbWUiOiJzYXZhZ2UiLCJ1c2VybmFtZSI6InZhbmRhbHNhdmFnZSIsImVtYWlsIjoidmFuZGFsc2F2YWdlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtGZU9raWJTcjhKUm1wRVBXRWhpMS5oeWdMRXh1cDIudDlOTXF1cUFHdFA5UXg4UGlYbW8yIn0sImlhdCI6MTUzMzM5OTQwNiwiZXhwIjoxNTMzNDg1ODA2fQ.mQeoBIGRT43hyZ0dkgzYfGhjuIb5dTNpl8buDrHS6lc';
+const userToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcl9pZCI6NCwiZmlyc3RuYW1lIjoidmFuZGFsIiwibGFzdG5hbWUiOiJzYXZhZ2UiLCJ1c2VybmFtZSI6InZhbmRhbHNhdmFnZSIsImVtYWlsIjoidmFuZGFsc2F2YWdlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtGZU9raWJTcjhKUm1wRVBXRWhpMS5oeWdMRXh1cDIudDlOTXF1cUFHdFA5UXg4UGlYbW8yIn0sImlhdCI6MTUzMzUyMjc4NCwiZXhwIjoxNTMzNjA5MTg0fQ.cFF9IbInU5s818sMuvBuzqFgN5_JgvRWmMHBEdAUUWA";
 // rides url
 // const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
 const ridesUrl = 'http://localhost:8000/rides';
 
 let rideRequestsUrl;
 // url for responding to ride requests
-let rideRequestResponsesUrl;
-let rides = [];
+let rideRequestResponseUrl;
+const rides = [];
 let rideIdArray = [];
 const rideRequestArray = [];
-let rideRequests = document.querySelector('.ride-requests');
 let acceptButtons;
 let rejectButtons;
+const rideRequests = document.querySelector('.ride-requests');
+const message = document.querySelector('.message');
 
 // get user info from token
 function decodeToken(token) {
@@ -102,8 +104,8 @@ function getAllRideRequests() {
                       <span class='request-status'>${ride.request_status}</span>
                     </div>
                     <div class='request-btns'>
-                      <span class='request-id hidden'>${ride.request_id}</span>
                       <span class='ride-id hidden'>${ride.ride_id}</span>
+                      <span class='request-id hidden'>${ride.request_id}</span>
                       <a class='btn btn__secondary btn-accept'>Accept</a>
                       <a class='btn btn__grey btn-reject'>Reject</a>
                     </div>
@@ -133,24 +135,68 @@ function getAllRideRequests() {
 }
 getAllRideRequests();
 
-// respond to ride requests
+
+// accept ride requests
 function acceptRideRequest(e) {
   const parentElement = e.target.parentNode;
   const rideId = parentElement.firstElementChild.textContent;
   const requestId = parentElement.firstElementChild.nextElementSibling.textContent;
-  console.log({ rideId, requestId });
+  const accepted = { requestStatus: 'accepted' };
+  console.log({ rideId, requestId, accepted });
 
   // rideRequestResponsesUrl = `https://emmadesile-ridemyway/heokuapp.com/users/rides/${rideId}/requests/${requestId}`;
-  rideRequestResponsesUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
+  rideRequestResponseUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
+  const params = {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(accepted),
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: new Headers({
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json, text`/plain, text/html;',
+      'x-access-token': userToken,
+    }),
+    redirect: 'follow',
+    referrer: 'no-referrer'
+  };
+  const request = new Request(rideRequestResponseUrl, params);
+  fetch(request)
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.status === "Success") {
+        message.style.display = "block";
+        message.innerHTML = `
+          <h6>${data.message}</h6>
+        `;
+        setTimeout(() => {
+          message.style.display = "none";
+        }, 3000);
+      } else {
+        message.style.display = "block";
+        message.style.backgroundColor = "#40ac01";
+        message.style.color = "#fff";
+        message.innerHTML = `
+          <h6>${data.message}</h6>
+        `;
+        setTimeout(() => {
+          message.style.display = "none";
+        }, 3000);
+      }
+    })
+    .catch(error => console.log(error));
 }
 
-// respond to ride requests
+// reject ride requests
 function rejectRideRequest(e) {
   const parentElement = e.target.parentNode;
   const rideId = parentElement.firstElementChild.textContent;
   const requestId = parentElement.firstElementChild.nextElementSibling.textContent;
-  console.log({ rideId, requestId });
+  const rejected = { requestStatus: 'rejected' };
+  console.log({ rideId, requestId, accepted });
   
   // rideRequestResponsesUrl = `https://emmadesile-ridemyway/heokuapp.com/users/rides/${rideId}/requests/${requestId}`;
-  rideRequestResponsesUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
+  rideRequestResponseUrl = `http://localhost:8000/users/rides/${rideId}/requests/${requestId}`;
+
+  fetch()
 }

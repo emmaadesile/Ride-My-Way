@@ -1,6 +1,6 @@
 const profileName = document.querySelector('.profile-name');
 const signoutButton = document.querySelector('.signout-btn');
-// const userToken = sessionStorage.getItem('x-access-token');
+const userToken = sessionStorage.getItem('x-access-token');
 const ridesButton = document.querySelector('.btn-rides');
 const rides = [];
 const requests = [];
@@ -8,11 +8,10 @@ const ridesGivenDetails = document.querySelector('.rides__given-details');
 const ridesTakenDetails = document.querySelector('.rides__taken-details');
 const ridesGivenCount = document.querySelector('.rides-given-num');
 const ridesTakenCount = document.querySelector('.rides-taken-num');
-// const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
-// const rideRequestUrl = 'https://emmaadesile-ridemyway.herokuapp.com/users/requests';
-const ridesTakenUrl = 'http://localhost:8000/users/requests';
-const ridesUrl = 'http://localhost:8000/rides';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcl9pZCI6NCwiZmlyc3RuYW1lIjoidmFuZGFsIiwibGFzdG5hbWUiOiJzYXZhZ2UiLCJ1c2VybmFtZSI6InZhbmRhbHNhdmFnZSIsImVtYWlsIjoidmFuZGFsc2F2YWdlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtGZU9raWJTcjhKUm1wRVBXRWhpMS5oeWdMRXh1cDIudDlOTXF1cUFHdFA5UXg4UGlYbW8yIn0sImlhdCI6MTUzMzQ5MTIyNSwiZXhwIjoxNTMzNTc3NjI1fQ.wWYdeQBMMBCzSeTBpJ-g9Gjm_i_3YzakjP5brzL1kgw';
+const ridesUrl = 'https://emmaadesile-ridemyway.herokuapp.com/rides';
+const ridesTakenUrl = 'https://emmaadesile-ridemyway.herokuapp.com/users/requests';
+// const ridesTakenUrl = 'http://localhost:8000/users/requests';
+// const ridesUrl = 'http://localhost:8000/rides';
 
 // get user info from token
 function decodeToken(token) {

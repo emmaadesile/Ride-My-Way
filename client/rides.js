@@ -135,7 +135,7 @@ function viewRideDetails(e) {
         joinRideButton.addEventListener('click', joinRide);
       }
     })
-    .catch(error => console.log({ error }));
+    .catch(error => console.log(error));
 }
 
 // request to join a ride details
