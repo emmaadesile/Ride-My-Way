@@ -2,8 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
+import cors from 'cors';
 import routes from './routes/index';
-
 
 const router = express.Router();
 routes(router);
@@ -13,6 +13,7 @@ routes(router);
 const app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 
 // Parse incoming requests
 app.use(bodyParser.json());
