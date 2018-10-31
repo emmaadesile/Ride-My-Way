@@ -46,7 +46,7 @@ class UsersController {
         }
         if (result) {
           const newUser = result.rows[0];
-          const token = TokenAuth.makeToken(newUser);
+          const token = TokenAuth.makeToken({ userId: newUser });
           res.status(201).json({
             status: 'Success',
             message: 'Sign up successful',
